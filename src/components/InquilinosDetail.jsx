@@ -10,7 +10,7 @@ import Aldia from "./Aldia";
 import Pendiente from "./Pendiente";
 import CambiarAvatar from "./CambiarAvatar";
 import DatosInquilinosMob from "./DatosInquilinosMob";
-import AvisoVencimiento from "./avisoVencimiento";
+import AvisoVencimiento from "./AvisoVencimiento";
 import AvisoVencimientoDetail from "./AvisoVencimientoDetail";
 
 
