@@ -2,7 +2,7 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cargando from "./Cargando"
-import AvisoVencimiento from "./avisoVencimiento";
+import AvisoVencimiento from "./AvisoVencimiento";
 import ReseteoAlquileres from "./ReseteoAlquileres";
 
 const ListadoIquilinos = () => {
