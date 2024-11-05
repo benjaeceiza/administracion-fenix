@@ -1,0 +1,83 @@
+[
+    {
+        "nombre": "benjamin",
+        "apellido": "eceiza",
+        "dni": 44480358,
+        "email":"benjaeceiza400@gmail.com",
+        "telefono":2657310116,
+        "id":1,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":1111111010101011543534543534  
+    },
+    {
+        "nombre": "gonzalo",
+        "apellido": "silvani",
+        "dni": 44480536,
+        "email":"gonzasilvani@gmail.com",
+        "telefono":26571212121,
+        "id":2,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+        
+    },
+    {
+        "nombre": "cesar",
+        "apellido": "silvani",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":3,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    },
+    {
+        "nombre": "lucre",
+        "apellido": "andino",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":4,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    },
+    {
+        "nombre": "erika",
+        "apellido": "sosa",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":5,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    },
+    {
+        "nombre": "rosa",
+        "apellido": "silvani",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":6,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    },
+    {
+        "nombre": "prop1",
+        "apellido": "apellido prop1",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":7,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    },
+    {
+        "nombre": "prop2",
+        "apellido": "apellido prop2",
+        "dni": 343432432,
+        "email":"cesarsilvani@gmail.com",
+        "telefono":265734346,
+        "id":8,
+        "imagen":"/src/assets/usuario.png",
+        "cbu":111111101010101010101010101
+    }
+]

@@ -1,0 +1,829 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body {
+  position: relative;
+  padding-bottom: 40px;
+  min-height: 100vh;
+
+}
+
+/* SPINNER DE CARGA*/
+
+.cargando {
+  width: 100%;
+
+}
+
+
+.spinner-general {
+  margin-top: 40vh;
+}
+
+.spinner-inquilino-propiedades {
+
+  min-height: 100px;
+
+}
+
+.margin-spinner-inquilino-propiedades {
+  margin-top: 4%;
+}
+
+
+/* INICIO */
+
+.logo-inicio {
+  border-radius: 50%;
+
+}
+
+
+/* NAV BAR */
+
+.nav-mob {
+  display: none;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.navbar {
+  padding: 0;
+
+}
+
+.nav-link {
+  border-radius: 10px;
+}
+
+.nav-link:hover {
+  background-color: rgb(57, 199, 121);
+}
+
+.active {
+  background-color: rgb(57, 199, 121);
+}
+
+.largo {
+
+  min-height: 80px;
+  padding: 20px 10px;
+
+
+}
+
+.relativo {
+  position: relative;
+}
+
+.navbar-expand-lg .navbar-collapse {
+
+  justify-content: space-around;
+
+}
+
+
+.logo {
+  height: 60px;
+  border-radius: 50%;
+}
+
+/* LISTADO DE PROPIETARIOS */
+
+.titulo-boton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+
+
+.contenedor-propietarios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.ancho {
+  width: 250px;
+  margin: 0px 10px;
+  overflow: hidden;
+  background-color: rgb(248, 245, 245);
+  border-radius: 20px;
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+
+}
+
+.ancho-detail {
+  width: 250px;
+  margin: 0px 10px;
+  overflow: hidden;
+  background-color: rgb(248, 245, 245);
+  border-radius: 20px;
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+}
+
+.ancho img {
+  padding: 75px 0;
+}
+
+.tamano img {
+  padding: 75px 0px;
+}
+
+.mg {
+  margin: auto;
+}
+
+.contenedor-boton-avatar {
+  width: 250px;
+  text-align: end;
+  margin: auto;
+}
+
+
+
+.mouse:hover {
+  filter: drop-shadow(2px 1px 1px rgb(94, 93, 93));
+
+}
+
+.fondo-nombre {
+  background-color: rgb(10, 167, 119);
+  padding: 1px;
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
+  font-weight: bold;
+}
+
+
+
+.nombre {
+  color: white;
+  text-decoration-line: none;
+  font-weight: bold;
+}
+
+.opacidad:hover {
+
+  background-color: rgb(211, 210, 210);
+  transition: all .5s;
+}
+
+
+/* PROPIETARIO DETAIL */
+
+.mg-btn {
+  margin-left: 80px;
+}
+
+.contenedor-propietario-detail {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+ 
+  
+
+}
+
+.contenedor-datos-fotonombre {
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+
+.contenedor-foto-nombre {
+  border: solid 1px black;
+  width: 300px;
+  padding: 40px 0px;
+  border-radius: 20px;
+  margin-top: 40px;
+
+}
+
+.contenedor-propiedades-inquilinos {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0px auto 40px auto;
+
+}
+
+.btn-mas-propiedad{
+  padding-right: 15px;
+
+}
+
+.contenedor-propiedades {
+  overflow: hidden;
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+  margin: auto;
+  border-radius: 20px;
+  width: 90%;
+  min-width: 300px;
+}
+
+.propiedades-mob{
+  display: none;
+}
+
+.contenedor-inqui {
+  width: 90%;
+  min-width: 250px;
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 20px;
+  margin: auto;
+
+}
+
+
+.img-nombre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 10px;
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+
+
+
+.img-nombre p {
+  text-align: center;
+  margin: 0;
+  width: 100px;
+  background-color: rgb(10, 138, 177);
+  color: white;
+  padding: 0px 10px;
+  margin-top: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: bold;
+
+}
+
+.contenedor-cambiar-avatar {
+  position: absolute;
+  width: 100%;
+  
+}
+
+.contenedor-modal{
+  width: 25vw;
+  min-width: 300px;
+  margin: auto;
+  border-radius: 20px;
+  filter: drop-shadow(0px 10px 10px gray);
+  animation-name: agrandar;
+  animation-duration: 1s;
+}
+
+.contenedor-titulo-boton-cerrar-avatar{
+
+  display: flex;
+  text-align: center;
+  align-items: baseline;
+  justify-content: center;
+  margin: 0;
+  width: 25vw;
+  min-width: 300px;
+  margin: auto;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+ 
+}
+
+.titulo-cambiar-avatar{
+width: 450px;
+  
+}
+.boton-cerrar-avatar{
+  border: 0;
+  background-color: transparent;
+  font-size: 30px;
+}
+.contenedor-avatars {
+  background-color: gray;
+  width: 25vw;
+  min-width: 300px;
+  height: 500px;
+  margin: auto;
+  text-align: center;
+  overflow:auto;
+  padding: 0px 0px;
+}
+
+.avatar-a-cambiar{
+  margin: 5px;
+}
+
+.avatar-a-cambiar:hover{
+  transform: scale(1.05);
+}
+
+.seleccionado{
+  margin: 5px;
+  border: 2px solid white;
+  border-radius: 50%;
+
+}
+
+.contenedor-boton-cambiar-avatar{
+
+  background-color: white;
+  width: 25vw;
+  min-width: 300px;
+  text-align: center;  
+  margin: auto;
+  padding: 10px 0px;
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
+  padding-top: 20px;
+}
+
+.contenedor-boton-cambiar-avatar button{
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.alinear {
+  align-items: center;
+}
+
+.datos-mob{
+  display: none;
+}
+
+.contenedor-datos {
+  box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+  padding: 20px 15px;
+  border-radius: 20px;
+  text-align: start;
+  min-width: 250px;
+  width: 90%;
+  margin: auto;
+}
+
+
+
+.col-datos {
+  width: 100%;
+  padding: 0px
+}
+
+.parrafo-datos {
+  background-color: rgba(241, 241, 241, 0.822);
+  padding: 10px 5px;
+
+}
+
+.label-datos {
+  font-size: 13px;
+}
+
+.fondo-nombre-inqui {
+  background-color: rgb(10, 138, 177);
+  padding: 1px;
+  border-end-end-radius: 20px;
+  border-end-start-radius: 20px;
+  font-weight: bold;
+}
+
+/* LISTADO INQUILINOS */
+
+.aviso-vencimiento {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(245, 113, 73);
+  align-items: baseline;
+  padding-top: 10px;
+  flex-wrap: wrap;
+}
+
+.aviso-vencimiento-detail{
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(245, 113, 73);
+  align-items: baseline;
+  padding-top: 10px;
+}
+
+.texto-aviso{
+  padding: 0px 10px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+.texto-aviso-detail{
+
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  width: 55%;
+  text-align: end;
+
+}
+
+.boton-cerrar-aviso {
+  border: 0;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 0px 10px;
+  color: white;
+}
+.boton-cerrar-aviso-detail{
+  border: 0;
+  background-color: transparent;
+  font-size: 20px;
+  padding: 0px 10px;
+  color: white;
+  width: 45%;
+  text-align: end;
+
+}
+
+/* INQUILINO DETAIL */
+
+
+.contenedor-label-parrafo img:hover {
+  background-color: rgb(168, 168, 168);
+}
+
+.pagos {
+  border: 1px solid black;
+  min-width: 200px;
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+}
+
+.datos-1 {
+  width: 100%;
+  margin: 0px 2px;
+}
+
+.datos-inquilino {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+
+}
+
+/* Formulario inquilino*/
+.formulario {
+  border: 4px solid rgb(25, 135, 84);
+  padding: 30px 10px;
+  border-radius: 20px;
+  background-color: rgb(238, 237, 237);
+  margin-bottom: 40px;
+
+}
+
+.boton-form {
+  margin-bottom: 50px;
+}
+
+.subtitulo {
+  margin-top: 30px;
+}
+
+.al-dia {
+  border: 1px solid black;
+
+  border-radius: 25px;
+  background-color: rgba(26, 214, 26, 0.719);
+  min-width: 200px;
+  width: 90%;
+  margin: auto;
+}
+
+.no-al-dia {
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 25px;
+  background-color: rgba(247, 37, 0, 0.719);
+  min-width: 200px;
+  width: 90%;
+}
+
+
+.formulario-editar {
+  box-shadow: 0px 0px 5px 1px rgb(105, 105, 105);
+  border-radius: 20px;
+  padding-top: 20px;
+  background-color: rgb(241, 241, 241);
+}
+
+.contenedor-fecha-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-fecha {
+  padding: 0px 10px;
+}
+
+.centro {
+
+  margin-left: 50%;
+}
+
+.validacion-error {
+  border: rgb(223, 114, 114), 2px solid;
+  box-shadow: 0px 0px 10px 1px rgb(245, 110, 110);
+}
+
+/* ALQUILERES */
+
+.fondo-pagos{
+  background-color: gray;
+}
+
+.lista-alquileres{
+  min-width: 250px;
+  max-height:500px;
+  overflow: auto;
+  filter: drop-shadow(0px 10px 10px gray);
+}
+
+.titulo-alquiler-al-dia{
+  margin: 0;
+  background-color: rgb(32, 168, 32);
+  padding: 10px 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.titulo-alquiler-al-dia p{
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.titulo-alquiler-pendientes{
+  margin: 0;
+  background-color: rgb(189, 62, 52);
+  padding: 10px 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.titulo-alquiler-pendientes p{
+  margin: 0;
+  color: white;
+  font-weight: bold;
+}
+
+/* AL DIA */
+.alquiler-al-dia {
+  border: 3px solid rgb(8, 116, 17);
+  border-radius: 20px;
+  width: 80%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0px;
+  background-color: rgb(89, 177, 93);
+  flex-wrap: wrap;
+}
+
+.alquiler-al-dia p {
+  width: 300px;
+  font-size: 20px;
+  color: white;
+
+}
+
+.alquiler-al-dia img {
+  border-radius: 100px;
+  box-shadow: 0px 0px 5px 2px;
+}
+
+
+/* PENDIENTE */
+
+.alquiler-no-al-dia {
+  border: 3px solid rgb(179, 5, 5);
+  border-radius: 20px;
+  width: 80%;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px 0px;
+  background-color: rgb(230, 108, 108);
+  flex-wrap: wrap;
+}
+
+.alquiler-no-al-dia p {
+  width: 300px;
+  font-size: 20px;
+  color: white;
+
+}
+
+.alquiler-no-al-dia img {
+  border-radius: 100px;
+  box-shadow: 0px 0px 5px 2px;
+}
+
+/* RECIBOS */
+
+.contenedor-filtro-botones-recibos {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.contenedor-filtro {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.ancho-recibo {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.boton-buscar-recibos {
+  border: 0;
+  padding: 0px 20px;
+  background-color: rgb(157, 165, 161);
+  height: 40px;
+  border-radius: 5px;
+
+}
+
+.boton-buscar-recibos img {
+  height: 20px;
+  padding: 0;
+}
+
+.recibo {
+  border: 1px solid black;
+  padding: 10px 40px;
+  border-radius: 20px;
+  background-color: rgb(233, 233, 233);
+
+}
+
+.mostrar-recibo {
+  min-width: 200px;
+  max-width: 1000px;
+  box-shadow: 0px 0px 5px 1px rgb(105, 105, 105);
+  margin: auto;
+  border-radius: 10px;
+
+
+}
+
+.div-nombre {
+  background-color: rgb(25, 135, 84);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0px 10px;
+}
+
+.div-nombre p {
+
+  color: white;
+  padding: 10px 5px;
+
+}
+
+.contenido-recibo {
+  padding: 0px 10px;
+}
+
+
+/* FOOTER */
+
+.footer {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-color: rgb(25, 135, 84);
+  bottom: 0;
+
+
+}
+
+/* MEDIA QUERYS */
+
+@media(max-width:990px) {
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mob {
+    display: flex;
+  }
+}
+
+@media(max-width:770px) {
+
+  .ancho {
+    width: 150px;
+    height: 350px;
+
+  }
+
+  .ancho img {
+    padding: 70px 0px;
+  }
+
+
+  .fondo-nombre-inqui {
+    margin-top: 0;
+    padding-bottom: 30px;
+  }
+
+  .fondo-nombre {
+    padding-bottom: 30px;
+    margin-top: 0;
+  }
+}
+
+@media(max-width:560px){
+  .contenedor-datos{
+    display: none;
+  }
+  .datos-mob{
+    display: block;
+    min-width: 250px;
+  }
+
+  .contenedor-propiedades{
+    display: none;
+  }
+
+  .propiedades-mob{
+    display: block;
+    min-width: 300px;
+    overflow: auto  ;
+  }
+}
+
+@media(max-width:440px) {
+
+  .nav-desktop {
+    display: flex;
+  }
+
+  .nav-mob {
+    display: none;
+  }
+}
+
+/* @media(max-width:440px){
+  .ancho{
+    width: 100px;
+    height: 200px;
+
+  }
+  .ancho img{
+     padding: 40px 0px;
+  }
+} */
+
+
+@keyframes agrandar{
+  0% {
+     translate: -1000px;
+  }
+
+  100%{
+   translate: 0px;
+  }
+}
