@@ -74,7 +74,7 @@ const PropiedadesMob = ({idPropietario}) => {
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body cargando">
+                        <div className="accordion-body borde ">
                             <div className="text-end">
                                 <Link to={"/agregar/propiedad/" + idPropietario}><img className="my-3" height={20} src="/src/assets/mas.png" alt="" /></Link>
                             </div>

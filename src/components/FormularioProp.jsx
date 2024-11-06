@@ -199,15 +199,15 @@ const FormularioProp = () => {
 
                     <div className="mb-3">
                         <label className="label-datos">Telefono</label>
-                        <input type="text" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoPropo(e.target.value) }} />
+                        <input type="number" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoPropo(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Email</label>
-                        <input type="text" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailProp(e.target.value) }} />
+                        <input type="email" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dni/Cuit/Cuil</label>
-                        <input type="text" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="DNI/CUIT/CUIL" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCuitProp(e.target.value) }} />
+                        <input type="number" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="DNI/CUIT/CUIL" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCuitProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Alias/Cbu</label>

@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 import menu from "../assets/menu.png"
 import lupa from "../assets/lupa.png"
 import { useState } from "react"
+import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
 
 
 
@@ -145,6 +146,27 @@ const Navbar = () => {
 
                             <li className="nav-item">
                                 <NavLink to={"/notas"} className={notas ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("notas")} >Notas</NavLink>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
+
+            <nav className="nav-mob-ultra navbar navbar-expand-lg bg-body-tertiary ">
+                <div className="container-fluid  largo  bg-success ">
+                    <NavLink to={"/"}><img className="logo" src={logo} alt="Logo" /></NavLink>
+                    <button className="navbar-toggler border-white border-0 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className=""><PersonSearchRoundedIcon sx={{ fontSize: 40 }} className="text-white"></PersonSearchRoundedIcon></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav text-end">
+                            <li className="nav-item">
+                                <div className="d-flex my-3" role="search">
+                                    <input className="form-control me-2" type="search" placeholder="Buscar Persona" aria-label="Search" onInput={(e) => { setBuscado(e.target.value) }} />
+                                    <button onClick={() => buscar()} className="btn btn-outline-success border border-white" type="submit" ><img height={25} src={lupa} alt="Buscar" /></button>
+                                </div>
                             </li>
                         </ul>
 

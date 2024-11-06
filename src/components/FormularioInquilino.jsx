@@ -274,15 +274,16 @@ const FormularioInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Telefono</label>
-                        <input type="text" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoInqui(e.target.value) }} />
+                        <input type="number" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Email</label>
-                        <input type="text" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Correo Electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailInqui(e.target.value) }} />
+                        
+                        <input type="email" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Correo Electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dni</label>
-                        <input type="text" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="Dni" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDniInqui(e.target.value) }} />
+                        <input type="number" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="Dni" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDniInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dirección</label>
@@ -301,7 +302,7 @@ const FormularioInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Monto</label>
-                        <input type="text" className={"form-control " + (error8 ? "validacion-error" : " ")} placeholder="Monto" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setMonto(e.target.value) }} />
+                        <input type="number" className={"form-control " + (error8 ? "validacion-error" : " ")} placeholder="Monto" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setMonto(e.target.value) }} />
                     </div>
                     <div className="mb-3 contenedor-fecha-label">
                         <label className="label-datos">Vigencia</label>

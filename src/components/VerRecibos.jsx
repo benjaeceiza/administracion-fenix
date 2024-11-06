@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Cargando from "./Cargando"
 import Recibo from "./Recibo"
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 
 const VerRecibos = () => {
@@ -138,52 +140,60 @@ const VerRecibos = () => {
     }
     return (
         <>
-            {cargando ? <Cargando /> : <div className="container">
-                <div className="contenedor-filtro-botones-recibos">
-                    <div className="contenedor-filtro my-3">
-                        <div className="mb-3">
-                            <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
-                                <option value="">Seleccione Tipo</option>
-                                <option value="inquilinos">Inquilino</option>
-                                <option value="propietarios">Propietario</option>
-                            </select>
-                        </div>
-                        <div className="mb-3">
-                            <select className="form-select" aria-label="Default select example" onChange={cambioNombre} >
-                                <option value="">Seleccione Nombre</option>
-                                {personas.map(persona => (
-                                    <option key={persona.id} value={persona.apellido + " " + persona.nombre}>{persona.apellido} {persona.nombre}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="mb-3">
-                            <select className="form-select" aria-label="Default select example">
-                                <option value="">Seleccione Mes</option>
-                                <option value="Enero">Enero</option>
-                                <option value="Febrero">Febrero</option>
-                                <option value="Marzo">Marzo</option>
-                                <option value="Abril">Abril</option>
-                                <option value="Mayo">Mayo</option>
-                                <option value="Junio">Junio</option>
-                                <option value="Julio">Julio</option>
-                                <option value="Agosto">Agosto</option>
-                                <option value="Septiembre">Septiembre</option>
-                                <option value="Octubre">Octubre</option>
-                                <option value="Noviembre">Noviembre</option>
-                                <option value="Diciembre">Diciembre</option>
-                            </select>
+            {cargando
+                ?
+                <Cargando />
+                :
+                <div className="container">
+
+                    <div className="contenedor-filtro-botones-recibos">
+                        <div className="contenedor-filtro my-3">
+                            <div className="mb-3">
+                                <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
+                                    <option value="">Seleccione Tipo</option>
+                                    <option value="inquilinos">Inquilino</option>
+                                    <option value="propietarios">Propietario</option>
+                                </select>
+                            </div>
+                            <div className="mb-3">
+                                <select className="form-select" aria-label="Default select example" onChange={cambioNombre} >
+                                    <option value="">Seleccione Nombre</option>
+                                    {personas.map(persona => (
+                                        <option key={persona.id} value={persona.apellido + " " + persona.nombre}>{persona.apellido} {persona.nombre}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="mb-3">
+                                <select className="form-select" aria-label="Default select example">
+                                    <option value="">Seleccione Mes</option>
+                                    <option value="Enero">Enero</option>
+                                    <option value="Febrero">Febrero</option>
+                                    <option value="Marzo">Marzo</option>
+                                    <option value="Abril">Abril</option>
+                                    <option value="Mayo">Mayo</option>
+                                    <option value="Junio">Junio</option>
+                                    <option value="Julio">Julio</option>
+                                    <option value="Agosto">Agosto</option>
+                                    <option value="Septiembre">Septiembre</option>
+                                    <option value="Octubre">Octubre</option>
+                                    <option value="Noviembre">Noviembre</option>
+                                    <option value="Diciembre">Diciembre</option>
+                                </select>
+                            </div>
+
+                            <div className="contenedor-buscar-agregar-recibo">
+                                <button className="boton-buscar-recibos" onClick={mostrar}><SearchRoundedIcon fontSize="large" className="text-white"></SearchRoundedIcon></button>
+                                <div className="contenedor-boton-agregar-recibo">
+                                    <Link to={"/recibos"}><AddRoundedIcon className="text-white" ></AddRoundedIcon></Link>
+                                </div>
+                            </div>
                         </div>
 
-                        <button className="boton-buscar-recibos" onClick={mostrar}><img src="/src/assets/lupa.png" alt="" /></button>
                     </div>
-                    <div>
-                        <Link to={"/recibos"}>< img height={25} src="/src/assets/mas.png" alt="Agregar Recibo" /></Link>
+                    <div className="column">
+                        <Recibo recibos={filtroRecibos} />
                     </div>
-                </div>
-                <div className="column">
-                    <Recibo recibos={filtroRecibos} />
-                </div>
-            </div>}
+                </div>}
         </>
     )
 }

@@ -47,6 +47,9 @@ body {
 .nav-mob {
   display: none;
 }
+.nav-mob-ultra{
+  display: none;
+}
 
 .container-fluid {
   display: flex;
@@ -112,14 +115,31 @@ body {
   list-style: none;
   display: flex;
   justify-content: center;
-  padding: 15px;
+  padding: 15px ;
   margin: 0;
 
+}
+
+.item-tab-navegador{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+
+.nombre-boton{
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .ancho-icono{
   width: 20%;
   text-align: center;
+}
+
+.nombre-boton{
+  text-decoration: none;
+  color: white;
+  margin-bottom: 0;
 }
 
 /* LISTADO DE PROPIETARIOS */
@@ -155,6 +175,19 @@ body {
   width: 50px;
   margin: 20px; 
 }
+
+.contenedor-boton-agregar-recibo{
+  background-color: rgb(10, 167, 119);
+  padding: 10px 10px;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0px 0px 5px 2px rgb(66, 66, 66);
+  bottom: 0;
+  right: 0; 
+
+}
+
 .contenedor-boton-agregar:hover{
   transform: scale(1.1);
   transition: all .3s;
@@ -554,11 +587,12 @@ width: 450px;
 
 /* Formulario inquilino*/
 .formulario {
-  border: 4px solid rgb(25, 135, 84);
   padding: 30px 10px;
   border-radius: 20px;
   background-color: rgb(238, 237, 237);
   margin-bottom: 40px;
+  width: 80%;
+  border: 1px solid black;
 
 }
 
@@ -591,10 +625,11 @@ width: 450px;
 
 
 .formulario-editar {
-  box-shadow: 0px 0px 5px 1px rgb(105, 105, 105);
+  border: 1px solid black;
   border-radius: 20px;
   padding-top: 20px;
   background-color: rgb(241, 241, 241);
+  width: 80%;
 }
 
 .contenedor-fecha-label {
@@ -724,8 +759,9 @@ width: 450px;
 .contenedor-filtro {
   width: 80%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .ancho-recibo {
@@ -733,6 +769,13 @@ width: 450px;
   margin: 0 auto;
 }
 
+.contenedor-buscar-agregar-recibo{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 200px;
+}
 .boton-buscar-recibos {
   border: 0;
   padding: 0px 20px;
@@ -834,6 +877,16 @@ width: 450px;
 }
 
 @media(max-width:560px){
+  .nav-mob-ultra {
+    display: flex;
+  }
+
+  .nav-mob {
+    display: none;
+    
+  }
+
+
   .tab-navegador{
     display: block;
   }
@@ -843,7 +896,15 @@ width: 450px;
   .datos-mob{
     display: block;
     min-width: 250px;
+    
   }
+  .borde{
+    border: 1px solid rgb(83, 83, 83);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  
 
   .contenedor-propiedades{
     display: none;
@@ -875,27 +936,12 @@ width: 450px;
   }
 }
 
-@media(max-width:440px) {
-
-  .nav-desktop {
-    display: flex;
-  }
-
-  .nav-mob {
-    display: none;
+@media(max-width:446px){
+  .nombre-boton{
+    font-size: 10px;
   }
 }
 
-/* @media(max-width:440px){
-  .ancho{
-    width: 100px;
-    height: 200px;
-
-  }
-  .ancho img{
-     padding: 40px 0px;
-  }
-} */
 
 
 @keyframes agrandar{

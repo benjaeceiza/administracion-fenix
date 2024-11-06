@@ -207,17 +207,17 @@ const EditarInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Telefono:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.telefono} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { telefono = (e.target.value) }} />
+                        <input type="number" className="form-control " placeholder={inquilino.telefono} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { telefono = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
                         <label className="label-datos">Email:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.email} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { email = (e.target.value) }} />
+                        <input type="email" className="form-control " placeholder={inquilino.email} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { email = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
                         <label className="label-datos">Dni/Cuit/Cuil:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.dni} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { dni = (e.target.value) }} />
+                        <input type="number" className="form-control " placeholder={inquilino.dni} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { dni = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
@@ -236,7 +236,7 @@ const EditarInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Monto:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.monto} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { monto = (e.target.value) }} />
+                        <input type="number" className="form-control " placeholder={inquilino.monto} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { monto = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3 contenedor-fecha-label">

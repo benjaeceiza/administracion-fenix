@@ -129,7 +129,7 @@ const Editar = () => {
     return (
         <>
             <ToastContainer />
-            {cargador ? <Cargando /> : <div className="container my-5">
+            {cargador ? <Cargando /> : <div className="container formulario my-5">
                 <div className="row">
                     <div className="col">
                         <form className="">
@@ -143,15 +143,15 @@ const Editar = () => {
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Teléfono:</label>
-                                <input type="text" className="form-control " placeholder={propietario.telefono} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { telefono = (e.target.value) }} />
+                                <input type="number" className="form-control " placeholder={propietario.telefono} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { telefono = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Email:</label>
-                                <input type="text" className="form-control " placeholder={propietario.email} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { email = (e.target.value) }} />
+                                <input type="email" className="form-control " placeholder={propietario.email} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { email = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Dni/Cuit/Cuil:</label>
-                                <input type="text" className="form-control " placeholder={propietario.cuit} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cuit = (e.target.value) }} />
+                                <input type="number" className="form-control " placeholder={propietario.cuit} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cuit = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Alias/Cbu:</label>

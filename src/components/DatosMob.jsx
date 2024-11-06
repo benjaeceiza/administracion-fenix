@@ -13,7 +13,7 @@ const DatosMob = ({ datos, id }) => {
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">
+                        <div className="accordion-body borde">
                             <div className=" text-end ">
                                 <Link to={"/editar/" + id}><img className="text-end mouse" height={24} src={imagenEditar} alt="editar" /></Link>
                             </div>
