@@ -74,6 +74,7 @@ const PropietariosDetail = () => {
         <>
             {cargador ? <Cargando /> :
                 <div className=" contenedor-propietario-detail">
+                        
                     <CambiarAvatar tipo={"propietarios"} cambiarAvatar={cambiarAvatar} setCambiarAvatar={setCambiarAvatar} propietario={propietario} setReload={setReload}/>
                     <BotonEliminar propietario={id} inquilinos={inquilinosAgrupado} />
                     <div className="contenedor-datos-fotonombre">

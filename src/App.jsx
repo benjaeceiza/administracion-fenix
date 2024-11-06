@@ -18,6 +18,7 @@ import Recibos from "./components/Recibos"
 import VerRecibos from "./components/VerRecibos"
 import Notas from "./components/Notas"
 import Alquileres from "./components/Alquileres"
+import TabNavegador from "./components/TabNavegador"
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <ContextProvider>
         <BrowserRouter>
           <Navbar />
+          <TabNavegador/>
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/propietarios" element={<ListadoPropietarios />} />

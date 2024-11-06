@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css"></link>
 import eliminarImagen from "../assets/quitar-usuario.png";
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 
 
@@ -83,8 +84,8 @@ const BotonEliminar = ({ propietario, inquilinos }) => {
     return (
         <>
             <ToastContainer />
-            <div className="mg-btn my-3 ">
-                <img className="mouse" height={50} onClick={() => alerta()} src={eliminarImagen} alt="Eliminar Propietario" />
+            <div onClick={() => alerta()} className="contenedor-boton-eliminar">
+                <PersonRemoveIcon  sx={{ fontSize: 25 }}className="text-white"></PersonRemoveIcon>
             </div>
         </>
     )

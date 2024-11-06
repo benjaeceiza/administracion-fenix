@@ -6,9 +6,9 @@ const BotonAgregar = () => {
 
   return (
     <>
-      <div className="contenedor-boton-agregar">
-        <Link to={"/agregar/propietario"}><PersonAddRoundedIcon className="text-white"></PersonAddRoundedIcon></Link>
-      </div>
+      <Link to={"/agregar/propietario"}><div className="contenedor-boton-agregar">
+        <PersonAddRoundedIcon sx={{ fontSize: 25 }} className="text-white"></PersonAddRoundedIcon>
+      </div></Link>
     </>
 
   )

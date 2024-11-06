@@ -7,6 +7,7 @@ import Cargando from "./Cargando";
 
 
 
+
 const ListadoPropietarios = () => {
 
   let propietarios;
@@ -26,13 +27,13 @@ const ListadoPropietarios = () => {
         propietarios = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
         setPropietariosOrdenados([...propietarios].sort((a, b) => (a.apellido > b.apellido ? 1 : a.apellido < b.apellido ? -1 : 0)))
         setCargando(false)
-       
+
       } else {
         console.error("error")
       }
     })
-    
-    
+
+
 
   }, [])
 
@@ -42,7 +43,8 @@ const ListadoPropietarios = () => {
     <>{cargando ? <Cargando /> :
       <div className="container my-5">
         <div className="text-end">
-        <BotonAgregar />
+         
+          <BotonAgregar />
         </div>
         <div className="contenedor-propietarios text-center">
           <Propietarios propietario={propietariosOrdenados} />
