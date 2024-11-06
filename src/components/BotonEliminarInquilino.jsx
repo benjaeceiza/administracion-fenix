@@ -5,11 +5,12 @@ import withReactContent from 'sweetalert2-react-content'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import borrarImagen from "../assets/quitar-usuario.png"
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 
-const BotonEliminarInquilino = ({idprop}) => {
-    const navigate =useNavigate();
-    const {idInquilino} = useParams();
+const BotonEliminarInquilino = ({ idprop }) => {
+    const navigate = useNavigate();
+    const { idInquilino } = useParams();
     const notify = () => toast.success("Inquilino Eliminado con exito!", {
         position: "top-center",
         autoClose: 1000,
@@ -19,10 +20,10 @@ const BotonEliminarInquilino = ({idprop}) => {
         draggable: true,
         progress: undefined,
         theme: "colored",
-    
+
     });
-    
-    
+
+
 
     const MySwal = withReactContent(Swal)
 
@@ -37,38 +38,39 @@ const BotonEliminarInquilino = ({idprop}) => {
             cancelButtonColor: "#d33",
             cancelButtonText: "Cancelar",
             confirmButtonText: "Eliminar"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-            
-              
-              eliminarInquilino();
+
+
+                eliminarInquilino();
             }
-          });
+        });
     }
 
 
-    const eliminarInquilino = () =>{
+    const eliminarInquilino = () => {
         const db = getFirestore();
         const docRef = doc(db, "inquilinos", idInquilino)
 
         deleteDoc(docRef).then(
-         
+
             notify()
-            
+
         )
 
-        setTimeout(() =>{
-            navigate("/propietario/"+ idprop )
-        },1500)
+        setTimeout(() => {
+            navigate("/propietario/" + idprop)
+        }, 1500)
 
     }
 
     return (
 
         <>
-        <ToastContainer/>
-             <div className=" my-3 ">
-                <img onClick={() => alerta()}  className="mg-btn mouse" height={50} src={borrarImagen} alt="Eliminar Inquilino"/>
+            <ToastContainer />
+            <div onClick={() => alerta()} className="contenedor-boton-eliminar">
+                
+                <PersonRemoveIcon sx={{ fontSize: 25 }} className="text-white"></PersonRemoveIcon>
             </div>
         </>
     )

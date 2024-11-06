@@ -485,29 +485,34 @@ width: 450px;
   align-items: baseline;
   padding-top: 10px;
   flex-wrap: wrap;
+  color: white;
+  font-weight: bold;
+
+}
+.cuerpo-venciminento{
+  background-color: rgb(245, 113, 73);
 }
 
 .aviso-vencimiento-detail{
-  display: flex;
-  justify-content: space-between;
+
   background-color: rgb(245, 113, 73);
   align-items: baseline;
-  padding-top: 10px;
+  padding: 10px 0;
+  text-align: center;
 }
 
 .texto-aviso{
-  padding: 0px 10px;
   color: white;
   font-size: 20px;
   font-weight: bold;
+
 }
 .texto-aviso-detail{
-
   color: white;
   font-size: 20px;
   font-weight: bold;
-  width: 55%;
-  text-align: end;
+  margin: 0;
+
 
 }
 
@@ -518,16 +523,7 @@ width: 450px;
   padding: 0px 10px;
   color: white;
 }
-.boton-cerrar-aviso-detail{
-  border: 0;
-  background-color: transparent;
-  font-size: 20px;
-  padding: 0px 10px;
-  color: white;
-  width: 45%;
-  text-align: end;
 
-}
 
 /* INQUILINO DETAIL */
 
@@ -857,6 +853,15 @@ width: 450px;
     display: block;
     min-width: 300px;
     overflow: auto  ;
+  }
+  .alquiler-no-al-dia {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .alquiler-al-dia{
+    width: 100%;
+    border-radius: 0;
   }
 }
 @media(max-width:540px){

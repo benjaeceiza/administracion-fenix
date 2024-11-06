@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 <link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css"></link>
-import eliminarImagen from "../assets/quitar-usuario.png";
+
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 

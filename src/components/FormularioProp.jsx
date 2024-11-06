@@ -3,6 +3,8 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import avatarHombre from "../json/avatarHombres.json"
+import avatarMujer from "../json/avatarMujeres.json"
 
 
 
@@ -36,7 +38,7 @@ const FormularioProp = () => {
                 cuit: cuitProp,
                 cbu: cbuProp,
                 telefono: telefonoProp,
-                imagen: "/src/assets/avatars/hombre/hombre"+numeroImagen+".png",
+                imagen:avatarHombre[numeroImagen],
                 genero:genero
             }
         }else{
@@ -48,7 +50,7 @@ const FormularioProp = () => {
                     cuit: cuitProp,
                     cbu: cbuProp,
                     telefono: telefonoProp,
-                    imagen: "/src/assets/avatars/mujer/mujer"+numeroImagen+".png",
+                    imagen: avatarMujer[numeroImagen],
                     genero:genero
                 }
             }

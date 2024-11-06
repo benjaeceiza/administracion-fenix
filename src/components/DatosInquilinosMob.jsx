@@ -18,7 +18,7 @@ const DatosInquilinosMob = ({datos}) => {
                 <div className="accordion-item">
                     <h2 className="accordion-header">
                         <button className="accordion-button collapsed bg-success text-white" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Accordion Item #1
+                            Presione para ver los datos
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">

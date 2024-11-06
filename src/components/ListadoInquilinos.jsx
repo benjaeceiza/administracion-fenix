@@ -5,6 +5,7 @@ import Cargando from "./Cargando"
 import AvisoVencimiento from "./AvisoVencimiento";
 
 
+
 const ListadoIquilinos = () => {
 
   let inquilinos;
@@ -39,7 +40,8 @@ const ListadoIquilinos = () => {
   return (
     <>
 
-      <AvisoVencimiento inquilinos={inquilinosOrdenados} />
+      <AvisoVencimiento  inquilinos={inquilinosOrdenados}/>
+  
       {cargando ? <Cargando /> : <div className="container">
         <div className="contenedor-propietarios text-center ">
           {inquilinosOrdenados.map(e => (

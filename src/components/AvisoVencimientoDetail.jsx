@@ -35,7 +35,6 @@ const AvisoVencimientoDetail = ({ inquilino }) => {
                 {personas.map(e => (
                     <p key={Math.random()} className="text-white">{e}</p>
                 ))}
-                <button className="boton-cerrar-aviso-detail" onClick={() => setAvisoVisible(false)}>X</button>
             </div> : ""}
         </>
     )
