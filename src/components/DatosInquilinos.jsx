@@ -1,6 +1,6 @@
 
 
-import imagenEditar from "../assets/boton-editar.png"
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import { Link } from "react-router-dom";
 
 
@@ -21,7 +21,8 @@ const DatosInquilinos = ({ datos }) => {
 
             <div className="contenedor-datos">
                 <div className="text-end">
-                    <Link to={"/editar/inquilino/" + datos.id}><img className="mouse" height={24} src={imagenEditar} alt="" /></Link>
+                   
+                    <Link to={"/editar/inquilino/" + datos.id}><ModeEditOutlineIcon className="mouse" ></ModeEditOutlineIcon></Link>
                 </div>
                 <div className="row">
                     <div className="datos-inquilino">

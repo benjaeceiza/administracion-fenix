@@ -6,16 +6,20 @@ import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import avataresHombre from "../json/avatarHombres.json"
+import avataresMujer from "../json/avatarMujeres.json"
 
 
 
 
 const FormularioInquilino = () => {
-
-    const navigate = useNavigate()
-
-    registerLocale("es", es);
    
+ 
+    const navigate = useNavigate()
+    
+    registerLocale("es", es);
+    
+    let avatar = Math.floor(Math.random()*(30-1)+1)
     const { idInquilino } = useParams();
     const [nombreInqui, setNombreInqui] = useState("");
     const [apellidoInqui, setApellidoInqui] = useState("");
@@ -28,7 +32,7 @@ const FormularioInquilino = () => {
     const [vigencia, setVigencia] = useState({ fecha: new Date() });
     const [vencimiento, setVencimineto] = useState({ fecha: new Date() });
     const [monto, setMonto] = useState(0);
-    let avatar = Math.floor(Math.random()*(30-1)+1)
+    
     let  inquilinoNuevo;
     const formulario = useRef()
     const [error, setError] = useState(false);
@@ -189,10 +193,11 @@ const FormularioInquilino = () => {
             idprop: idInquilino,
             monto: monto,
             alquiler: false,
-            imagen:"/src/assets/avatars/hombre/hombre"+avatar+".png",
+            imagen:avataresHombre[avatar],
             genero:genero
 
         }
+     
 
        }else{
        
@@ -209,7 +214,7 @@ const FormularioInquilino = () => {
             idprop: idInquilino,
             monto: monto,
             alquiler: false,
-            imagen:"/src/assets/avatars/mujer/mujer"+avatar+".png",
+            imagen:avataresMujer[avatar],
             genero:genero
 
         }

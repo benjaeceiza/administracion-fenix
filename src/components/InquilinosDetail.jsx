@@ -10,8 +10,10 @@ import Aldia from "./Aldia";
 import Pendiente from "./Pendiente";
 import CambiarAvatar from "./CambiarAvatar";
 import DatosInquilinosMob from "./DatosInquilinosMob";
-import AvisoVencimiento from "./avisoVencimiento";
 import AvisoVencimientoDetail from "./AvisoVencimientoDetail";
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+
+
 
 
 const InquilinosDetail = () => {
@@ -42,7 +44,7 @@ const InquilinosDetail = () => {
 
         })
 
-
+   
 
     }, [idInquilino])
 
@@ -63,7 +65,7 @@ const InquilinosDetail = () => {
                     <div className="contenedor-datos-fotonombre alinear">
                         <div className="col my-5">
                             <div className="contenedor-boton-avatar">
-                                <img className="cambiar-avatar my-3 mouse" height={20} src="/src/assets/boton-editar.png" alt="" onClick={() => setCambiarAvatar(true)} />
+                                 <ModeEditOutlineIcon className="cambiar-avatar my-3 mouse" onClick={() => setCambiarAvatar(true)}></ModeEditOutlineIcon>
                             </div>
                             <FotoNombreInqui inquilino={inquilino} />
                         </div>

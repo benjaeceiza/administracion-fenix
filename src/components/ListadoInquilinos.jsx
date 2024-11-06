@@ -3,17 +3,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cargando from "./Cargando"
 import AvisoVencimiento from "./AvisoVencimiento";
-import ReseteoAlquileres from "./ReseteoAlquileres";
+
 
 const ListadoIquilinos = () => {
 
   let inquilinos;
   const [inquilinosOrdenados, setInquilinosOrdenados] = useState([]);
   const [cargando, setCargando] = useState(true);
-
-
-
-
+ 
   useEffect(() => {
 
     const db = getFirestore();
@@ -41,7 +38,7 @@ const ListadoIquilinos = () => {
 
   return (
     <>
-   
+
       <AvisoVencimiento inquilinos={inquilinosOrdenados} />
       {cargando ? <Cargando /> : <div className="container">
         <div className="contenedor-propietarios text-center ">

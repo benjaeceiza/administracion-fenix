@@ -105,6 +105,21 @@ body {
   flex-wrap: wrap;
 }
 
+.contenedor-boton-agregar{
+  background-color: rgb(10, 167, 119);
+  position: fixed;
+  padding: 10px 10px;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0px 0px 5px 2px rgb(66, 66, 66); 
+
+  
+}
+.contenedor-boton-agregar:hover{
+  transform: scale(1.1);
+  transition: all .3s;
+}
 
 
 
@@ -152,7 +167,9 @@ body {
   margin: auto;
 }
 
-
+.mouse{
+  color: black;
+}
 
 .mouse:hover {
   filter: drop-shadow(2px 1px 1px rgb(94, 93, 93));

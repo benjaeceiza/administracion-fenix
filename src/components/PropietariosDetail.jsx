@@ -11,6 +11,7 @@ import BotonAgregarInqui from "./BotonAgregarInqui";
 import CambiarAvatar from "./CambiarAvatar";
 import DatosMob from "./DatosMob";
 import PropiedadesMob from "./PropiedadesMob";
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 
 
@@ -78,7 +79,7 @@ const PropietariosDetail = () => {
                     <div className="contenedor-datos-fotonombre">
                         <div className="col my-5">
                             <div className="contenedor-boton-avatar">
-                                <img className="cambiar-avatar my-3" height={20} src="/src/assets/boton-editar.png" alt="" onClick={() => setCambiarAvatar(true)}/>
+                                <ModeEditOutlineIcon className="cambiar-avatar my-3" onClick={() => setCambiarAvatar(true)}></ModeEditOutlineIcon>
                             </div>
                             <FotoNombreProp propietario={propietario}/>
                         </div>
