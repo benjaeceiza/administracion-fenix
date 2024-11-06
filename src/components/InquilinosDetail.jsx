@@ -10,10 +10,6 @@ import Aldia from "./Aldia";
 import Pendiente from "./Pendiente";
 import CambiarAvatar from "./CambiarAvatar";
 import DatosInquilinosMob from "./DatosInquilinosMob";
-<<<<<<< HEAD
-=======
-import AvisoVencimiento from "./AvisoVencimiento";
->>>>>>> bed78e789183f592c0890960c839382106fc3cb1
 import AvisoVencimientoDetail from "./AvisoVencimientoDetail";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
