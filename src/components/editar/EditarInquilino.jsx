@@ -6,7 +6,7 @@ import { es } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cargando from "./Cargando";
+import Cargando from "../load/Cargando";
 
 
 const EditarInquilino = () => {

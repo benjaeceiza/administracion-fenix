@@ -1,8 +1,8 @@
 import Propietarios from "./Propietarios";
-import BotonAgregar from "./BotonAgregar";
+import BotonAgregar from "./botones/BotonAgregar";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import Cargando from "./Cargando";
+import Cargando from "./load/Cargando";
 
 
 

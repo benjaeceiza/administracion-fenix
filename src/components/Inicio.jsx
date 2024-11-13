@@ -1,5 +1,5 @@
 import logo from "../assets/logo.jpg"
-import ReseteoAlquileres from "./ReseteoAlquileres"
+
 
 const Inicio = () => {
    

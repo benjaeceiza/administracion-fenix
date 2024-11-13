@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import agregarImagen from "../assets/agregar-usuario.png"
+
 import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
 
 const BotonAgregar = () => {

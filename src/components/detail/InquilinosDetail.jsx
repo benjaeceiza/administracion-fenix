@@ -1,16 +1,16 @@
 
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
-import FotoNombreInqui from "./FotoNombreInqui";
-import DatosInquilinos from "./DatosInquilinos";
+import FotoNombreInqui from "../FotoNombreInqui";
+import DatosInquilinos from "../datos/DatosInquilinos";
 import { getFirestore, getDoc, doc } from "firebase/firestore";
-import Cargando from "./Cargando";
-import BotonEliminarInquilino from "./BotonEliminarInquilino";
-import Aldia from "./Aldia";
-import Pendiente from "./Pendiente";
-import CambiarAvatar from "./CambiarAvatar";
-import DatosInquilinosMob from "./DatosInquilinosMob";
-import AvisoVencimientoDetail from "./AvisoVencimientoDetail";
+import Cargando from "../load/Cargando";
+import BotonEliminarInquilino from "../botones/BotonEliminarInquilino";
+import Aldia from "../Aldia";
+import Pendiente from "../Pendiente";
+import CambiarAvatar from "../CambiarAvatar";
+import DatosInquilinosMob from "../datos/DatosInquilinosMob";
+import AvisoVencimientoDetail from "../vencimiento/AvisoVencimientoDetail";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 

@@ -3,7 +3,7 @@ import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Cargando from "./Cargando";
+import Cargando from "../load/Cargando";
 
 
 

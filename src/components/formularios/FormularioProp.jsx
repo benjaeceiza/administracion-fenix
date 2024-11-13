@@ -3,8 +3,8 @@ import { addDoc, collection, getFirestore } from 'firebase/firestore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import avatarHombre from "../json/avatarHombres.json"
-import avatarMujer from "../json/avatarMujeres.json"
+import avatarHombre from "../../json/avatarHombres.json"
+import avatarMujer from "../../json/avatarMujeres.json"
 
 
 

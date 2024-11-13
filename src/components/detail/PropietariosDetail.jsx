@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Datos from "./Datos";
-import FotoNombreProp from "./FotoNombreProp"
-import Inquilinos from "./Inquilinos"
-import BotonEliminar from "./BotonEliminar";
+import Datos from "../datos/Datos";
+import FotoNombreProp from "../FotoNombreProp"
+import Inquilinos from "../Inquilinos"
+import BotonEliminar from "../botones/BotonEliminar";
 import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
-import Cargando from "./Cargando"
-import Propiedades from "./Propiedades";
-import BotonAgregarInqui from "./BotonAgregarInqui";
-import CambiarAvatar from "./CambiarAvatar";
-import DatosMob from "./DatosMob";
-import PropiedadesMob from "./PropiedadesMob";
+import Cargando from "../load/Cargando"
+import Propiedades from "../Propiedades";
+import BotonAgregarInqui from "../botones/BotonAgregarInqui";
+import CambiarAvatar from "../CambiarAvatar";
+import DatosMob from "../datos/DatosMob";
+import PropiedadesMob from "../PropiedadesMob";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 
 

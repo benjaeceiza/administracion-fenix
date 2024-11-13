@@ -1,5 +1,5 @@
 
-import imagenEditar from "../assets/boton-editar.png"
+import imagenEditar from "../../assets/boton-editar.png"
 import { Link } from "react-router-dom";
 
 const DatosInquilinosMob = ({datos}) => {

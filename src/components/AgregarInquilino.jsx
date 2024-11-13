@@ -1,5 +1,5 @@
 
-import FormularioInquilino from "./FormularioInquilino";
+import FormularioInquilino from "./formularios/FormularioInquilino";
 
   const AgregarInquilino = () =>{
 

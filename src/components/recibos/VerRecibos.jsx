@@ -1,7 +1,7 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import Cargando from "./Cargando"
+import Cargando from "../load/Cargando"
 import Recibo from "./Recibo"
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
@@ -190,9 +190,9 @@ const VerRecibos = () => {
                         </div>
 
                     </div>
-                    <div className="column">
-                        <Recibo recibos={filtroRecibos} />
-                    </div>
+
+                    <Recibo recibos={filtroRecibos} />
+
                 </div>}
         </>
     )

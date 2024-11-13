@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Cargando from "./Cargando"
+import Cargando from "../load/Cargando"
 import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,16 +12,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const Recibos = () => {
 
     registerLocale("es", es);
-    const [concepto, setConcepto] = useState("Alquiler")
+    const [concepto, setConcepto] = useState("")
     const [inputConcepto, setInputConcepto] = useState(false)
     const [cargando, setCargando] = useState(true);
-    const [tipo, setTipo] = useState("inquilinos");
+    const [tipo, setTipo] = useState("");
     const [personas, setPersonas] = useState([]);
     const [monto, setMonto] = useState(0);
     const [nombrePersona, setnombrePersona] = useState("");
     const [idPersona, setIdPersona] = useState("")
     const [fechaRecibo, setFechaRecibo] = useState({ fecha: new Date });
-
+    const [impuesto, setImpuesto] = useState(false)
+    const [expensas, setExpensas] = useState(false)
 
     const notifySucces = () => toast.success("Recibo Enviado", {
         position: "top-center",
@@ -37,19 +38,22 @@ const Recibos = () => {
 
 
     useEffect(() => {
-        const db = getFirestore();
-        const itemCollection = collection(db, tipo)
-        getDocs(itemCollection).then(Snapshot => {
+        if(tipo){
 
-            if (Snapshot.size > 0) {
-
-                setPersonas(Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() })));
-
-
-            } else {
-                console.error("error")
-            }
-        })
+            const db = getFirestore();
+            const itemCollection = collection(db, tipo)
+            getDocs(itemCollection).then(Snapshot => {
+    
+                if (Snapshot.size > 0) {
+    
+                    setPersonas(Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() })));
+    
+    
+                } else {
+                    console.error("error")
+                }
+            })
+        }
 
 
 
@@ -70,6 +74,8 @@ const Recibos = () => {
             if (e.target.value == "Otro") {
                 setConcepto("")
                 setInputConcepto(true)
+            } else {
+                setInputConcepto(false)
             }
         }
     }
@@ -91,14 +97,31 @@ const Recibos = () => {
         })
 
     }
+    const checkValue = () => {
+
+        if (expensas) {
+            setExpensas(false)
+        } else {
+            setExpensas(true)
+        }
+
+    }
+    const checkValueTwo = () => {
+        if (impuesto) {
+            setImpuesto(false)
+        } else {
+            setImpuesto(true)
+        }
+
+    }
+
 
     const onChangeFecha = (fecha) => {
 
         setFechaRecibo({ fecha: fecha })
     }
 
-    const enviar = () => {
-
+    const enviar = (e) => {
         if (concepto == "Alquiler") {
             const reciboPersona = {
                 nombre: nombrePersona,
@@ -106,7 +129,9 @@ const Recibos = () => {
                 concepto: concepto,
                 monto: monto,
                 fecha: fechaRecibo,
-                idPersona: idPersona
+                idPersona: idPersona,
+                impuestos: impuesto,
+                expensas: expensas
 
             }
 
@@ -153,21 +178,40 @@ const Recibos = () => {
                 <div className="row ancho-recibo">
                     <div className="col recibo my-5">
                         <form action="">
+                            <label className="label-datos">Tipo</label>
+                            <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
+                                <option value={""}>Seleccione el tipo</option>
+                                <option value={"inquilinos"}>Inquilino</option>
+                                <option value={"propietarios"}>Propietario</option>
+                            </select>
                             <div className="my-3">
                                 <label className="label-datos">En concepto de</label>
                                 <select className="form-select" aria-label="Default select example" onChange={cambioConcepto} >
+                                    <option value={""}>Seleccione el concepto</option>
                                     <option value={"Alquiler"}>Alquiler</option>
                                     <option value={"Otro"}>Otro</option>
                                 </select>
                             </div>
                             <div className="my-3">
-                                {inputConcepto ?
-                                    <input className="form-control" type="text" placeholder="Concepto" onInput={e => setConcepto(e.target.value)} /> : ""}
-                                <label className="label-datos">Tipo</label>
-                                <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
-                                    <option value={"inquilinos"}>Inquilino</option>
-                                    <option value={"propietarios"}>Propietario</option>
-                                </select>
+                                {inputConcepto
+                                    ?
+                                    <input className="form-control" type="text" placeholder="Concepto" onInput={e => setConcepto(e.target.value)} />
+                                    :
+                                    (
+                                        concepto == "Alquiler"
+                                            ?
+                                            <div className="contenedor-checks">
+                                                <div className="contenedor-check">
+                                                    <label>Incluye Expensas</label>
+                                                    <input type="checkbox" onChange={checkValue} />
+                                                </div>
+                                                <div className="contenedor-check">
+                                                    <label>Incluye Impuestos</label>
+                                                    <input type="checkbox" onInput={checkValueTwo} />
+                                                </div>
+                                            </div>
+                                            : "")
+                                }
                             </div>
                             <div className="my-3">
                                 <label className="label-datos">Nombre</label>
@@ -186,7 +230,7 @@ const Recibos = () => {
                             </div>
                             <div className="my-3">
                                 <label className="label-datos">Monto</label>
-                                <input placeholder="Monto" className="form-control" type="text" onInput={e => setMonto(e.target.value)} />
+                                <input placeholder="Monto" className="form-control" type="number" onInput={e => setMonto(e.target.value)} />
                             </div>
                         </form>
                         <div className="text-center">

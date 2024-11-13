@@ -6,8 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import avataresHombre from "../json/avatarHombres.json"
-import avataresMujer from "../json/avatarMujeres.json"
+import avataresHombre from "../../json/avatarHombres.json"
+import avataresMujer from "../../json/avatarMujeres.json"
 
 
 

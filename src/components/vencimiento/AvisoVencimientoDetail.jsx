@@ -21,7 +21,6 @@ const AvisoVencimientoDetail = ({ inquilino }) => {
             setAvisoVisible(true)
             
         }
-        console.log(mesActual,mesAVencer)
     }, [])
     
 

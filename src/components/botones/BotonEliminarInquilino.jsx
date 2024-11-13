@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import borrarImagen from "../assets/quitar-usuario.png"
+
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 

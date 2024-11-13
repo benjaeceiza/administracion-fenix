@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoMas from "../assets/mas.png"
+import logoMas from "../../assets/mas.png"
 
 const BotonAgregarInqui = (id) =>{
 

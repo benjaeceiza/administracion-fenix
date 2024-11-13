@@ -1,8 +1,8 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Cargando from "./Cargando"
-import AvisoVencimiento from "./AvisoVencimiento";
+import Cargando from "./load/Cargando"
+import AvisoVencimiento from "./vencimiento/AvisoVencimiento";
 
 
 

@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom"
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import CargandoInquilinos from "./CargandoInquilinos";
+import CargandoInquilinos from "./load/CargandoInquilinos";
 
 
 

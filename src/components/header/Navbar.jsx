@@ -1,9 +1,9 @@
 
 
-import logo from "../assets/logo.jpg"
+import logo from "../../assets/logo.jpg"
 import { NavLink, useNavigate } from "react-router-dom"
-import menu from "../assets/menu.png"
-import lupa from "../assets/lupa.png"
+import menu from "../../assets/menu.png"
+import lupa from "../../assets/lupa.png"
 import { useState } from "react"
 import PersonSearchRoundedIcon from '@mui/icons-material/PersonSearchRounded';
 
@@ -19,7 +19,7 @@ const Navbar = () => {
     const [alquileres, setAlquileres] = useState(false);
     const [recibos, setRecibos] = useState(false);
     const [notas, setNotas] = useState(false);
-    const [inicio, setInicio] = useState(false);
+  
 
 
     const buscar = () => {
@@ -87,7 +87,7 @@ const Navbar = () => {
                 <div className="container-fluid  largo  bg-success ">
                     <NavLink to={"/"}><img onClick={() => ItemFondo("inicio")} className="logo" src={logo} alt="Logo" /></NavLink>
                     <button className="navbar-toggler border-white border-0 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className=""><img src={menu} alt="Boton Menu" /></span>
+                        <span ><img src={menu} alt="Boton Menu" /></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <div className="d-flex my-3" role="search">
@@ -121,7 +121,7 @@ const Navbar = () => {
 
             <nav className="nav-mob navbar navbar-expand-lg bg-body-tertiary ">
                 <div className="container-fluid  largo  bg-success ">
-                    <NavLink to={"/"}><img className="logo" src={logo} alt="Logo" /></NavLink>
+                    <NavLink to={"/"} onClick={() => ItemFondo("inicio")}><img className="logo" src={logo} alt="Logo" /></NavLink>
                     <div className="d-flex my-3" role="search">
                         <input className="form-control me-2" type="search" placeholder="Buscar Persona" aria-label="Search" onInput={(e) => { setBuscado(e.target.value) }} />
                         <button onClick={() => buscar()} className="btn btn-outline-success border border-white" type="submit" ><img height={25} src={lupa} alt="Buscar" /></button>

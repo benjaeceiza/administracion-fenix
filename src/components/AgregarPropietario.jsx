@@ -1,4 +1,4 @@
-import FormularioProp from "./FormularioProp"
+import FormularioProp from "./formularios/FormularioProp"
 
 
 const AgregarPropietario = () => {

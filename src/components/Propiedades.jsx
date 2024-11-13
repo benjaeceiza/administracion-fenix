@@ -2,7 +2,7 @@ import { collection, deleteDoc, doc, getDocs, getFirestore } from "firebase/fire
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import tacho from "../assets/eliminar.png"
-import CargandoInquilinos from "./CargandoInquilinos";
+import CargandoInquilinos from "./load/CargandoInquilinos";
 
 
 const Propiedades = ({idPropietario}) => {
