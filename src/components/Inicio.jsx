@@ -11,7 +11,6 @@ const Inicio = () => {
                     <div className="col text-center my-5">
                         <img className="logo-inicio" src={logo} alt="" />
                         <h1>Administración Fenix Propiedades</h1>
-
                     </div>
                 </div>
             </div>

@@ -658,15 +658,15 @@ body {
 
 /* ALQUILERES */
 
-.boton-reiniciar{
+.boton-reiniciar {
   width: 150px;
   height: 50px;
   font-size: 15px;
   margin-left: 50px;
   border: 0;
   border-radius: 10px;
-  background-color: rgb(25,135,84);
-  color: white  ;
+  background-color: rgb(25, 135, 84);
+  color: white;
 }
 
 .fondo-pagos {
@@ -765,11 +765,11 @@ body {
 /* RECIBOS */
 
 
-.contenedor-check{
-display: flex;
-align-items: center;
-width: 150px;
-justify-content: space-between;
+.contenedor-check {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: space-between;
 }
 
 .contenedor-filtro-botones-recibos {
@@ -794,7 +794,7 @@ justify-content: space-between;
 
 }
 
-.recibo{
+.recibo {
   border: solid 1px rgb(141, 141, 141);
   border-radius: 20px;
   background-color: aliceblue;
@@ -862,6 +862,136 @@ justify-content: space-between;
 
 .contenido-recibo {
   padding: 5px 10px;
+}
+
+
+/* NOTAS */
+
+
+
+.formulario-nota{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(223, 221, 221);
+  width: 50%;
+  min-width: 300px;
+  margin: 150px auto;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 4px 2px gray;
+
+}
+
+.label-input{
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0px 20px 0px;
+}
+
+.input-nombre-nota{
+  margin: 0;
+  padding: 0;
+  padding: 5px 10px;
+  border-radius: 10px;
+
+}
+
+.campo-texto{
+ height: 200px;
+}
+
+.boton-nota{
+  width: 120px;
+  margin: auto;
+  border-radius: 10px;
+  border: 0;
+  padding: 5px;
+  background-color: rgb(25, 135, 84);
+  color: white;
+  box-shadow: 0px 0px 4px 2px gray;
+}
+
+.boton-nota:hover{
+  background-color: rgb(34, 190, 118);
+  transition: all .3s;
+}
+
+
+/* FILTRO DE NOTAS */
+.filtro-notas {
+  width: 25vw;
+  min-width: 300px;
+  margin: 20px auto;
+  border: 1px solid rgb(10, 167, 119);
+  border-radius: 5px;
+}
+
+.contenedor-agregar-nota {
+  position: absolute;
+  background-color: rgb(10, 167, 119);
+  padding: 10px 10px;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0px 0px 5px 2px rgb(66, 66, 66);
+  width: 50px;
+  margin: 50px 20px;
+  right: 0;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+
+}
+
+.contenedor-notas {
+
+  color: white;
+  width: 30%;
+  min-width: 300px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 10px 5px rgb(114, 114, 114);
+  margin: auto;
+  min-height: 200px;
+
+}
+
+.nombre-nota {
+  background-color: rgb(10, 167, 119);
+  padding: 0;
+  padding: 10px 0px 10px 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.nombre-nota p {
+  padding: 0;
+  margin: 0;
+}
+
+.cuerpo-nota {
+  padding: 10px 10px;
+  border: solid 1px rgb(148, 148, 148);
+  width: 95%;
+  margin: 5px auto;
+  color: black;
+  border-radius: 10px;
+  text-align: start;
+}
+
+.contenedor-fecha-eliminar {
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+
+}
+
+.contenedor-fecha-eliminar p {
+  margin: 0;
+
 }
 
 

@@ -83,6 +83,7 @@ const Recibos = () => {
 
     const cambioTipo = (e) => {
         setTipo(e.target.value)
+       
         setnombrePersona("")
     }
 

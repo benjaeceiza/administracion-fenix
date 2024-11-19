@@ -14,9 +14,10 @@ import Footer from "./components/Footer"
 import ContextProvider from "./components/contexto/Context"
 import Editar from "./components/editar/Editar"
 import EditarInquilino from "./components/editar/EditarInquilino"
-import Recibos from "./components/recibos/Recibos"
+import CreadoraRecibos from "./components/recibos/CreadoraRecibos"
 import VerRecibos from "./components/recibos/VerRecibos"
 import Notas from "./components/notas/Notas"
+import AgregarNota from "./components/notas/AgregarNota"
 import Alquileres from "./components/Alquileres"
 import TabNavegador from "./components/TabNavegador"
 
@@ -45,9 +46,10 @@ function App() {
             <Route path="/editar/:id" element={<Editar />} />
             <Route path="/editar/inquilino/:idInquilino" element={<EditarInquilino />} />
             <Route path="/alquileres" element={<Alquileres/>} />
-            <Route path="/recibos" element={<Recibos/>} />
+            <Route path="/recibos" element={<CreadoraRecibos/>} />
             <Route path="/recibos/verrecibos" element={<VerRecibos/>} />
             <Route path="/notas" element={<Notas/>} />
+            <Route path="/notas/agregarNota" element={<AgregarNota/>} />
           </Routes>
           <Footer />
         </BrowserRouter>

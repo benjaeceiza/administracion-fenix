@@ -105,7 +105,7 @@ const Navbar = () => {
                                 <NavLink to={"/alquileres"} className={alquileres ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("alquileres")}>Alquileres</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={"/recibos"} className={recibos ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("recibos")} >Recibos</NavLink>
+                                <NavLink to={"/recibos/verrecibos"} className={recibos ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("recibos")} >Recibos</NavLink>
                             </li>
 
                             <li className="nav-item">
@@ -141,7 +141,7 @@ const Navbar = () => {
                                 <NavLink to={"/alquileres/pendientes"} className={alquileres ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("alquileres")}>Alquileres</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={"/recibos"} className={recibos ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("recibos")} >Recibos</NavLink>
+                                <NavLink to={"/recibos/verrecibos"} className={recibos ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("recibos")} >Recibos</NavLink>
                             </li>
 
                             <li className="nav-item">
