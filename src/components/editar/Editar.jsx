@@ -135,31 +135,31 @@ const Editar = () => {
                         <form className="">
                             <div className="mb-3">
                                 <label className="label-datos">Nombre:</label>
-                                <input type="text" className="form-control input-editar" placeholder={propietario.nombre} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { nombre = (e.target.value) }} />
+                                <input type="text" className="form-control input-editar input-nombre-nota" placeholder={propietario.nombre} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { nombre = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Apellido:</label>
-                                <input type="text" className="form-control " placeholder={propietario.apellido} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { apellido = (e.target.value) }} />
+                                <input type="text" className="form-control input-nombre-nota" placeholder={propietario.apellido} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { apellido = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Teléfono:</label>
-                                <input type="number" className="form-control " placeholder={propietario.telefono} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { telefono = (e.target.value) }} />
+                                <input type="number" className="form-control input-nombre-nota" placeholder={propietario.telefono} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { telefono = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Email:</label>
-                                <input type="email" className="form-control " placeholder={propietario.email} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { email = (e.target.value) }} />
+                                <input type="email" className="form-control input-nombre-nota" placeholder={propietario.email} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { email = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Dni/Cuit/Cuil:</label>
-                                <input type="number" className="form-control " placeholder={propietario.cuit} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cuit = (e.target.value) }} />
+                                <input type="number" className="form-control input-nombre-nota" placeholder={propietario.cuit} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cuit = (e.target.value) }} />
                             </div>
                             <div className="mb-3">
                                 <label className="label-datos">Alias/Cbu:</label>
-                                <input type="text" className="form-control" placeholder={propietario.cbu} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cbu = (e.target.value) }} />
+                                <input type="text" className="form-control input-nombre-nota" placeholder={propietario.cbu} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { cbu = (e.target.value) }} />
                             </div>
                         </form>
                         <div className="text-center">
-                            <button onClick={() => control()} className="btn btn-primary">OK</button>
+                            <button onClick={() => control()} className="boton-nota">Finalizar</button>
                         </div>
                     </div>
                 </div>

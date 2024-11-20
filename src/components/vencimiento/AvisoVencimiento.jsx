@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const AvisoVencimiento = ({ inquilinos }) => {
 
@@ -18,7 +19,7 @@ const AvisoVencimiento = ({ inquilinos }) => {
 
         if ((añoActual == añoAVencer) && (mesActual >= mesAVencer)) {
 
-            personas.push(inquilino.apellido + " " + inquilino.nombre)
+            personas.push({nombre: inquilino.apellido + " " + inquilino.nombre,id :inquilino.id})
 
         }
 
@@ -44,7 +45,7 @@ const AvisoVencimiento = ({ inquilinos }) => {
                                 {avisoVisible ? <div className="aviso-vencimiento">
                                     <ul>
                                         {personas.map(e => (
-                                            <li key={Math.random()} className="text-white">{e}</li>
+                                            <li key={Math.random()} ><Link to={"/inquilino/"+e.id} className=" text-white link-aviso">{e.nombre}</Link></li>
                                         ))}
                                     </ul>
                                 </div> : ""}

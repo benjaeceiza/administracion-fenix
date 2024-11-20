@@ -15,7 +15,7 @@ const Recibo = ({ recibos }) => {
     const eliminarRecibo = (id) => {
 
         const db = getFirestore();
-        const docRef = doc(db,"recibos",id);
+        const docRef = doc(db, "recibos", id);
         deleteDoc(docRef)
     }
 
@@ -24,25 +24,25 @@ const Recibo = ({ recibos }) => {
         <>
             <div key={Math.random()} className="contenedor-recibos">
                 {recibosOrdenados.map(e => (
-                    <div key={e.id}  className="contenedor-recibo">
+                    <div key={e.id} className="contenedor-recibo">
                         <div className="mostrar-recibo">
                             <div className="div-nombre">
                                 <p>{e.apelliodo} {e.nombre} ({e.tipo})</p>
                             </div>
-                            <div className="contenido-recibo">
-                                <p>Fecha: {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
-                                <div className="div-concepto">
-                                    <p>En concepto de: {e.concepto}</p>
+                            <div className="contenido-recibo ">
+                                <label className="label-datos">En concepto de:</label>
+                                <div className="div-concepto input-nombre-nota">
+                                    <p>{e.concepto}</p>
                                 </div>
                                 {
                                     e.concepto == "Alquiler"
                                         ?
                                         (
                                             e.impuestos
-                                            ?
-                                            <p>Incluye Impuestos</p>
-                                            :
-                                            <p>No incluye Impuestos</p>
+                                                ?
+                                                <p className="my-0">Incluye Impuestos: <b>Si</b></p>
+                                                :
+                                                <p className="my-0">Incluye Impuestos: <b>No</b></p>
                                         )
                                         :
                                         ""
@@ -52,17 +52,18 @@ const Recibo = ({ recibos }) => {
                                         ?
                                         (
                                             e.expensas
-                                            ?
-                                            <p>Incluye Expensas</p>
-                                            :
-                                            <p>No incluye Expensas</p>
+                                                ?
+                                                <p className="my-0">Incluye Expensas: <b>Si</b></p>
+                                                :
+                                                <p className="my-0">Incluye Expensas: <b>No</b></p>
                                         )
                                         :
                                         ""
                                 }
-                                <p>Monto: ${e.monto}</p>
+                                <p>Monto: <b>${e.monto}</b> </p>
                             </div>
-                            <div className="text-end p-2">
+                            <div className="contenedor-fecha-eliminar">
+                                <p> {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
                                 <DeleteIcon onClick={() => eliminarRecibo(e.id)}></DeleteIcon>
                             </div>
                         </div>

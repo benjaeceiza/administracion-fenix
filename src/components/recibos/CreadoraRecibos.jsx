@@ -180,14 +180,14 @@ const Recibos = () => {
                     <div className="col recibo my-5">
                         <form action="">
                             <label className="label-datos">Tipo</label>
-                            <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
+                            <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioTipo}>
                                 <option value={""}>Seleccione el tipo</option>
                                 <option value={"inquilinos"}>Inquilino</option>
                                 <option value={"propietarios"}>Propietario</option>
                             </select>
                             <div className="my-3">
                                 <label className="label-datos">En concepto de</label>
-                                <select className="form-select" aria-label="Default select example" onChange={cambioConcepto} >
+                                <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioConcepto} >
                                     <option value={""}>Seleccione el concepto</option>
                                     <option value={"Alquiler"}>Alquiler</option>
                                     <option value={"Otro"}>Otro</option>
@@ -215,8 +215,8 @@ const Recibos = () => {
                                 }
                             </div>
                             <div className="my-3">
-                                <label className="label-datos">Nombre</label>
-                                <select className="form-select" aria-label="Default select example" onChange={cambioNombre}>
+                                <label className="label-datos ">Nombre</label>
+                                <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioNombre}>
                                     <option value="">Seleccione un nombre</option>
                                     {personas.map(e => (
                                         <option key={e.id} value={(e.apellido) + " " + (e.nombre)}>{e.apellido} {e.nombre}</option>
@@ -226,16 +226,16 @@ const Recibos = () => {
                             <div className="my-3">
                                 <div className="contenedor-fecha-label">
                                     <label className="label-datos">Fecha</label>
-                                    <DatePicker className="input-fecha" selected={fechaRecibo.fecha} onChange={onChangeFecha} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                    <DatePicker className="input-fecha input-nombre-nota" selected={fechaRecibo.fecha} onChange={onChangeFecha} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                                 </div>
                             </div>
                             <div className="my-3">
                                 <label className="label-datos">Monto</label>
-                                <input placeholder="Monto" className="form-control" type="number" onInput={e => setMonto(e.target.value)} />
+                                <input placeholder="Monto" className="form-control input-nombre-nota" type="number" onInput={e => setMonto(e.target.value)} />
                             </div>
                         </form>
                         <div className="text-center">
-                            <button onClick={() => enviar()} className="btn btn-primary my-3">Terminar Recibo</button>
+                            <button onClick={() => enviar()} className="boton-nota my-3">Enviar Recibo</button>
                         </div>
                     </div>
                 </div>

@@ -24,8 +24,8 @@ const AgregarNota = () => {
     return (
         <>
             <div className="container">
-                <div className="row">
-                    <div className="formulario-nota">
+                <div className="row my-5">
+                    <div className="formulario-nota my-5">
                         <div className="label-input">
                             <label className="label-datos">Nombre</label>
                             <input className="input-nombre-nota" type="text" placeholder="Nombre" onInput={(e) => { setNombre(e.target.value) }} />

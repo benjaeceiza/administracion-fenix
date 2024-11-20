@@ -44,18 +44,18 @@ const Alquileres = () => {
     const reiniciar = () => {
         const db = getFirestore();
 
-  
-        filtrosAlDia.map( inquilinos => {
-            const docRef = doc(db, "inquilinos",inquilinos.id )
-            updateDoc(docRef,{alquiler:false})
+
+        filtrosAlDia.map(inquilinos => {
+            const docRef = doc(db, "inquilinos", inquilinos.id)
+            updateDoc(docRef, { alquiler: false })
         })
-        
+
         setTimeout(() => {
 
             window.location.reload(true)
-        },1500)
-       
-       
+        }, 1500)
+
+
 
     }
 
@@ -63,7 +63,7 @@ const Alquileres = () => {
     return (
         <>
             <button onClick={() => reiniciar()} className="my-3 boton-reiniciar ">reiniciar alquileres</button>
-            <div className="container">
+            <div className="container my-5">
                 {cargando ? <Cargando /> :
                     <div className="row">
                         <div className="col my-5">

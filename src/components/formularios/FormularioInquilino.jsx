@@ -258,15 +258,15 @@ const FormularioInquilino = () => {
                 <form className="container" ref={formulario} >
                     <div className="mb-3">
                         <label className="label-datos">Nombre</label>
-                        <input type="text" className={"form-control " + (error ? "validacion-error" : " ")} placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNombreInqui(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error ? "validacion-error" : " ")} placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNombreInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Apellido</label>
-                        <input type="text" className={"form-control " + (error2 ? "validacion-error" : " ")} placeholder="Apellido" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setApellidoInqui(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error2 ? "validacion-error" : " ")} placeholder="Apellido" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setApellidoInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Género</label>
-                        <select className="form-select" aria-label="Default select example" onChange={cambioGenero}>
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioGenero}>
                             <option value="">Seleccione el género</option>
                             <option value= "Hombre">Hombre</option>
                             <option value= "Mujer">Mujer</option>
@@ -274,24 +274,24 @@ const FormularioInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Telefono</label>
-                        <input type="number" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoInqui(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota" + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Email</label>
                         
-                        <input type="email" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Correo Electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailInqui(e.target.value) }} />
+                        <input type="email" className={"form-control input-nombre-nota" + (error4 ? "validacion-error" : " ")} placeholder="Correo Electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dni</label>
-                        <input type="number" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="Dni" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDniInqui(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota" + (error5 ? "validacion-error" : " ")} placeholder="Dni" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDniInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dirección</label>
-                        <input type="text" className={"form-control " + (error6 ? "validacion-error" : " ")} placeholder="Direccion del Inmbueble" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDireccionInqui(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error6 ? "validacion-error" : " ")} placeholder="Direccion del Inmbueble" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setDireccionInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Ajuste</label>
-                        <select className="form-select" aria-label="Default select example" onChange={cambioAjuste}>
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioAjuste}>
                             <option value="">Seleccione el tipo de ajuste</option>
                             <option value= "Bimestral">Bimestral</option>
                             <option value= "Trimestral">Trimestral</option>
@@ -302,20 +302,20 @@ const FormularioInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Monto</label>
-                        <input type="number" className={"form-control " + (error8 ? "validacion-error" : " ")} placeholder="Monto" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setMonto(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota" + (error8 ? "validacion-error" : " ")} placeholder="Monto" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setMonto(e.target.value) }} />
                     </div>
                     <div className="mb-3 contenedor-fecha-label">
                         <label className="label-datos">Vigencia</label>
-                        <DatePicker className="input-fecha" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                     </div>
                     <div className="mb-3 contenedor-fecha-label">
                         <label className="label-datos">Vencimiento</label>
-                        <DatePicker className="input-fecha" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                     </div>
 
                 </form>
                 <div className="text-center">
-                    <button className="btn btn-primary " onClick={control} >Agregar</button>
+                    <button className="boton-nota " onClick={control} >Agregar</button>
                 </div>
             </div>
         </>

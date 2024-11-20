@@ -66,6 +66,12 @@ body {
 .nav-link {
   border-radius: 10px;
 }
+.link-aviso{
+ text-decoration: none;
+
+}
+
+
 
 .nav-link:hover {
   background-color: rgb(57, 199, 121);
@@ -381,9 +387,13 @@ body {
 
 }
 
+/* CAMBIAR AVATAR */
+
 .contenedor-cambiar-avatar {
   position: absolute;
   width: 100%;
+  z-index: 1;
+
 
 }
 
@@ -395,6 +405,7 @@ body {
   filter: drop-shadow(0px 10px 10px gray);
   animation-name: agrandar;
   animation-duration: 1s;
+   
 }
 
 .contenedor-titulo-boton-cerrar-avatar {
@@ -410,6 +421,8 @@ body {
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  padding: 5px ;
+
 
 }
 
@@ -425,7 +438,7 @@ body {
 }
 
 .contenedor-avatars {
-  background-color: gray;
+  background-color: rgb(139, 209, 176);
   width: 25vw;
   min-width: 300px;
   height: 500px;
@@ -461,6 +474,7 @@ body {
   border-end-end-radius: 20px;
   border-end-start-radius: 20px;
   padding-top: 20px;
+ 
 }
 
 .contenedor-boton-cambiar-avatar button {
@@ -515,15 +529,12 @@ body {
 /* LISTADO INQUILINOS */
 
 .aviso-vencimiento {
-  display: flex;
-  justify-content: space-between;
+  display: block;
   background-color: rgb(245, 113, 73);
-  align-items: baseline;
-  padding-top: 10px;
-  flex-wrap: wrap;
+  padding: 16px 0px;
   color: white;
   font-weight: bold;
-
+  text-align: center;
 }
 
 .cuerpo-venciminento {
@@ -554,13 +565,7 @@ body {
 
 }
 
-.boton-cerrar-aviso {
-  border: 0;
-  background-color: transparent;
-  font-size: 20px;
-  padding: 0px 10px;
-  color: white;
-}
+
 
 
 /* INQUILINO DETAIL */
@@ -597,8 +602,8 @@ body {
   background-color: rgb(238, 237, 237);
   margin-bottom: 40px;
   width: 80%;
-  border: 1px solid black;
 
+  box-shadow: 0px 0px 4px 2px gray;
 }
 
 .boton-form {
@@ -671,13 +676,15 @@ body {
 
 .fondo-pagos {
   background-color: gray;
+  
 }
 
 .lista-alquileres {
   min-width: 250px;
   max-height: 500px;
   overflow: auto;
-  filter: drop-shadow(0px 10px 10px gray);
+  box-shadow: 0px 0px 4px 2px gray;
+
 }
 
 .titulo-alquiler-al-dia {
@@ -686,6 +693,7 @@ body {
   padding: 10px 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  box-shadow: 0px 0px 4px 2px gray;
 }
 
 .titulo-alquiler-al-dia p {
@@ -700,6 +708,7 @@ body {
   padding: 10px 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  box-shadow: 0px 0px 4px 2px gray;
 }
 
 .titulo-alquiler-pendientes p {
@@ -781,9 +790,10 @@ body {
 }
 
 .contenedor-filtro {
-  width: 80%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  margin: auto;
+  justify-content: space-evenly;
   align-items: baseline;
   flex-wrap: wrap;
 }
@@ -797,30 +807,24 @@ body {
 .recibo {
   border: solid 1px rgb(141, 141, 141);
   border-radius: 20px;
-  background-color: aliceblue;
+  background-color: rgb(243, 241, 241);
+  box-shadow: 0px 0px 4px 2px gray;
+  padding-top: 20px;
 }
 
 .contenedor-buscar-agregar-recibo {
+  position: fixed;
+  right: 0;
+  margin-right: 5%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-wrap: wrap;
-  width: 200px;
+  flex-wrap: wrap; 
 }
 
-.boton-buscar-recibos {
-  border: 0;
-  padding: 0px 20px;
-  background-color: rgb(157, 165, 161);
-  height: 40px;
-  border-radius: 5px;
 
-}
 
-.boton-buscar-recibos img {
-  height: 20px;
-  padding: 0;
-}
+
 
 .contenedor-recibos {
   display: flex;
@@ -839,24 +843,28 @@ body {
 
 
 .mostrar-recibo {
-
-  box-shadow: 0px 0px 5px 1px rgb(105, 105, 105);
+  box-shadow: 0px 0px 4px 2px gray;
   border-radius: 10px;
-
-
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
 }
 
 .div-nombre {
-  background-color: rgb(25, 135, 84);
+  background-color: rgb(10, 167, 119);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 0px 10px;
+  font-weight: bold;
+  
 }
 
 .div-nombre p {
 
   color: white;
-  padding: 10px 5px;
+  padding: 10px 5px 0px;
 
 }
 
@@ -869,39 +877,40 @@ body {
 
 
 
-.formulario-nota{
+.formulario-nota {
   display: flex;
   flex-direction: column;
-  background-color: rgb(223, 221, 221);
+  background-color: rgb(243, 241, 241);
   width: 50%;
   min-width: 300px;
-  margin: 150px auto;
+  margin: auto;
   height: 500px;
   border-radius: 20px;
   box-shadow: 0px 0px 4px 2px gray;
 
 }
 
-.label-input{
+.label-input {
   display: flex;
   flex-direction: column;
   margin: 40px 0px 20px 0px;
 }
 
-.input-nombre-nota{
+.input-nombre-nota {
   margin: 0;
   padding: 0;
   padding: 5px 10px;
   border-radius: 10px;
+  border: 1px solid rgb(78, 78, 78);
 
 }
 
-.campo-texto{
- height: 200px;
+.campo-texto {
+  height: 200px;
 }
 
-.boton-nota{
-  width: 120px;
+.boton-nota {
+
   margin: auto;
   border-radius: 10px;
   border: 0;
@@ -909,9 +918,11 @@ body {
   background-color: rgb(25, 135, 84);
   color: white;
   box-shadow: 0px 0px 4px 2px gray;
+  padding: 10px;
+  font-weight: bold;
 }
 
-.boton-nota:hover{
+.boton-nota:hover {
   background-color: rgb(34, 190, 118);
   transition: all .3s;
 }
@@ -927,7 +938,7 @@ body {
 }
 
 .contenedor-agregar-nota {
-  position: absolute;
+  position: fixed;
   background-color: rgb(10, 167, 119);
   padding: 10px 10px;
   border-radius: 50%;
@@ -935,8 +946,9 @@ body {
   border: 2px solid white;
   box-shadow: 0px 0px 5px 2px rgb(66, 66, 66);
   width: 50px;
-  margin: 50px 20px;
+  margin: 0px 20px;
   right: 0;
+
 }
 
 .center {
@@ -946,7 +958,9 @@ body {
 }
 
 .contenedor-notas {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: white;
   width: 30%;
   min-width: 300px;
@@ -954,6 +968,7 @@ body {
   box-shadow: 5px 10px 10px 5px rgb(114, 114, 114);
   margin: auto;
   min-height: 200px;
+ 
 
 }
 
@@ -963,6 +978,7 @@ body {
   padding: 10px 0px 10px 5px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  font-weight: bold;
 }
 
 .nombre-nota p {
@@ -985,8 +1001,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px;
-
+  padding: 0px 10px 10px;
+  
+  
 }
 
 .contenedor-fecha-eliminar p {
@@ -1047,6 +1064,7 @@ body {
 @media(max-width:560px) {
   .nav-mob-ultra {
     display: flex;
+   
   }
 
   .nav-mob {
@@ -1066,6 +1084,7 @@ body {
   .datos-mob {
     display: block;
     min-width: 250px;
+   
 
   }
 

@@ -10,27 +10,27 @@ import Cargando from "../load/Cargando";
 
 
 const EditarInquilino = () => {
-   
+
     const [inquilino, setInquilino] = useState([])
     const { idInquilino } = useParams();
     let tipoAjuste = [
         {
-        tipo:"Bimestral"
-    },
-    {
-        tipo:"Trimestral"
-    },
-    {
-       tipo:"Cuatrimestral"
-    },
-    {
-        tipo:"Semestral"
-    },
-    {
-        tipo:"Anual"
-    }
-       
-    ]; 
+            tipo: "Bimestral"
+        },
+        {
+            tipo: "Trimestral"
+        },
+        {
+            tipo: "Cuatrimestral"
+        },
+        {
+            tipo: "Semestral"
+        },
+        {
+            tipo: "Anual"
+        }
+
+    ];
     const [cargador, setCargador] = useState(true)
     const [vigencia, setVigencia] = useState({ fecha: "" });
     const [vencimiento, setVencimineto] = useState({ fecha: "" });
@@ -68,7 +68,7 @@ const EditarInquilino = () => {
 
     }, [])
 
-  
+
 
 
     const notifySucces = () => toast.success("Inquilino Editado!", {
@@ -83,8 +83,8 @@ const EditarInquilino = () => {
 
     })
 
-    
-         
+
+
 
 
     registerLocale("es", es);
@@ -104,7 +104,7 @@ const EditarInquilino = () => {
 
 
     const cambioAjuste = (e) => {
-    
+
         ajuste = e.target.value
     }
 
@@ -133,7 +133,7 @@ const EditarInquilino = () => {
         if (direccion == "") {
             direccion = inquilino.direccion
         }
-      
+
         if (valorVigencia.fecha == "") {
 
             valorVigencia.fecha = inquilino.vigencia.fecha
@@ -146,8 +146,8 @@ const EditarInquilino = () => {
             monto = inquilino.monto
         }
 
-        if (ajuste == ""){
-    
+        if (ajuste == "") {
+
             ajuste = inquilino.aumento
         }
 
@@ -170,8 +170,8 @@ const EditarInquilino = () => {
             monto: monto
         }
 
-    
-     
+
+
         const db = getFirestore();
         const docRef = doc(db, "inquilinos", idInquilino)
         updateDoc(docRef, inqui).then(
@@ -181,8 +181,8 @@ const EditarInquilino = () => {
             navigate("/inquilino/" + inquilino.id)
         }, 1500)
 
-       
-        
+
+
 
     }
 
@@ -197,59 +197,61 @@ const EditarInquilino = () => {
                 <form className="container" >
                     <div className="mb-3">
                         <label className="label-datos">Nombre:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.nombre} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { nombre = (e.target.value) }} />
+                        <input type="text" className="form-control input-nombre-nota" placeholder={inquilino.nombre} aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { nombre = (e.target.value) }} />
                     </div>
 
                     <div className="mb-3">
                         <label className="label-datos">Apellido:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.apellido} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { apellido = (e.target.value) }} />
+                        <input type="text" className="form-control input-nombre-nota" placeholder={inquilino.apellido} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { apellido = (e.target.value) }} />
 
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Telefono:</label>
-                        <input type="number" className="form-control " placeholder={inquilino.telefono} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { telefono = (e.target.value) }} />
+                        <input type="number" className="form-control input-nombre-nota" placeholder={inquilino.telefono} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { telefono = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
                         <label className="label-datos">Email:</label>
-                        <input type="email" className="form-control " placeholder={inquilino.email} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { email = (e.target.value) }} />
+                        <input type="email" className="form-control input-nombre-nota" placeholder={inquilino.email} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { email = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
                         <label className="label-datos">Dni/Cuit/Cuil:</label>
-                        <input type="number" className="form-control " placeholder={inquilino.dni} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { dni = (e.target.value) }} />
+                        <input type="number" className="form-control input-nombre-nota" placeholder={inquilino.dni} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { dni = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3">
                         <label className="label-datos">Dirección:</label>
-                        <input type="text" className="form-control " placeholder={inquilino.direccion} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { direccion = (e.target.value) }} />
+                        <input type="text" className="form-control input-nombre-nota" placeholder={inquilino.direccion} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { direccion = (e.target.value) }} />
 
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Ajuste</label>
-                        <select className="form-select"  aria-label="Default select example" onChange={cambioAjuste}>
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioAjuste}>
                             <option value={inquilino.aumento}>{inquilino.aumento}</option>
-                           {tipoAjuste.map(valor =>(
-                               inquilino.aumento == valor.tipo ? "" :  <option key={valor.tipo} value={valor.tipo}>{valor.tipo}</option>
-                           ))}
+                            {tipoAjuste.map(valor => (
+                                inquilino.aumento == valor.tipo ? "" : <option key={valor.tipo} value={valor.tipo}>{valor.tipo}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Monto:</label>
-                        <input type="number" className="form-control " placeholder={inquilino.monto} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { monto = (e.target.value) }} />
+                        <input type="number" className="form-control input-nombre-nota " placeholder={inquilino.monto} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { monto = (e.target.value) }} />
 
                     </div>
                     <div className=" mb-3 contenedor-fecha-label">
                         <label htmlFor="" className="label-datos">Vigencia</label>
-                        <DatePicker className="input-fecha" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                     </div>
                     <div className=" mb-3 contenedor-fecha-label">
                         <label htmlFor="" className="label-datos">Vencimiento</label>
-                        <DatePicker className="input-fecha" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                     </div>
 
                 </form>
-                <button className="btn btn-primary centro boton-form" onClick={() => control()} >OK</button>
+                <div className="text-center my-3">
+                    <button className="boton-nota" onClick={() => control()} >Finalizar</button>
+                </div>
             </div>}
         </>
     )

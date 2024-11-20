@@ -182,15 +182,15 @@ const FormularioProp = () => {
                 <form className="container" ref={formulario}>
                     <div className="mb-3">
                         <label className="label-datos">Nombre</label>
-                        <input type="text" className={"form-control " + (error ? "validacion-error" : " ")} placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNombreProp(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error ? "validacion-error" : " ")} placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNombreProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Apellido</label>
-                        <input type="text" className={"form-control " + (error2 ? "validacion-error" : " ")} placeholder="Apellido" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setApellidoProp(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error2 ? "validacion-error" : " ")} placeholder="Apellido" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setApellidoProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Género</label>
-                        <select className="form-select" aria-label="Default select example" onChange={cambioGenero}>
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioGenero}>
                             <option value="">Seleccione el género</option>
                             <option value= "Hombre">Hombre</option>
                             <option value= "Mujer">Mujer</option>
@@ -199,23 +199,23 @@ const FormularioProp = () => {
 
                     <div className="mb-3">
                         <label className="label-datos">Telefono</label>
-                        <input type="number" className={"form-control " + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoPropo(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota" + (error3 ? "validacion-error" : " ")} placeholder="Telefono" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setTelefonoPropo(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Email</label>
-                        <input type="email" className={"form-control " + (error4 ? "validacion-error" : " ")} placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailProp(e.target.value) }} />
+                        <input type="email" className={"form-control input-nombre-nota" + (error4 ? "validacion-error" : " ")} placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Dni/Cuit/Cuil</label>
-                        <input type="number" className={"form-control " + (error5 ? "validacion-error" : " ")} placeholder="DNI/CUIT/CUIL" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCuitProp(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota" + (error5 ? "validacion-error" : " ")} placeholder="DNI/CUIT/CUIL" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCuitProp(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Alias/Cbu</label>
-                        <input type="text" className={"form-control " + (error6 ? "validacion-error" : " ")} placeholder="Alias/CBU" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCbuProp(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota" + (error6 ? "validacion-error" : " ")} placeholder="Alias/CBU" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setCbuProp(e.target.value) }} />
                     </div>
                 </form>
                 <div className="text-center">
-                    <button className="btn btn-primary" onClick={control} >Agregar</button>
+                    <button className="boton-nota" onClick={control} >Agregar</button>
                 </div>
             </div>
         </>

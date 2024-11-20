@@ -65,20 +65,19 @@ const FormularioCasa = () => {
                 <h1 className="text-center my-5">Agregar Propiedad</h1>
                 <form action="" className="container formulario">
                     <div className="input-group mb-3">
-                        <input type="text" className={"form-control"} placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setDireccion(e.target.value) }} />
+                        <input type="text" className={"form-control input-nombre-nota"} placeholder="Dirección" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setDireccion(e.target.value) }} />
                     </div>
                     <div className="input-group mb-3">
-                        <input type="number" className={"form-control"} placeholder="Número Finca" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setFinca(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota"} placeholder="Número Finca" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setFinca(e.target.value) }} />
                     </div>
                     <div className="input-group mb-3">
-                        <input type="number" className={"form-control"} placeholder="Número Niz" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNiz(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota"} placeholder="Número Niz" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setNiz(e.target.value) }} />
                     </div>
                     <div className="input-group mb-3">
-                        <input type="number" className={"form-control"} placeholder="Número Cuenta Gas" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setGas(e.target.value) }} />
+                        <input type="number" className={"form-control input-nombre-nota"} placeholder="Número Cuenta Gas" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setGas(e.target.value) }} />
                     </div>
                 </form>
                 <div className="text-center">
-
                     <button className="btn btn-primary" onClick={control}>Agregar</button>
                 </div>
             </div>
