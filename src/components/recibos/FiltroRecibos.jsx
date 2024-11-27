@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
     const [personas, setPersonas] = useState([]);
-    const [nombre,setNombre] = useState("")
+    const [nombre, setNombre] = useState("")
 
     const cambioTipo = (e) => {
-
+     
         const db = getFirestore();
         const itemCollection = collection(db, "recibos")
 
@@ -20,9 +20,12 @@ const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
             if (Snapshot.size > 0) {
                 if (e.target.value == "") {
                     setFiltroRecibos(recibos)
+                 
+
                 } else {
 
                     setFiltroRecibos(recibos.filter(recibo => recibo.tipo == e.target.value))
+                 
                 }
             } else {
                 console.error("error")
@@ -84,7 +87,7 @@ const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
             }
         })
 
-    
+
 
     }
 
