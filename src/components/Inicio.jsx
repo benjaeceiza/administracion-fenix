@@ -7,10 +7,10 @@ const Inicio = () => {
         <>
       
             <div className="container">
-                <div className="row my-5">
-                    <div className="col text-center my-5">
+                <div className="contenedor-inicio">
+                    <div className="inicio">
                         <img className="logo-inicio" src={logo} alt="" />
-                        <h1>Administración Fenix Propiedades</h1>
+                        <h1 className="my-5">Administración Fenix Propiedades</h1>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@ body {
 
 /* MODAL */
 
-.contenedor-modal-eliminar{
+.contenedor-modal-eliminar {
   background-color: rgba(0, 0, 0, 0.685);
   position: fixed;
   height: 100vh;
@@ -48,7 +48,7 @@ body {
 
 }
 
-.modal-eliminar{
+.modal-eliminar {
   background-color: rgb(255, 255, 255);
   height: 300px;
   width: 300px;
@@ -60,7 +60,7 @@ body {
 
 }
 
-.contenedor-cerrar-modal-eliminar{
+.contenedor-cerrar-modal-eliminar {
   text-align: end;
 }
 
@@ -71,41 +71,53 @@ body {
   cursor: pointer;
 }
 
-.contenedor-contenido-modal-eliminar{
+.contenedor-contenido-modal-eliminar {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.titulo-modal-eliminar{
+.titulo-modal-eliminar {
   font-size: 25px;
 }
 
 
-.subtitulo-modal-eliminar{
+.subtitulo-modal-eliminar {
   font-size: 15px;
 }
 
-.contenedor-botones-modal-eliminar{
+.contenedor-botones-modal-eliminar {
   margin-top: 30px;
 }
 
-.boton-modal-eliminar{
-   border:  0;
-   background-color: red;
-   margin: 20px;
-   padding: 10px;
-   border-radius: 10px;
-   color: white;
-   font-weight: bold;
+.boton-modal-eliminar {
+  border: 0;
+  background-color: red;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
 }
 
-.boton-eliminar{
+.boton-eliminar {
   background-color: rgb(10, 167, 119);
 }
 
 /* INICIO */
+
+.contenedor-inicio {
+  margin-top: 200px;
+
+}
+
+.inicio {
+  text-align: center;
+  width: 50%;
+  min-width: 200px;
+  margin: auto;
+}
 
 .logo-inicio {
   border-radius: 50%;
@@ -650,13 +662,8 @@ body {
   background-color: rgb(168, 168, 168);
 }
 
-.pagos {
-  border: 1px solid black;
-  min-width: 200px;
-  border-radius: 10px;
-  width: 90%;
-  margin: auto;
-}
+
+
 
 .datos-1 {
   width: 100%;
@@ -669,6 +676,58 @@ body {
   padding: 0;
 
 }
+
+.pagos {
+  box-shadow: 0px 0px 4px 2px gray;
+  min-width: 200px;
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.contenedor-pagos-detail {
+  box-shadow: 0px 0px 4px 2px gray;
+  width: 100px;
+  height: 120px;
+  margin: auto;
+
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.contenedor-pagos-detail p {
+  padding: 0;
+  margin: 0;
+}
+
+.recibo-detail-titulo{
+  background-color: rgb(223, 129, 66);
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.recibo-detail-fecha{
+  background-color: rgb(223, 129, 66);
+  width: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
 
 /* Formulario inquilino*/
 .formulario {
@@ -1214,7 +1273,7 @@ body {
 
 @keyframes opacidad {
   0% {
-    opacity:0;
+    opacity: 0;
   }
 
   100% {

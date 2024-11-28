@@ -12,6 +12,7 @@ import CambiarAvatar from "../CambiarAvatar";
 import DatosInquilinosMob from "../datos/DatosInquilinosMob";
 import AvisoVencimientoDetail from "../vencimiento/AvisoVencimientoDetail";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
+import RecibosInquilinoDetail from "./RecibosInquilinoDetail";
 
 
 
@@ -76,11 +77,7 @@ const InquilinosDetail = () => {
                     </div>
                     <div className="contenedor-propiedades-inquilinos">
                         {inquilino.alquiler ? <Aldia inquilino={inquilino} /> : <Pendiente inquilino={inquilino} />}
-                        <div className="col my-5">
-                            <div className="pagos">
-                                <h3 className="text-center my-4">Recibos De inqulino</h3>
-                            </div>
-                        </div>
+                        <RecibosInquilinoDetail nombre={inquilino.nombre} apellido={inquilino.apellido}/>
                     </div>
                 </div>
             }
