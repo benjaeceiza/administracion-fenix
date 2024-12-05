@@ -55,7 +55,7 @@ const FormularioInquilino = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     });
 
@@ -67,7 +67,7 @@ const FormularioInquilino = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
     });
 
 

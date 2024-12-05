@@ -17,7 +17,7 @@ const ModalEliminar = ({setModalEliminar,setEliminar}) => {
                         <p className="subtitulo-modal-eliminar">Esta acción no se prodrá deshacer</p>
                         <div className="contenedor-botones-modal-eliminar">
                             <button className="boton-modal-eliminar" onClick={() => setModalEliminar(false)}>Cancelar</button>
-                            <button className="boton-modal-eliminar boton-eliminar"onClick={eliminar} >Eliminar</button>
+                            <button className="boton-modal-eliminar boton-eliminar"onClick={eliminar} >Aceptar</button>
                         </div>
                     </div>
                 </div>

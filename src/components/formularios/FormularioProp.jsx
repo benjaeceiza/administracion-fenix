@@ -87,7 +87,7 @@ const FormularioProp = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     });
 
@@ -99,7 +99,7 @@ const FormularioProp = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     })
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Cargando from "../load/Cargando"
 import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -24,6 +24,8 @@ const Recibos = () => {
     const [impuesto, setImpuesto] = useState(false)
     const [expensas, setExpensas] = useState(false)
 
+    const formulario = useRef()
+
     const notifySucces = () => toast.success("Recibo Enviado", {
         position: "top-center",
         autoClose: 1000,
@@ -32,7 +34,7 @@ const Recibos = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     })
 
@@ -141,7 +143,9 @@ const Recibos = () => {
             const docRef2 = collection(db, "recibos")
             updateDoc(docRef, { alquiler: true })
             addDoc(docRef2, reciboPersona).then(
-                notifySucces()
+                notifySucces(),
+                formulario.current.reset()
+                
             )
 
         } else {
@@ -159,7 +163,8 @@ const Recibos = () => {
             const db = getFirestore();
             const docRef2 = collection(db, "recibos")
             addDoc(docRef2, reciboPersona).then(
-                notifySucces()
+                notifySucces(),
+                formulario.current.reset()  
             )
         }
 
@@ -178,7 +183,7 @@ const Recibos = () => {
                 </div>
                 <div className="row ancho-recibo">
                     <div className="col recibo my-5">
-                        <form action="">
+                        <form  ref={formulario}>
                             <label className="label-datos">Tipo</label>
                             <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioTipo}>
                                 <option value={""}>Seleccione el tipo</option>

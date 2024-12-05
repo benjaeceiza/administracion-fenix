@@ -138,7 +138,7 @@ const Navbar = () => {
                                 <NavLink to={"/inquilinos"} className={inquilinos ? "nav-link text-white active" : "nav-link text-white"} onClick={() => ItemFondo("inquilinos")}>Inquilinos</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to={"/alquileres/pendientes"} className={alquileres ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("alquileres")}>Alquileres</NavLink>
+                                <NavLink to={"/alquileres"} className={alquileres ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("alquileres")}>Alquileres</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink to={"/recibos/verrecibos"} className={recibos ? "nav-link text-white active " : "nav-link text-white"} onClick={() => ItemFondo("recibos")} >Recibos</NavLink>

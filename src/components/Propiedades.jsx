@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import tacho from "../assets/eliminar.png"
 import CargandoInquilinos from "./load/CargandoInquilinos";
 import ModalEliminar from "./modal/ModalEliminar";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Propiedades = ({ idPropietario }) => {
@@ -16,6 +17,19 @@ const Propiedades = ({ idPropietario }) => {
     const [propiedadSeleccionada, setPropiedadSeleccionada] = useState("")
     const [eliminar, setEliminar] = useState(false)
     const [recargar,setRecargar] = useState(false)
+
+
+    const notifySucces = () => toast.success("Propiedad Eliminada", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+
+    })
 
 
 
@@ -81,6 +95,7 @@ const Propiedades = ({ idPropietario }) => {
             const docRef = doc(db, "propiedades", propiedadSeleccionada);
 
             deleteDoc(docRef).then(
+                notifySucces(),
                 setEliminar(false),
                 setRecargar(true)
             )

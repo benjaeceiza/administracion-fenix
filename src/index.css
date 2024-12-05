@@ -803,9 +803,12 @@ body {
   font-size: 15px;
   margin-left: 50px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 50px;
   background-color: rgb(25, 135, 84);
+  border: solid 1px white;
+  box-shadow: 0px 0px 5px 4px rgb(109, 109, 109);
   color: white;
+
 }
 
 .fondo-pagos {
@@ -813,14 +816,24 @@ body {
 
 }
 
+
+
 .lista-alquileres {
   min-width: 250px;
   max-height: 500px;
   overflow: auto;
   box-shadow: 0px 0px 4px 2px gray;
+  min-height: 300px;
 
 }
 
+.titulo-alquiler{
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0px 0px 4px 2px gray;
+  border-radius: 5px;
+  min-width: 200px;
+}
 .titulo-alquiler-al-dia {
   margin: 0;
   background-color: rgb(32, 168, 32);
