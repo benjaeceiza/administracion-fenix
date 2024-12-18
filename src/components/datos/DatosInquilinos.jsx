@@ -35,6 +35,8 @@ const DatosInquilinos = ({ datos }) => {
                             <p className="parrafo-datos">{datos.dni}</p>
                             <label className="label-datos">Ajuste:</label>
                             <p className="parrafo-datos">{datos.aumento}</p>
+                            <label className="label-datos">Proximo Ajuste:</label>
+                            <p className="parrafo-datos">{datos.mesAumento}/{datos.añoAumento}</p>
                         </div>
                         <div className="datos-1">
                             <label className="label-datos">Vigencia:</label>

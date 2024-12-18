@@ -13,27 +13,29 @@ import avataresMujer from "../../json/avatarMujeres.json"
 
 
 const FormularioInquilino = () => {
-   
- 
+
+
     const navigate = useNavigate()
-    
+
     registerLocale("es", es);
-    
-    let avatar = Math.floor(Math.random()*(30-1)+1)
+
+    let avatar = Math.floor(Math.random() * (30 - 1) + 1)
     const { idInquilino } = useParams();
     const [nombreInqui, setNombreInqui] = useState("");
     const [apellidoInqui, setApellidoInqui] = useState("");
     const [telefonoInqui, setTelefonoInqui] = useState(0);
     const [emailInqui, setEmailInqui] = useState("");
-    const [genero,setGenero] = useState("");
+    const [genero, setGenero] = useState("");
     const [dniInqui, setDniInqui] = useState(0);
     const [direccionInqui, setDireccionInqui] = useState("");
     const [aumento, setAumento] = useState("");
     const [vigencia, setVigencia] = useState({ fecha: new Date() });
     const [vencimiento, setVencimineto] = useState({ fecha: new Date() });
     const [monto, setMonto] = useState(0);
-    
-    let  inquilinoNuevo;
+    const [mesAumento, setMesAumento] = useState("")
+    const [añoAumento, setAñoAumento] = useState("")
+
+    let inquilinoNuevo;
     const formulario = useRef()
     const [error, setError] = useState(false);
     const [error2, setError2] = useState(false);
@@ -83,17 +85,103 @@ const FormularioInquilino = () => {
         setVencimineto({ fecha: fecha })
     }
 
-    const cambioAjuste = (e) =>{
-     
+    const cambioAjuste = (e) => {
+
         setAumento(e.target.value)
+        switch (e.target.value) {
+
+            case "Bimestral":
+                let mes = new Date(vigencia.fecha).getMonth() + 3
+                let año = new Date().getFullYear();
+
+
+                if (mes > 12) {
+                    setMesAumento(mes - 12)
+                    setAñoAumento(año + 1)
+
+                }else{
+                    setMesAumento(mes)
+                    setAñoAumento(año)
+                }
+               
+                console.log(mes)
+                break;
+            case "Trimestral":
+
+            let mes1 = new Date(vigencia.fecha).getMonth() + 4
+            let año1 = new Date().getFullYear();
+
+
+            if (mes1 > 12) {
+                setMesAumento(mes1 - 12)
+                setAñoAumento(año1 + 1)
+
+            }else{
+                setMesAumento(mes1)
+                setAñoAumento(año1)
+            }
+
+            console.log(mes1)
+                break;
+            case "Cuatrimestral":
+                let mes2 = new Date(vigencia.fecha).getMonth() + 5
+                let año2 = new Date().getFullYear();
+
+
+                if (mes2 > 12) {
+                    setMesAumento(mes2 - 12)
+                    setAñoAumento(año2 + 1)
+
+                }else{
+                    setMesAumento(mes2)
+                    setAñoAumento(año2)
+                }
+
+                break;
+            case "Semestral":
+
+            let mes3 = new Date(vigencia.fecha).getMonth() + 7
+            let año3 = new Date().getFullYear();
+
+
+            if (mes3 > 12) {
+                setMesAumento(mes3 - 12)
+                setAñoAumento(año3 + 1)
+
+            }else{
+                setMesAumento(mes3)
+                setAñoAumento(año3)
+            }
+
+                break;
+            case "Anual":
+
+
+            let mes4 = new Date(vigencia.fecha).getMonth() + 13
+            let año4 = new Date().getFullYear();
+
+
+            if (mes4 > 12) {
+                setMesAumento(mes4 - 12)
+                setAñoAumento(año4 + 1)
+
+            }else{
+                setMesAumento(mes4)
+                setAñoAumento(año4)
+            }
+
+                break;
+
+        }
+
     }
 
-    const  cambioGenero =  (e) =>{
-     
+    const cambioGenero = (e) => {
+
         setGenero(e.target.value)
     }
 
- 
+
 
 
     const control = () => {
@@ -178,49 +266,53 @@ const FormularioInquilino = () => {
 
     const crearInquilino = () => {
 
-       if(genero == "Hombre"){
+        if (genero == "Hombre") {
 
-        inquilinoNuevo = {
-            nombre: nombreInqui.at(0).toUpperCase()+nombreInqui.slice(1).toLowerCase(),
-            apellido: apellidoInqui.at(0).toUpperCase()+apellidoInqui.slice(1).toLowerCase(),
-            email: emailInqui,
-            dni: dniInqui,
-            direccion: direccionInqui,
-            telefono: telefonoInqui,
-            aumento: aumento,
-            vigencia: vigencia,
-            vencimiento: vencimiento,
-            idprop: idInquilino,
-            monto: monto,
-            alquiler: false,
-            imagen:avataresHombre[avatar],
-            genero:genero
+            inquilinoNuevo = {
+                nombre: nombreInqui.at(0).toUpperCase() + nombreInqui.slice(1).toLowerCase(),
+                apellido: apellidoInqui.at(0).toUpperCase() + apellidoInqui.slice(1).toLowerCase(),
+                email: emailInqui,
+                dni: dniInqui,
+                direccion: direccionInqui,
+                telefono: telefonoInqui,
+                aumento: aumento,
+                vigencia: vigencia,
+                vencimiento: vencimiento,
+                idprop: idInquilino,
+                monto: monto,
+                alquiler: false,
+                imagen: avataresHombre[avatar],
+                genero: genero,
+                mesAumento: mesAumento,
+                añoAumento: añoAumento
 
+            }
+
+
+        } else {
+
+            inquilinoNuevo = {
+                nombre: nombreInqui.at(0).toUpperCase() + nombreInqui.slice(1).toLowerCase(),
+                apellido: apellidoInqui.at(0).toUpperCase() + apellidoInqui.slice(1).toLowerCase(),
+                email: emailInqui,
+                dni: dniInqui,
+                direccion: direccionInqui,
+                telefono: telefonoInqui,
+                aumento: aumento,
+                vigencia: vigencia,
+                vencimiento: vencimiento,
+                idprop: idInquilino,
+                monto: monto,
+                alquiler: false,
+                imagen: avataresMujer[avatar],
+                genero: genero,
+                mesAumento: mesAumento,
+                añoAumento: añoAumento
+
+            }
         }
-     
 
-       }else{
-       
-        inquilinoNuevo = {
-            nombre: nombreInqui.at(0).toUpperCase()+nombreInqui.slice(1).toLowerCase(),
-            apellido: apellidoInqui.at(0).toUpperCase()+apellidoInqui.slice(1).toLowerCase(),
-            email: emailInqui,
-            dni: dniInqui,
-            direccion: direccionInqui,
-            telefono: telefonoInqui,
-            aumento: aumento,
-            vigencia: vigencia,
-            vencimiento: vencimiento,
-            idprop: idInquilino,
-            monto: monto,
-            alquiler: false,
-            imagen:avataresMujer[avatar],
-            genero:genero
 
-        }
-       }
-
-        
 
 
         const db = getFirestore();
@@ -268,8 +360,8 @@ const FormularioInquilino = () => {
                         <label className="label-datos">Género</label>
                         <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioGenero}>
                             <option value="">Seleccione el género</option>
-                            <option value= "Hombre">Hombre</option>
-                            <option value= "Mujer">Mujer</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
                         </select>
                     </div>
                     <div className="mb-3">
@@ -278,7 +370,7 @@ const FormularioInquilino = () => {
                     </div>
                     <div className="mb-3">
                         <label className="label-datos">Email</label>
-                        
+
                         <input type="email" className={"form-control input-nombre-nota" + (error4 ? "validacion-error" : " ")} placeholder="Correo Electronico" aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { setEmailInqui(e.target.value) }} />
                     </div>
                     <div className="mb-3">
@@ -293,11 +385,11 @@ const FormularioInquilino = () => {
                         <label className="label-datos">Ajuste</label>
                         <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioAjuste}>
                             <option value="">Seleccione el tipo de ajuste</option>
-                            <option value= "Bimestral">Bimestral</option>
-                            <option value= "Trimestral">Trimestral</option>
-                            <option value= "Cuatrimestral">Cuatrimestral</option>
-                            <option value= "Semestral">Semestral</option>
-                            <option value= "Anual">Anual</option>
+                            <option value="Bimestral">Bimestral</option>
+                            <option value="Trimestral">Trimestral</option>
+                            <option value="Cuatrimestral">Cuatrimestral</option>
+                            <option value="Semestral">Semestral</option>
+                            <option value="Anual">Anual</option>
                         </select>
                     </div>
                     <div className="mb-3">

@@ -148,6 +148,7 @@ body {
 
 .nav-link {
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .link-aviso {
@@ -622,6 +623,12 @@ body {
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.contenedor-listas-vencimiento-ajuste{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .cuerpo-venciminento {
