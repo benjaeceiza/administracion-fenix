@@ -6,7 +6,7 @@ const BotonAgregarNota = () => {
 
     return (
         <>
-            <div className="contenedor-agregar-nota">
+            <div className="contenedor-agregar-nota ">
                 <Link to={"/notas/agregarNota"}><AddRoundedIcon className="text-white" ></AddRoundedIcon></Link>
             </div>
         </>

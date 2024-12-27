@@ -979,6 +979,7 @@ body {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  margin-top: 100px;
 }
 
 
@@ -1124,7 +1125,7 @@ body {
   width: 30%;
   min-width: 300px;
   border-radius: 10px;
-  box-shadow: 5px 10px 10px 5px rgb(114, 114, 114);
+  box-shadow: 0px 0px 4px 2px gray;
   margin: auto;
   min-height: 200px;
 
@@ -1176,7 +1177,7 @@ body {
   font-weight: bolder;
   padding: 10px;
   width: 100px;
-  margin:  20px auto;
+  margin: 0px auto 100px auto;
 
 }
 
@@ -1260,8 +1261,6 @@ body {
   .datos-mob {
     display: block;
     min-width: 250px;
-
-
   }
 
   .borde {
@@ -1280,17 +1279,50 @@ body {
     display: block;
     min-width: 300px;
     overflow: auto;
+    font-size: 10px;
   }
 
   .alquiler-no-al-dia {
     width: 100%;
     border-radius: 0;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
   }
+
+  .alquiler-no-al-dia img {
+    height: 40px;
+
+  }
+
+  .alquiler-no-al-dia p {
+    margin: 0;
+  }
+
 
   .alquiler-al-dia {
     width: 100%;
     border-radius: 0;
+    padding: 10px 0px;
+    justify-content: center;
+    align-items: center;
   }
+
+  .alquiler-al-dia img {
+    height: 40px;
+
+  }
+
+  .alquiler-al-dia p {
+    margin: 0;
+    width: px;
+  }
+
+
+  .pagos {
+    width: 100%;
+  }
+
 }
 
 @media(max-width:540px) {
