@@ -45,6 +45,8 @@ const EditarInquilino = () => {
     let dni = "";
     let direccion = "";
     let monto = "";
+    let añoAumento = "";
+    let mesAumento = "";
 
     useEffect(() => {
 
@@ -107,7 +109,16 @@ const EditarInquilino = () => {
 
         ajuste = e.target.value
     }
+   
 
+    const cambioProximoMesAjuste = (e) => {
+         mesAumento = e.target.value
+    
+    }
+    const cambioProximoAñoAjuste = (e) => {
+        añoAumento = e.target.value
+
+    }
 
     const control = () => {
 
@@ -150,6 +161,14 @@ const EditarInquilino = () => {
 
             ajuste = inquilino.aumento
         }
+        if (mesAumento == "") {
+
+            mesAumento = inquilino.mesAumento
+        }
+        if (añoAumento == "") {
+
+            añoAumento = inquilino.añoAumento
+        }
 
         crear()
 
@@ -167,7 +186,9 @@ const EditarInquilino = () => {
             aumento: ajuste,
             vencimiento: valorVencimiento,
             vigencia: valorVigencia,
-            monto: monto
+            monto: monto,
+            añoAumento:añoAumento,
+            mesAumento:mesAumento
         }
 
 
@@ -232,6 +253,29 @@ const EditarInquilino = () => {
                             {tipoAjuste.map(valor => (
                                 inquilino.aumento == valor.tipo ? "" : <option key={valor.tipo} value={valor.tipo}>{valor.tipo}</option>
                             ))}
+                        </select>
+                    </div>
+                    <label className="label-datos">Proximo Ajuste</label>
+                    <div className="mb-3 editar-proximo-aumento">
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioProximoMesAjuste}>
+                            <option value={inquilino.mesAumento}>{inquilino.mesAumento}</option>
+                            <option value={1}>{"1"}</option>
+                            <option value={2}>{"2"}</option>
+                            <option value={3}>{"3"}</option>
+                            <option value={4}>{"4"}</option>
+                            <option value={5}>{"5"}</option>
+                            <option value={6}>{"6"}</option>
+                            <option value={7}>{"7"}</option>
+                            <option value={8}>{"8"}</option>
+                            <option value={9}>{"9"}</option>
+                            <option value={10}>{"10"}</option>
+                            <option value={11}>{"11"}</option>
+                            <option value={12}>{"12"}</option>
+                        </select>
+                        <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioProximoAñoAjuste}>
+                            <option value={inquilino.añoAmento}>{inquilino.añoAumento}</option>
+                            <option value={2025}>2025</option>
+                            <option value={2026}>2026</option>
                         </select>
                     </div>
                     <div className="mb-3">

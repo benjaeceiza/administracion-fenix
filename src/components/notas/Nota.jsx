@@ -5,11 +5,12 @@ import { deleteDoc, doc, getFirestore } from 'firebase/firestore';
 
 
 
-const Nota = ({ notas,setRecargar }) => {
+const Nota = ({ notas, setRecargar, limite }) => {
 
   const [modalEliminar, setModalEliminar] = useState(false)
   const [eliminar, setEliminar] = useState(false)
   const [notaSeleccionada, setNotaSeleccionada] = useState("")
+
 
   useEffect(() => {
     if (eliminar) {
@@ -32,6 +33,9 @@ const Nota = ({ notas,setRecargar }) => {
 
   }
 
+  notas.map(notas => {
+    console.log(new Date(notas.fecha.seconds * 1000).getMonth())
+  })
   return (
     <>
       {modalEliminar
@@ -41,7 +45,7 @@ const Nota = ({ notas,setRecargar }) => {
         ""
       }
 
-      {notas.map(notas => (
+      {notas.slice(0, limite).map(notas => (
         <div key={notas.id} className="col my-5 text-center">
           <div className="contenedor-notas">
             <div className="nombre-nota">

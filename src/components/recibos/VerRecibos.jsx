@@ -10,6 +10,7 @@ const VerRecibos = () => {
     const [cargando, setCargando] = useState(true);
     const [filtroRecibos, setFiltroRecibos] = useState([]);
     const [recargar,setRecargar] = useState(false)
+    const [limite,setLimite] = useState(6)
 
     useEffect(() => {
 
@@ -63,14 +64,17 @@ const VerRecibos = () => {
                 <Cargando />
                 :
                 <div className="container">
-                    <FiltroRecibos filtroRecibos={filtroRecibos}  setFiltroRecibos={setFiltroRecibos}  />
+                    <FiltroRecibos filtroRecibos={filtroRecibos}  setFiltroRecibos={setFiltroRecibos} setLimite={setLimite} />
 
                     {filtroRecibos.length == 0 
                     ?
                     <h3 className="text-center my-5">NO SE ENCONTRARON RESULTADOS</h3>
                     :
-                    <Recibo recibos={filtroRecibos} setRecargar={setRecargar}/>
-
+                    <div>
+                        <Recibo recibos={filtroRecibos} setRecargar={setRecargar} limite={limite}/>
+                        {limite >= filtroRecibos.length ? "" : <p className='ver-mas' onClick={() => setLimite(limite + 3)}>Ver Mas</p>}
+                    </div>
+                     
                      }
 
                 </div>}

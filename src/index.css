@@ -625,7 +625,7 @@ body {
   text-align: center;
 }
 
-.contenedor-listas-vencimiento-ajuste{
+.contenedor-listas-vencimiento-ajuste {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -715,7 +715,7 @@ body {
   margin: 0;
 }
 
-.recibo-detail-titulo{
+.recibo-detail-titulo {
   background-color: rgb(223, 129, 66);
   width: 100%;
   border-top-left-radius: 10px;
@@ -725,7 +725,7 @@ body {
   font-weight: bold;
 }
 
-.recibo-detail-fecha{
+.recibo-detail-fecha {
   background-color: rgb(223, 129, 66);
   width: 100%;
   border-bottom-right-radius: 10px;
@@ -788,6 +788,10 @@ body {
   flex-direction: column;
 }
 
+.editar-proximo-aumento {
+  display: flex;
+}
+
 .input-fecha {
   padding: 0px 10px;
 }
@@ -834,13 +838,14 @@ body {
 
 }
 
-.titulo-alquiler{
+.titulo-alquiler {
   text-align: center;
   padding: 20px;
   box-shadow: 0px 0px 4px 2px gray;
   border-radius: 5px;
   min-width: 200px;
 }
+
 .titulo-alquiler-al-dia {
   margin: 0;
   background-color: rgb(32, 168, 32);
@@ -1165,6 +1170,23 @@ body {
 
 }
 
+
+.ver-mas {
+  text-align: center;
+  font-weight: bolder;
+  padding: 10px;
+  width: 100px;
+  margin:  20px auto;
+
+}
+
+.ver-mas:hover {
+  color: white;
+  background-color: rgb(10, 167, 119);
+  border-radius: 10px;
+
+
+}
 
 /* FOOTER */
 

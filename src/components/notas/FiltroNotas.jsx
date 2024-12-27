@@ -1,29 +1,31 @@
 import { collection, getDocs, getFirestore } from "firebase/firestore"
 
 
-const FiltroNotas = ({ notas, setNotas,setCargando }) => {
+const FiltroNotas = ({ notas, setNotas, setCargando, setLimite }) => {
 
     const filtrarNotas = (e) => {
-        setCargando(true)
 
+        setCargando(true)
+        setLimite(8)
         const db = getFirestore()
         const itemCollection = collection(db, "notas")
         getDocs(itemCollection).then(Snapshot => {
-          
+
             if (Snapshot.size > 0) {
 
                 let notasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
                 notasPrev = [...notasPrev].sort((a, b) => (a.fecha.seconds < b.fecha.seconds ? 1 : a.fecha.seconds > b.fecha.seconds ? -1 : 0))
 
-                if(e.target.value == "all"){
+                if (e.target.value == "all") {
                     setNotas(notasPrev)
                     setCargando(false)
-                }else{
+                } else {
 
-                    setNotas(notasPrev.filter(notas => new Date(notas.fecha.seconds * 1000).getMonth() == e.target.value))
+                    setNotas(notasPrev.filter(notas => new Date(notas.fecha.seconds * 1000).getMonth() === parseInt(e.target.value)))
+                    
                     setCargando(false)
-                } 
-    
+                }
+
             } else {
                 console.error("error")
             }
@@ -32,7 +34,7 @@ const FiltroNotas = ({ notas, setNotas,setCargando }) => {
 
     }
 
-
+    
 
     return (
         <>

@@ -4,12 +4,12 @@ import { Link } from "react-router-dom"
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
 import { useState } from 'react';
 
-const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
+const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos,setLimite }) => {
     const [personas, setPersonas] = useState([]);
     const [nombre, setNombre] = useState("")
 
     const cambioTipo = (e) => {
-     
+        setLimite(6)
         const db = getFirestore();
         const itemCollection = collection(db, "recibos")
 
@@ -51,6 +51,7 @@ const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
     }
 
     const cambioNombre = (e) => {
+        setLimite(6)
         setNombre(e.target.value)
         const db = getFirestore();
         const itemCollection = collection(db, "recibos")
@@ -72,7 +73,7 @@ const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos }) => {
     }
 
     const cambioMes = (e) => {
-
+        setLimite(6)
         const db = getFirestore();
         const itemCollection = collection(db, "recibos")
 

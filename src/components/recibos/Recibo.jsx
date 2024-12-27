@@ -4,12 +4,13 @@ import { deleteDoc, doc, getFirestore } from "firebase/firestore";
 import ModalEliminar from "../modal/ModalEliminar";
 
 
-const Recibo = ({ recibos,setRecargar }) => {
+const Recibo = ({ recibos, setRecargar, limite }) => {
     let fecha;
     const [recibosOrdenados, setRecibosOrdenados] = useState([])
     const [modalEliminar, setModalEliminar] = useState(false)
     const [reciboSeleccionado, setReciboSeleccionado] = useState("")
     const [eliminar, setEliminar] = useState(false)
+
 
     useEffect(() => {
         let sortedList = [...recibos].sort((a, b) => (a.fecha.fecha.seconds < b.fecha.fecha.seconds ? 1 : a.fecha.fecha.seconds > b.fecha.fecha.seconds ? -1 : 0))
@@ -44,7 +45,7 @@ const Recibo = ({ recibos,setRecargar }) => {
                 ""
             }
             <div key={Math.random()} className="contenedor-recibos">
-                {recibosOrdenados.map(e => (
+                {recibosOrdenados.slice(0, limite).map(e => (
                     <div key={e.id} className="contenedor-recibo">
                         <div className="mostrar-recibo">
                             <div className="div-nombre">

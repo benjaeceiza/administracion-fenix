@@ -1,6 +1,7 @@
 import { addDoc, collection, doc, getFirestore } from "firebase/firestore"
 import { useRef, useState } from "react"
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 
 const AgregarNota = () => {
@@ -8,6 +9,8 @@ const AgregarNota = () => {
     const [nombre, setNombre] = useState("")
     const [nota, setNota] = useState("")
     const formulario = useRef();
+
+    const navigate = useNavigate();
 
     const notifySuccess = () => toast.success("Nota Enviada", {
         position: "top-center",
@@ -20,7 +23,30 @@ const AgregarNota = () => {
         theme: "light",
 
     })
+    const notifyError = (mensaje) => toast.error(mensaje, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
 
+    })
+    
+    const control = () => {
+       
+        if(!nombre) {
+            notifyError("Ingresa un nombre")
+        }else{
+            if(!nota){
+                notifyError("Nota vacia")
+            }else{
+                guardarNota()
+            }
+        }
+    }
 
 
     const guardarNota = () => {
@@ -34,13 +60,19 @@ const AgregarNota = () => {
         const db = getFirestore()
         const docRef = collection(db, "notas");
         addDoc(docRef, nuevaNota).then(
-          
+
             notifySuccess(),
-            formulario.current.reset()
+           
+            
+
         )
+
+        setTimeout(() => {
+            navigate("/notas")
+        },2000)
     }
 
-
+    
 
     return (
         <>
@@ -53,7 +85,7 @@ const AgregarNota = () => {
                             <input className="input-nombre-nota" type="text" placeholder="Nombre" onInput={(e) => { setNombre(e.target.value) }} />
                         </div>
                         <textarea className="campo-texto" name="text" id="" placeholder=" Cuerpo Nota" onInput={(e) => { setNota(e.target.value) }} />
-                        <button className="boton-nota" onClick={guardarNota}>Agregar Nota</button>
+                        <button className="boton-nota" onClick={control}>Agregar Nota</button>
                     </div>
                 </div>
             </div>

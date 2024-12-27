@@ -11,7 +11,7 @@ const Notas = () => {
 
   const [notas, setNotas] = useState([])
   const [cargando, setCargando] = useState(true)
-  const [limite, setLimite] = useState(5)
+  const [limite, setLimite] = useState(8)
   const [recargar, setRecargar] = useState(false)
 
 
@@ -20,7 +20,7 @@ const Notas = () => {
     const db = getFirestore()
     const q = query(
       collection(db, "notas"),
-      limit(limite)
+
     )
 
 
@@ -38,7 +38,7 @@ const Notas = () => {
       }
     })
 
-  }, [limite])
+  }, [  ])
 
   useEffect(() => {
 
@@ -47,7 +47,7 @@ const Notas = () => {
       const db = getFirestore()
       const q = query(
         collection(db, "notas"),
-        limit(limite)
+
       )
 
 
@@ -74,7 +74,7 @@ const Notas = () => {
 
   return (
     <>
-      <FiltroNotas notas={notas} setNotas={setNotas} setCargando={setCargando} />
+      <FiltroNotas notas={notas} setNotas={setNotas} setCargando={setCargando} setLimite={setLimite} />
       {
         cargando
           ?
@@ -87,8 +87,8 @@ const Notas = () => {
               <h3 className='text-center my-5'>NO SE ENCONTRARON NOTAS</h3>
               :
               <div className="row my-5">
-                <Nota notas={notas} setRecargar={setRecargar} />
-                <p className='text-center' onClick={() => setLimite(limite + 5)}>Ver Mas</p>
+                <Nota notas={notas} setRecargar={setRecargar} limite={limite} />
+                {limite >= notas.length ? "" : <p className='ver-mas' onClick={() => setLimite(limite + 4)}>Ver Mas</p>}
               </div>
             }
           </div>}
