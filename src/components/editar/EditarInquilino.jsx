@@ -41,8 +41,6 @@ const EditarInquilino = () => {
     const navigate = useNavigate()
     let inquilinoPrev = ""
     let ajuste = ""
-    let valorVencimiento = { fecha: "" }
-    let valorVigencia = { fecha: "" }
     let nombre = "";
     let apellido = "";
     let telefono = "";
@@ -107,11 +105,11 @@ const EditarInquilino = () => {
     const onChangeVigencia = (fecha) => {
         setNuevaVigencia(true)
         setVigencia({ fecha: fecha })
-        // valorVigencia = vigencia;
+
     }
 
     const onChangeVencimiento = (fecha) => {
-        
+
         setNuevoVencimiento(true)
         setVencimineto({ fecha: fecha })
     }
@@ -130,6 +128,17 @@ const EditarInquilino = () => {
     const cambioProximoAñoAjuste = (e) => {
         añoAumento = e.target.value
 
+    }
+
+    const cancelarVigencia = () => {
+       
+    }
+
+    const cancelarVencimiento = () => {
+        
+        setModificarVencimiento(false)
+      
+        // setVencimineto({ fecha: inquilinoPrev.vencimiento.fecha })
     }
 
     const control = () => {
@@ -157,14 +166,6 @@ const EditarInquilino = () => {
             direccion = inquilino.direccion
         }
 
-        // if (vigencia.fecha == "") {
-
-        //     // setVigencia({fecha: inquilino.vigencia.fecha})
-
-        // }
-        // if (valorVencimiento.fecha == "") {
-        //     valorVencimiento.fecha = inquilino.vencimiento.fecha
-        // }
         if (monto == "") {
             monto = inquilino.monto
         }
@@ -229,7 +230,7 @@ const EditarInquilino = () => {
     return (
         <>
             <ToastContainer />
-            {cargador ? <Cargando /> : <div className="container formulario-editar my-5">
+            {cargador ? <Cargando /> : <div className="container formulario-editar ">
                 <form className="container" >
                     <div className="mb-3">
                         <label className="label-datos">Nombre:</label>
@@ -323,14 +324,25 @@ const EditarInquilino = () => {
                     {
                         modificarVencimiento
                             ?
-                            <div className=" mb-3 contenedor-fecha-label">
-                                <label htmlFor="" className="label-datos">Vencimiento</label>
+                            <div className="">
                                 {
                                     nuevoVencimiento
                                         ?
-                                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        <div className="editar-fecha-contenedor my-2">
+                                            <div className="contenedor-fecha-label">
+                                                <label htmlFor="" className="label-datos">Vencimiento</label>
+                                                <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                            </div>
+                                            <button className="boton-cambiar" onClick={() => cancelarVencimiento()}>Cancelar</button>
+                                        </div>
                                         :
-                                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha.seconds * 1000} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        <div className="editar-fecha-contenedor my-2">
+                                            <div className="contenedor-fecha-label">
+                                                <label htmlFor="" className="label-datos">Vencimiento</label>
+                                                <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha.seconds*1000} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                            </div>
+                                            <button className="boton-cambiar" onClick={cancelarVencimiento}>Cancelar</button>
+                                        </div>
                                 }
                             </div>
                             :
@@ -346,7 +358,7 @@ const EditarInquilino = () => {
 
 
                 </form>
-                <div className="text-center my-3">
+                <div className="text-center my-5">
                     <button className="boton-nota" onClick={() => control()} >Finalizar</button>
                 </div>
             </div>}

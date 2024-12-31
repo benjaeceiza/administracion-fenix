@@ -790,6 +790,7 @@ body {
   padding-top: 20px;
   background-color: rgb(241, 241, 241);
   width: 80%;
+  margin: 100px auto;
 }
 .editar-fecha-contenedor{
   display: flex;
@@ -1348,12 +1349,26 @@ body {
 
   .alquiler-al-dia p {
     margin: 0;
-    width: px;
+   
   }
 
 
   .pagos {
     width: 100%;
+  }
+   
+  .formulario-editar{
+    width: 100%;
+    border: 0;
+    margin: 20px 0px 100px 0px;
+    background-color: white;
+  }
+
+  .formulario{
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+    background-color: white;
   }
 
 }
