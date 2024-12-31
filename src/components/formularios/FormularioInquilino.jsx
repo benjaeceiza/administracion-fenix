@@ -78,6 +78,7 @@ const FormularioInquilino = () => {
     const onChangeVigencia = (fecha) => {
 
         setVigencia({ fecha: fecha })
+       
     }
 
     const onChangeVencimiento = (fecha) => {
@@ -99,29 +100,29 @@ const FormularioInquilino = () => {
                     setMesAumento(mes - 12)
                     setAñoAumento(año + 1)
 
-                }else{
+                } else {
                     setMesAumento(mes)
                     setAñoAumento(año)
                 }
+              
                
-                console.log(mes)
                 break;
             case "Trimestral":
 
-            let mes1 = new Date(vigencia.fecha).getMonth() + 4
-            let año1 = new Date().getFullYear();
+                let mes1 = new Date(vigencia.fecha).getMonth() + 4
+                let año1 = new Date().getFullYear();
 
 
-            if (mes1 > 12) {
-                setMesAumento(mes1 - 12)
-                setAñoAumento(año1 + 1)
+                if (mes1 > 12) {
+                    setMesAumento(mes1 - 12)
+                    setAñoAumento(año1 + 1)
 
-            }else{
-                setMesAumento(mes1)
-                setAñoAumento(año1)
-            }
+                } else {
+                    setMesAumento(mes1)
+                    setAñoAumento(año1)
+                }
 
-            console.log(mes1)
+              
                 break;
             case "Cuatrimestral":
                 let mes2 = new Date(vigencia.fecha).getMonth() + 5
@@ -132,43 +133,43 @@ const FormularioInquilino = () => {
                     setMesAumento(mes2 - 12)
                     setAñoAumento(año2 + 1)
 
-                }else{
+                } else {
                     setMesAumento(mes2)
                     setAñoAumento(año2)
                 }
-
+                
                 break;
             case "Semestral":
 
-            let mes3 = new Date(vigencia.fecha).getMonth() + 7
-            let año3 = new Date().getFullYear();
+                let mes3 = new Date(vigencia.fecha).getMonth() + 7
+                let año3 = new Date().getFullYear();
 
 
-            if (mes3 > 12) {
-                setMesAumento(mes3 - 12)
-                setAñoAumento(año3 + 1)
+                if (mes3 > 12) {
+                    setMesAumento(mes3 - 12)
+                    setAñoAumento(año3 + 1)
 
-            }else{
-                setMesAumento(mes3)
-                setAñoAumento(año3)
-            }
+                } else {
+                    setMesAumento(mes3)
+                    setAñoAumento(año3)
+                }
 
                 break;
             case "Anual":
 
 
-            let mes4 = new Date(vigencia.fecha).getMonth() + 13
-            let año4 = new Date().getFullYear();
+                let mes4 = new Date(vigencia.fecha).getMonth() + 13
+                let año4 = new Date().getFullYear();
 
 
-            if (mes4 > 12) {
-                setMesAumento(mes4 - 12)
-                setAñoAumento(año4 + 1)
+                if (mes4 > 12) {
+                    setMesAumento(mes4 - 12)
+                    setAñoAumento(año4 + 1)
 
-            }else{
-                setMesAumento(mes4)
-                setAñoAumento(año4)
-            }
+                } else {
+                    setMesAumento(mes4)
+                    setAñoAumento(año4)
+                }
 
                 break;
 
@@ -176,6 +177,8 @@ const FormularioInquilino = () => {
 
     }
 
+    console.log(mesAumento)
+    console.log(añoAumento)
     const cambioGenero = (e) => {
 
         setGenero(e.target.value)

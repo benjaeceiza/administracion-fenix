@@ -95,7 +95,6 @@ const PropietariosDetail = () => {
                             <PropiedadesMob idPropietario={id}/>
                         </div>
                         <div className="col my-5">
-                            <BotonAgregarInqui idPropietario={id} />
                             <Inquilinos idPropietario={id} />
                         </div>
                     </div>

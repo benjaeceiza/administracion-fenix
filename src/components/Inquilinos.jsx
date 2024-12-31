@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import CargandoInquilinos from "./load/CargandoInquilinos";
+import BotonAgregarInqui from "./botones/BotonAgregarInqui";
 
 
 
@@ -42,7 +43,8 @@ const inquilinos = (id) => {
     return (
       <>
         {cargador ? <CargandoInquilinos /> : <div className="contenedor-inqui">
-          <h3 className="my-3">Sin Inquilinos</h3>
+          <BotonAgregarInqui idPropietario={id.idPropietario} />
+          <h5 className="text-center">SIN INQUILINOS</h5>
         </div>}
       </>
     )
@@ -56,12 +58,16 @@ const inquilinos = (id) => {
 
       {cargador ? <CargandoInquilinos /> :
         <div className="contenedor-inqui">
-          {inquilino.map(e => (
-            <div className="img-nombre opacidad" key={e.id} >
-              <Link to={"/inquilino/" + e.id}><img height={80} src={e.imagen} alt="" /></Link>
-              <p>{e.apellido}</p>
-            </div>  
-          ))}
+          <BotonAgregarInqui idPropietario={id.idPropietario} />
+          <div className="contenedor-fotos-inqui">
+            {inquilino.map(e => (
+              <div className="img-nombre opacidad" key={e.id} >
+                <Link to={"/inquilino/" + e.id}><img height={80} src={e.imagen} alt="" /></Link>
+                <p>{e.apellido}</p>
+              </div>
+            ))}
+
+          </div>
         </div>}
 
 
