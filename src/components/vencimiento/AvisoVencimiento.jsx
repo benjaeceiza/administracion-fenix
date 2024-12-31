@@ -15,8 +15,8 @@ const AvisoVencimiento = ({ inquilinos }) => {
 
     inquilinos.map(inquilino => {
 
-        const añoAVencer = new Date(inquilino.vencimiento.fecha.seconds * 1000).getFullYear();
-        const mesAVencer = new Date(inquilino.vencimiento.fecha.seconds * 1000).getMonth() + 1;
+        const añoAVencer = new Date(inquilino.vencimiento.fecha.seconds* 1000).getFullYear();
+        const mesAVencer = new Date(inquilino.vencimiento.fecha.seconds* 1000).getMonth() + 1;
 
 
 

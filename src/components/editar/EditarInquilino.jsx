@@ -34,7 +34,12 @@ const EditarInquilino = () => {
     const [cargador, setCargador] = useState(true)
     const [vigencia, setVigencia] = useState({ fecha: "" });
     const [vencimiento, setVencimineto] = useState({ fecha: "" });
+    const [modificarVigencia, setModificarVigencia] = useState(false)
+    const [modificarVencimiento, setModificarVencimiento] = useState(false)
+    const [nuevoVencimiento, setNuevoVencimiento] = useState(false)
+    const [nuevaVigencia, setNuevaVigencia] = useState(false)
     const navigate = useNavigate()
+    let inquilinoPrev = ""
     let ajuste = ""
     let valorVencimiento = { fecha: "" }
     let valorVigencia = { fecha: "" }
@@ -48,6 +53,8 @@ const EditarInquilino = () => {
     let añoAumento = "";
     let mesAumento = "";
 
+    registerLocale("es", es);
+
     useEffect(() => {
 
         const db = getFirestore();
@@ -56,10 +63,11 @@ const EditarInquilino = () => {
         getDoc(docRef).then(snapShot => {
             if (snapShot.exists()) {
 
+                inquilinoPrev = { id: snapShot.id, ...snapShot.data() };
                 setInquilino({ id: snapShot.id, ...snapShot.data() });
+                setVencimineto({ fecha: inquilinoPrev.vencimiento.fecha })
+                setVigencia({ fecha: inquilinoPrev.vigencia.fecha })
                 setCargador(false)
-
-
 
             } else {
                 console.error("error")
@@ -69,6 +77,11 @@ const EditarInquilino = () => {
 
 
     }, [])
+
+
+
+
+
 
 
 
@@ -89,19 +102,18 @@ const EditarInquilino = () => {
 
 
 
-    registerLocale("es", es);
+
 
     const onChangeVigencia = (fecha) => {
-        valorVigencia = { fecha: fecha }
-        // setVigencia({ fecha: fecha })
+        setNuevaVigencia(true)
+        setVigencia({ fecha: fecha })
+        // valorVigencia = vigencia;
     }
 
     const onChangeVencimiento = (fecha) => {
-
-        valorVencimiento = { fecha: fecha }
-
-        // setVencimineto({ fecha: fecha })
-
+        
+        setNuevoVencimiento(true)
+        setVencimineto({ fecha: fecha })
     }
 
 
@@ -109,11 +121,11 @@ const EditarInquilino = () => {
 
         ajuste = e.target.value
     }
-   
+
 
     const cambioProximoMesAjuste = (e) => {
-         mesAumento = e.target.value
-    
+        mesAumento = e.target.value
+
     }
     const cambioProximoAñoAjuste = (e) => {
         añoAumento = e.target.value
@@ -145,14 +157,14 @@ const EditarInquilino = () => {
             direccion = inquilino.direccion
         }
 
-        if (valorVigencia.fecha == "") {
+        // if (vigencia.fecha == "") {
 
-            valorVigencia.fecha = inquilino.vigencia.fecha
+        //     // setVigencia({fecha: inquilino.vigencia.fecha})
 
-        }
-        if (valorVencimiento.fecha == "") {
-            valorVencimiento.fecha = inquilino.vencimiento.fecha
-        }
+        // }
+        // if (valorVencimiento.fecha == "") {
+        //     valorVencimiento.fecha = inquilino.vencimiento.fecha
+        // }
         if (monto == "") {
             monto = inquilino.monto
         }
@@ -170,11 +182,13 @@ const EditarInquilino = () => {
             añoAumento = inquilino.añoAumento
         }
 
+
         crear()
 
     }
 
     const crear = () => {
+
 
         const inqui = {
             nombre: nombre.at(0).toUpperCase() + nombre.slice(1).toLowerCase(),
@@ -184,11 +198,11 @@ const EditarInquilino = () => {
             dni: dni,
             direccion: direccion,
             aumento: ajuste,
-            vencimiento: valorVencimiento,
-            vigencia: valorVigencia,
+            vencimiento: vencimiento,
+            vigencia: vigencia,
             monto: monto,
-            añoAumento:añoAumento,
-            mesAumento:mesAumento
+            añoAumento: añoAumento,
+            mesAumento: mesAumento
         }
 
 
@@ -206,6 +220,7 @@ const EditarInquilino = () => {
 
 
     }
+
 
 
 
@@ -281,16 +296,54 @@ const EditarInquilino = () => {
                     <div className="mb-3">
                         <label className="label-datos">Monto:</label>
                         <input type="number" className="form-control input-nombre-nota " placeholder={inquilino.monto} aria-label="Recipient's username" aria-describedby="basic-addon2" onInput={(e) => { monto = (e.target.value) }} />
+                    </div>
 
-                    </div>
-                    <div className=" mb-3 contenedor-fecha-label">
-                        <label htmlFor="" className="label-datos">Vigencia</label>
-                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
-                    </div>
-                    <div className=" mb-3 contenedor-fecha-label">
-                        <label htmlFor="" className="label-datos">Vencimiento</label>
-                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
-                    </div>
+                    {
+                        modificarVigencia
+                            ?
+                            <div className=" mb-3 contenedor-fecha-label">
+                                <label htmlFor="" className="label-datos">Vigencia</label>
+                                {
+                                    nuevaVigencia
+                                        ?
+                                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        :
+                                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha.seconds * 1000} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                }
+                            </div>
+                            :
+                            <div className="editar-fecha-contenedor my-2">
+                                <div className="contenedor-fecha-label">
+                                    <label htmlFor="" className="label-datos">Vigencia</label>
+                                    <p className="input-nombre-nota mostrador-fecha">{new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(inquilino.vigencia.fecha.seconds * 1000)}</p>
+                                </div>
+                                <button className="boton-cambiar" onClick={() => setModificarVigencia(true)}>Modificar</button>
+                            </div>
+                    }
+                    {
+                        modificarVencimiento
+                            ?
+                            <div className=" mb-3 contenedor-fecha-label">
+                                <label htmlFor="" className="label-datos">Vencimiento</label>
+                                {
+                                    nuevoVencimiento
+                                        ?
+                                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        :
+                                        <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha.seconds * 1000} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                }
+                            </div>
+                            :
+                            <div className="editar-fecha-contenedor">
+                                <div className="contenedor-fecha-label">
+                                    <label htmlFor="" className="label-datos">Vencimiento</label>
+                                    <p className="input-nombre-nota mostrador-fecha">{new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(inquilino.vencimiento.fecha.seconds * 1000)}</p>
+                                </div>
+                                <button className="boton-cambiar" onClick={() => setModificarVencimiento(true)}>Modificar</button>
+                            </div>
+                    }
+
+
 
                 </form>
                 <div className="text-center my-3">
