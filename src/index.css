@@ -694,6 +694,7 @@ body {
 }
 
 .pagos {
+  
   box-shadow: 0px 0px 4px 2px gray;
   min-width: 200px;
   border-radius: 10px;
@@ -703,6 +704,14 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  min-height: 100px;
+}
+
+.no-recibos{
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+
 }
 
 .contenedor-pagos-detail {
@@ -785,10 +794,9 @@ body {
 
 
 .formulario-editar {
-  border: 1px solid black;
-  border-radius: 20px;
+ 
   padding-top: 20px;
-  background-color: rgb(241, 241, 241);
+
   width: 80%;
   margin: 100px auto;
 }

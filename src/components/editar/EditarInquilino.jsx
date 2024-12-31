@@ -76,6 +76,65 @@ const EditarInquilino = () => {
 
     }, [])
 
+    useEffect(() => {
+
+
+        if (modificarVencimiento) {
+
+
+        } else {
+       
+            const db = getFirestore();
+            const docRef = doc(db, "inquilinos", idInquilino)
+
+            getDoc(docRef).then(snapShot => {
+                if (snapShot.exists()) {
+
+                    inquilinoPrev = { id: snapShot.id, ...snapShot.data() };
+                    setVencimineto({ fecha: inquilinoPrev.vencimiento.fecha })
+
+
+                } else {
+                    console.error("error")
+                }
+
+            })
+        }
+
+      setNuevoVencimiento(false)
+
+    }, [modificarVencimiento])
+
+    useEffect(() => {
+
+
+        if (modificarVigencia) {
+
+
+        } else {
+       
+            const db = getFirestore();
+            const docRef = doc(db, "inquilinos", idInquilino)
+
+            getDoc(docRef).then(snapShot => {
+                if (snapShot.exists()) {
+
+                    inquilinoPrev = { id: snapShot.id, ...snapShot.data() };
+                    setVigencia({ fecha: inquilinoPrev.vigencia.fecha })
+
+
+                } else {
+                    console.error("error")
+                }
+
+            })
+        }
+
+      setNuevaVigencia(false)
+
+    }, [modificarVigencia])
+
+
 
 
 
@@ -131,13 +190,13 @@ const EditarInquilino = () => {
     }
 
     const cancelarVigencia = () => {
-       
+        setModificarVigencia(false)
     }
 
     const cancelarVencimiento = () => {
-        
+
         setModificarVencimiento(false)
-      
+
         // setVencimineto({ fecha: inquilinoPrev.vencimiento.fecha })
     }
 
@@ -302,14 +361,25 @@ const EditarInquilino = () => {
                     {
                         modificarVigencia
                             ?
-                            <div className=" mb-3 contenedor-fecha-label">
-                                <label htmlFor="" className="label-datos">Vigencia</label>
+                            <div className="">
                                 {
                                     nuevaVigencia
                                         ?
-                                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        <div className="editar-fecha-contenedor my-2">
+                                            <div className="contenedor-fecha-label">
+                                                <label htmlFor="" className="label-datos">Vigencia</label>
+                                                <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                            </div>
+                                            <button className="boton-cambiar" onClick={() => cancelarVigencia()}>Cancelar</button>
+                                        </div>
                                         :
-                                        <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha.seconds * 1000} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                        <div className="editar-fecha-contenedor my-2">
+                                            <div className="contenedor-fecha-label">
+                                                <label htmlFor="" className="label-datos">Vigencia</label>
+                                                <DatePicker className="input-fecha input-nombre-nota" selected={vigencia.fecha.seconds * 1000} onChange={onChangeVigencia} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                            </div>
+                                            <button className="boton-cambiar" onClick={cancelarVigencia}>Cancelar</button>
+                                        </div>
                                 }
                             </div>
                             :
@@ -339,7 +409,7 @@ const EditarInquilino = () => {
                                         <div className="editar-fecha-contenedor my-2">
                                             <div className="contenedor-fecha-label">
                                                 <label htmlFor="" className="label-datos">Vencimiento</label>
-                                                <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha.seconds*1000} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
+                                                <DatePicker className="input-fecha input-nombre-nota" selected={vencimiento.fecha.seconds * 1000} onChange={onChangeVencimiento} locale={"es"} dateFormat={"dd-MM-yyyy"} />
                                             </div>
                                             <button className="boton-cambiar" onClick={cancelarVencimiento}>Cancelar</button>
                                         </div>
