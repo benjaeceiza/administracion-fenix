@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import tacho from "../assets/eliminar.png"
 import CargandoInquilinos from "./load/CargandoInquilinos";
 import ModalEliminar from "./modal/ModalEliminar";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { ToastContainer, toast } from 'react-toastify';
 
 
@@ -16,7 +17,7 @@ const Propiedades = ({ idPropietario }) => {
     const [modalEliminar, setModalEliminar] = useState(false)
     const [propiedadSeleccionada, setPropiedadSeleccionada] = useState("")
     const [eliminar, setEliminar] = useState(false)
-    const [recargar,setRecargar] = useState(false)
+    const [recargar, setRecargar] = useState(false)
 
 
     const notifySucces = () => toast.success("Propiedad Eliminada", {
@@ -60,31 +61,31 @@ const Propiedades = ({ idPropietario }) => {
 
     useEffect(() => {
 
-        if(recargar){
+        if (recargar) {
 
             const db = getFirestore();
             const itemCollection = collection(db, "propiedades");
-    
-    
+
+
             getDocs(itemCollection).then(Snapshot => {
-    
+
                 if (Snapshot.size >= 0) {
-    
+
                     propiedades = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
                     setFiltroPropiedades(propiedades.filter(e => e.idprop == id));
                     setCargador(false)
-    
+
                 } else {
                     console.error("error")
                 }
-    
-    
+
+
             })
             setRecargar(false)
         }
 
 
-         
+
 
     }, [recargar])
 
@@ -120,7 +121,7 @@ const Propiedades = ({ idPropietario }) => {
             <>
                 {cargador ? <CargandoInquilinos /> : <div className="contenedor-propiedades text-center">
                     <div className="text-end">
-                        <Link to={"/agregar/propiedad/" + idPropietario}><img className="my-3 btn-mas-propiedad" height={20} src="/src/assets/mas.png" alt="" /></Link>
+                        <Link to={"/agregar/propiedad/" + idPropietario}><AddCircleOutlineIcon className="text-black m-2 mouse"></AddCircleOutlineIcon></Link>
                     </div>
                     <h5 className="mb-5"> SIN PROPIEDADES CARGADAS</h5>
                 </div>}
@@ -139,7 +140,7 @@ const Propiedades = ({ idPropietario }) => {
                 {cargador ? <CargandoInquilinos /> :
                     <div className="contenedor-propiedades text-center ">
                         <div className="text-end">
-                            <Link to={"/agregar/propiedad/" + idPropietario}><img className="my-3 btn-mas-propiedad" height={20} src="/src/assets/mas.png" alt="" /></Link>
+                            <Link to={"/agregar/propiedad/" + idPropietario}><AddCircleOutlineIcon className="text-black m-2 mouse"></AddCircleOutlineIcon></Link>
                         </div>
                         <table className="table">
                             <thead>
