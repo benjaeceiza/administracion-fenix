@@ -48,7 +48,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                 {recibosOrdenados.slice(0, limite).map(e => (
                     <div key={e.id} className="contenedor-recibo">
                         <div className="mostrar-recibo">
-                            <div className="div-nombre">
+                            <div className={e.tipo == "inquilinos" ? "div-nombre" : "div-nombre-prop"}>
                                 <p>{e.apelliodo} {e.nombre} ({e.tipo})</p>
                             </div>
                             <div className="contenido-recibo ">

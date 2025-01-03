@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cargando from "./load/Cargando"
 import AvisoVencimiento from "./vencimiento/AvisoVencimiento";
+import BotonAgregar from "./botones/BotonAgregar";
+import BotonAgregarInqulino from "./botones/BotonAgregarInquilino";
 
 
 
@@ -43,6 +45,7 @@ const ListadoIquilinos = () => {
       <AvisoVencimiento  inquilinos={inquilinosOrdenados}/>
   
       {cargando ? <Cargando /> : <div className="container">
+        <BotonAgregarInqulino />
         <div className="contenedor-propietarios text-center ">
           {inquilinosOrdenados.map(e => (
             <Link key={e.id} to={"/inquilino/" + e.id} style={{ textDecoration: "none" }}> <div className="col-3 my-5 ancho opacidad">
