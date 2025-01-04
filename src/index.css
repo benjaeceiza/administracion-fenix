@@ -447,7 +447,7 @@ body {
 
 }
 
-.contenedor-fotos-inqui{
+.contenedor-fotos-inqui {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -694,7 +694,7 @@ body {
 }
 
 .pagos {
-  
+
   box-shadow: 0px 0px 4px 2px gray;
   min-width: 200px;
   border-radius: 10px;
@@ -707,7 +707,7 @@ body {
   min-height: 100px;
 }
 
-.no-recibos{
+.no-recibos {
   width: 100%;
   text-align: center;
   margin-top: 30px;
@@ -794,13 +794,14 @@ body {
 
 
 .formulario-editar {
- 
+
   padding-top: 20px;
 
   width: 80%;
   margin: 100px auto;
 }
-.editar-fecha-contenedor{
+
+.editar-fecha-contenedor {
   display: flex;
   align-items: self-end;
 }
@@ -827,11 +828,11 @@ body {
   box-shadow: 0px 0px 10px 1px rgb(245, 110, 110);
 }
 
-.mostrador-fecha{
+.mostrador-fecha {
   width: 250px;
 }
 
-.boton-cambiar{
+.boton-cambiar {
   height: 40px;
   padding: 5px;
   margin: 0px 5px;
@@ -841,7 +842,7 @@ body {
   border-radius: 10px;
 }
 
-.boton-cambiar:hover{
+.boton-cambiar:hover {
   color: rgb(7, 124, 179);
   background-color: white;
   transition: all .3s;
@@ -1060,6 +1061,7 @@ body {
   padding: 0px 10px;
   font-weight: bold;
 
+
 }
 
 .div-nombre p {
@@ -1069,21 +1071,32 @@ body {
 
 }
 
+.icono-recibo {
+ margin: 0px 5px;
+
+}
+
+.icono-recibo:hover{
+  background-color: rgb(196, 196, 196);
+  border-radius: 5px;
+}
+
 .contenido-recibo {
   padding: 5px 10px;
 }
 
 
-.div-nombre-prop{
+.div-nombre-prop {
   background-color: rgb(172, 8, 223);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 0px 10px;
   font-weight: bold;
+
 }
 
 .div-nombre-prop p {
-  
+
   color: white;
   padding: 10px 5px 0px;
 }
@@ -1371,22 +1384,22 @@ body {
 
   .alquiler-al-dia p {
     margin: 0;
-   
+
   }
 
 
   .pagos {
     width: 100%;
   }
-   
-  .formulario-editar{
+
+  .formulario-editar {
     width: 100%;
     border: 0;
     margin: 20px 0px 100px 0px;
     background-color: white;
   }
 
-  .formulario{
+  .formulario {
     width: 100%;
     border: 0;
     box-shadow: none;

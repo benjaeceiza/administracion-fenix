@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Cargando from "../load/Cargando"
-import { addDoc, collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
@@ -23,6 +23,7 @@ const Recibos = () => {
     const [fechaRecibo, setFechaRecibo] = useState({ fecha: new Date });
     const [impuesto, setImpuesto] = useState(false)
     const [expensas, setExpensas] = useState(false)
+    const [tamañoRecibos, setTamañoRecibos] = useState("")
 
     const formulario = useRef()
 
@@ -38,19 +39,37 @@ const Recibos = () => {
 
     })
 
+    useEffect(() => {
+        const db = getFirestore();
+        const docRef = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
+        getDoc(docRef).then(snapShot => {
+            if (snapShot.exists()) {
+
+                const numero = ({ id: snapShot.id, ...snapShot.data() });
+                setTamañoRecibos(numero.numeroRecibo)
+
+            } else {
+                console.error("error")
+            }
+
+        })
+
+    }, [])
+
 
     useEffect(() => {
-        if(tipo){
+        if (tipo) {
 
             const db = getFirestore();
             const itemCollection = collection(db, tipo)
+
             getDocs(itemCollection).then(Snapshot => {
-    
+
                 if (Snapshot.size > 0) {
-    
+
                     setPersonas(Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() })));
-    
-    
+
+
                 } else {
                     console.error("error")
                 }
@@ -85,7 +104,7 @@ const Recibos = () => {
 
     const cambioTipo = (e) => {
         setTipo(e.target.value)
-       
+
         setnombrePersona("")
     }
 
@@ -134,19 +153,23 @@ const Recibos = () => {
                 fecha: fechaRecibo,
                 idPersona: idPersona,
                 impuestos: impuesto,
-                expensas: expensas
+                expensas: expensas,
+                reciboNumero: tamañoRecibos+1
 
             }
 
             const db = getFirestore();
             const docRef = doc(db, tipo, idPersona)
             const docRef2 = collection(db, "recibos")
+            const docRef3 = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
             updateDoc(docRef, { alquiler: true })
             addDoc(docRef2, reciboPersona).then(
                 notifySucces(),
                 formulario.current.reset()
-                
+
             )
+
+            updateDoc(docRef3,{numeroRecibo:tamañoRecibos+1})
 
         } else {
 
@@ -156,16 +179,20 @@ const Recibos = () => {
                 concepto: concepto,
                 monto: monto,
                 fecha: fechaRecibo,
-                idPersona: idPersona
+                idPersona: idPersona,
+                reciboNumero: tamañoRecibos+1
 
             }
 
             const db = getFirestore();
             const docRef2 = collection(db, "recibos")
+            const docRef3 = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
             addDoc(docRef2, reciboPersona).then(
                 notifySucces(),
-                formulario.current.reset()  
+                formulario.current.reset()
             )
+
+            updateDoc(docRef3,{numeroRecibo:tamañoRecibos+1})
         }
 
     }
@@ -183,7 +210,7 @@ const Recibos = () => {
                 </div>
                 <div className="row ancho-recibo">
                     <div className="col recibo my-5">
-                        <form  ref={formulario}>
+                        <form ref={formulario}>
                             <label className="label-datos">Tipo</label>
                             <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioTipo}>
                                 <option value={""}>Seleccione el tipo</option>
