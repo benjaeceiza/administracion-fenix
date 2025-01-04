@@ -46,7 +46,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
 
         const doc = new jsPDF();
 
-        doc.addImage("../src/assets/fenix-logo.jpeg", "JPEG", 10, 10, 60, 20);
+        doc.addImage("https://i.postimg.cc/vZsjPByL/fenix-logo.jpg", "JPG", 10, 10, 60, 20);
         doc.setFontSize(20)
         doc.setFont("italic")
         doc.text('COMPROBANTE', 140, 21)
@@ -79,7 +79,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
             body: data2
         })
 
-        doc.addImage("../src/assets/pie-recibo.jpeg", "JPEG", 15, 100, 180, 140);
+        doc.addImage("https://i.postimg.cc/pV33FC1S/E-COMERCE.jpg", "JPG", 15, 100, 180, 140);
 
         doc.save(`factura_${dataPrev.nombre}.pdf`);
 
