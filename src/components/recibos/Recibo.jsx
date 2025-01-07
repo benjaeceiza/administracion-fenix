@@ -79,7 +79,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
             body: data2
         })
 
-        doc.addImage("https://i.postimg.cc/pV33FC1S/E-COMERCE.jpg", "JPG", 15, 100, 180, 140);
+        doc.addImage("https://i.postimg.cc/KjjyjgFT/E-COMERCE-1.jpg", "JPG", 15, 100, 180, 140);
 
         doc.save(`factura_${dataPrev.nombre}.pdf`);
 

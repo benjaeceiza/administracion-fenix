@@ -151,7 +151,7 @@ const EditarInquilino = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     })
 

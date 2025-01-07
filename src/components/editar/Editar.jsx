@@ -31,7 +31,7 @@ const Editar = () => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     })
 

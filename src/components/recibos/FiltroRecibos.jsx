@@ -37,10 +37,11 @@ const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos,setLimite }) => {
         } else {
             const itemCollection2 = collection(db, e.target.value)
             getDocs(itemCollection2).then(Snapshot => {
-                let personasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
+                const personasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
+                
 
                 if (Snapshot.size > 0) {
-                    setPersonas(personasPrev)
+                    setPersonas([...personasPrev].sort((a, b) => (a.apellido > b.apellido ? 1 : a.apellido < b.apellido ? -1 : 0)))
                 } else {
                     console.error("error")
                 }

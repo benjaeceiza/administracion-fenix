@@ -21,7 +21,7 @@ const FormularioInquilino = () => {
 
     let avatar = Math.floor(Math.random() * (30 - 1) + 1)
     const { idInquilino } = useParams();
-    let idPropietario;
+    const  [idPropietario,setIdPropietario] = useState("")
     const [nombreInqui, setNombreInqui] = useState("");
     const [apellidoInqui, setApellidoInqui] = useState("");
     const [telefonoInqui, setTelefonoInqui] = useState(0);
@@ -95,8 +95,10 @@ const FormularioInquilino = () => {
 
 
     const cambioLocador = (e) => {
-
-        idPropietario = e.target.value
+       
+      
+        setIdPropietario(e.target.value) 
+       
 
     }
 
@@ -312,8 +314,10 @@ const FormularioInquilino = () => {
                 genero: genero,
                 mesAumento: mesAumento,
                 añoAumento: añoAumento
-
+            
             }
+
+           
 
 
         } else {
@@ -362,7 +366,7 @@ const FormularioInquilino = () => {
         setVencimineto({ fecha: "" })
         setVigencia({ fecha: "" })
         setTimeout(() => {
-            navigate("/propietario/" + idInquilino ? idInquilino : idPropietario)
+            navigate("/propietario/" + `${idInquilino ? idInquilino : idPropietario}`)
 
         }, 1500)
     }

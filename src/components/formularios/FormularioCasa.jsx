@@ -9,9 +9,9 @@ const FormularioCasa = () => {
 
     const { idPropietario } = useParams();
     const [direccion, setDireccion] = useState();
-    const [finca, setFinca] = useState();
-    const [niz, setNiz] = useState();
-    const [gas, setGas] = useState();
+    const [finca, setFinca] = useState(0);
+    const [niz, setNiz] = useState(0);
+    const [gas, setGas] = useState(0);
 
     const navigate = useNavigate();
 
@@ -40,9 +40,9 @@ const FormularioCasa = () => {
 
         const propiedad = {
             direccion: direccion,
-            finca: finca,
-            nix: niz,
-            gas: gas,
+            finca: `${finca == 0 ? "-" : finca}`,
+            nix: `${niz == 0 ? "-" : niz}`,
+            gas: `${gas == 0 ? "-" : gas}`,
             idprop: idPropietario
         }
 

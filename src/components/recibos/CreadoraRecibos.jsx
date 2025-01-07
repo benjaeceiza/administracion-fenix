@@ -66,10 +66,9 @@ const Recibos = () => {
             getDocs(itemCollection).then(Snapshot => {
 
                 if (Snapshot.size > 0) {
-
-                    setPersonas(Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() })));
-
-
+                    const personasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
+                    setPersonas([...personasPrev].sort((a, b) => (a.apellido > b.apellido ? 1 : a.apellido < b.apellido ? -1 : 0)))
+  
                 } else {
                     console.error("error")
                 }
