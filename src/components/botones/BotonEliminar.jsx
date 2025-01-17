@@ -1,14 +1,12 @@
 
 
 import { getFirestore, doc, deleteDoc } from "firebase/firestore"
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-<link rel="stylesheet" href="@sweetalert2/theme-bulma/bulma.css"></link>
-
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import ModalEliminar from "../modal/ModalEliminar";
+import { useEffect, useState } from "react";
 
 
 
@@ -21,7 +19,7 @@ const notify = () => toast.success("Propietario Eliminado con exito!", {
     pauseOnHover: false,
     draggable: true,
     progress: undefined,
-    theme: "colored",
+    theme: "light",
 
 });
 
@@ -29,63 +27,50 @@ const notify = () => toast.success("Propietario Eliminado con exito!", {
 
 
 const BotonEliminar = ({ propietario, inquilinos }) => {
-  
+
     const navigate = useNavigate()
-    const MySwal = withReactContent(Swal);
-  
-
-    const alerta = () => {
-
-        Swal.fire({
-            title: "Estás seguro?",
-            text: "Se borrará definitivamente, incluyendo inquilinos",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "green",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Eliminar",
+    const [modalEliminar, setModalEliminar] = useState(false)
+    const [eliminar, setEliminar] = useState(false)
 
 
-        }).then((result) => {
-            if (result.isConfirmed) {
+    useEffect(() => {
+        if (eliminar) {
+            const db = getFirestore();
+            const docRef = doc(db, "propietarios", propietario)
 
-                eliminarPropietario();
-            }
-        });
-    }
+            deleteDoc(docRef).then(
 
+                notify()
+            )
 
-    const eliminarPropietario = () => {
+            inquilinos.map(e => {
 
+                const docRef2 = doc(db, "inquilinos", e.id)
+                deleteDoc(docRef2)
 
-        const db = getFirestore();
-        const docRef = doc(db, "propietarios", propietario)
+            })
 
-        deleteDoc(docRef).then(
+            setTimeout(() => {
+                navigate("/propietarios")
+            }, 2000)
+            setEliminar(false)
+        }
+        
+    }, [eliminar])
 
-            notify()
-        )
+    
 
-        inquilinos.map(e => {
-
-            const docRef2 = doc(db, "inquilinos", e.id)
-            deleteDoc(docRef2)
-          
-        })
-
-     setTimeout(() =>{
-        navigate("/propietarios")
-     },2000)
-    } 
-
-   
 
     return (
         <>
-            <ToastContainer />
-            <div onClick={() => alerta()} className="contenedor-boton-eliminar">
-                <PersonRemoveIcon  sx={{ fontSize: 25 }}className="text-white"></PersonRemoveIcon>
+            {modalEliminar
+                ?
+                <ModalEliminar setModalEliminar={setModalEliminar} setEliminar={setEliminar} />
+                :
+                ""
+            }
+            <div onClick={() => setModalEliminar(true)} className="contenedor-boton-eliminar">
+                <PersonRemoveIcon sx={{ fontSize: 25 }} className="text-white"></PersonRemoveIcon>
             </div>
         </>
     )

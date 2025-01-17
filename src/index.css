@@ -462,14 +462,14 @@ body {
   box-shadow: 0 0 5px 1px rgb(105, 105, 105);
   border-radius: 10px;
   padding-top: 10px;
+  
 }
 
-
-
-
-.img-nombre p {
+.contenedor-nombre-inqui-detail{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  margin: 0;
   width: 100px;
   background-color: rgb(10, 138, 177);
   color: white;
@@ -479,7 +479,13 @@ body {
   border-bottom-right-radius: 10px;
   font-weight: bold;
   height: 50px;
-  
+}
+
+
+.img-nombre p {
+
+
+  margin: 0;
 
 }
 
@@ -634,6 +640,10 @@ body {
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.titulo-lista-vencimiento{
+  font-weight: bold;
 }
 
 .contenedor-listas-vencimiento-ajuste {
@@ -863,7 +873,12 @@ body {
   border: solid 1px white;
   box-shadow: 0px 0px 5px 4px rgb(109, 109, 109);
   color: white;
+ 
 
+}
+
+.boton-reiniciar:hover{
+transform: scale(1.1);
 }
 
 .fondo-pagos {
@@ -980,7 +995,7 @@ body {
 .contenedor-check {
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 180px;
   justify-content: space-between;
 }
 

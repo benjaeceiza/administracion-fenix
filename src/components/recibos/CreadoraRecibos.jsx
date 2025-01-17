@@ -23,6 +23,7 @@ const Recibos = () => {
     const [fechaRecibo, setFechaRecibo] = useState({ fecha: new Date });
     const [impuesto, setImpuesto] = useState(false)
     const [expensas, setExpensas] = useState(false)
+    const [municipalidad, setMunicipalidad] = useState(false)
     const [tamañoRecibos, setTamañoRecibos] = useState("")
 
     const formulario = useRef()
@@ -135,6 +136,14 @@ const Recibos = () => {
         }
 
     }
+    const checkValueThree = () => {
+        if (municipalidad) {
+            setMunicipalidad(false)
+        } else {
+            setMunicipalidad(true)
+        }
+
+    }
 
 
     const onChangeFecha = (fecha) => {
@@ -153,6 +162,7 @@ const Recibos = () => {
                 idPersona: idPersona,
                 impuestos: impuesto,
                 expensas: expensas,
+                municipalidad: municipalidad,
                 reciboNumero: tamañoRecibos+1
 
             }
@@ -240,6 +250,10 @@ const Recibos = () => {
                                                 <div className="contenedor-check">
                                                     <label>Incluye Impuestos</label>
                                                     <input type="checkbox" onInput={checkValueTwo} />
+                                                </div>
+                                                <div className="contenedor-check">
+                                                    <label>Incluye Municipalidad</label>
+                                                    <input type="checkbox" onInput={checkValueThree} />
                                                 </div>
                                             </div>
                                             : "")

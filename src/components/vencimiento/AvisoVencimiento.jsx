@@ -81,7 +81,7 @@ const AvisoVencimiento = ({ inquilinos }) => {
                                 {avisoVisible ? <div className="aviso-vencimiento">
                                     <div className="contenedor-listas-vencimiento-ajuste">
                                         <div className="lista-vencimiento">
-                                            <h3>Vencimiento:</h3>
+                                            <h3 className="titulo-lista-vencimiento" >Vencimiento:</h3>
                                             <ul>
                                                 {personas.map(e => (
                                                     <li key={Math.random()} ><Link to={"/inquilino/" + e.id} className=" text-white link-aviso">{e.nombre}</Link></li>
@@ -89,7 +89,7 @@ const AvisoVencimiento = ({ inquilinos }) => {
                                             </ul>
                                         </div>
                                         <div className="lista-ajuste">
-                                            <h3>Ajuste:</h3>
+                                            <h3 className="titulo-lista-vencimiento" >Ajuste:</h3>
                                             <ul>
                                                 {personasAumento.map(e => (
                                                     <li key={Math.random()} ><Link to={"/inquilino/" + e.id} className=" text-white link-aviso">{e.nombre}</Link></li>

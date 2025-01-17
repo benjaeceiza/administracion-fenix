@@ -6,11 +6,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import ModalEliminar from '../modal/ModalEliminar';
+import { useEffect, useState } from 'react';
 
 
 const BotonEliminarInquilino = ({ idprop }) => {
     const navigate = useNavigate();
     const { idInquilino } = useParams();
+    const [modalEliminar, setModalEliminar] = useState(false)
+    const [eliminar, setEliminar] = useState(false)
+
+
     const notify = () => toast.success("Inquilino Eliminado con exito!", {
         position: "top-center",
         autoClose: 1000,
@@ -19,57 +25,44 @@ const BotonEliminarInquilino = ({ idprop }) => {
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        theme: "colored",
+        theme: "light",
 
     });
 
 
+    useEffect(() => {
 
-    const MySwal = withReactContent(Swal)
+        if (eliminar) {
+            const db = getFirestore();
+            const docRef = doc(db, "inquilinos", idInquilino)
 
-    const alerta = () => {
+            deleteDoc(docRef).then(
 
-        Swal.fire({
-            title: "Estás seguro?",
-            text: "Se borrará definitivamente",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "green",
-            cancelButtonColor: "#d33",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Eliminar"
-        }).then((result) => {
-            if (result.isConfirmed) {
+                notify()
 
+            )
 
-                eliminarInquilino();
-            }
-        });
-    }
+            setTimeout(() => {
+                navigate("/propietario/" + idprop)
+            }, 1500)
+
+            setEliminar(false)
+        }
+
+    }, [eliminar])
 
 
-    const eliminarInquilino = () => {
-        const db = getFirestore();
-        const docRef = doc(db, "inquilinos", idInquilino)
-
-        deleteDoc(docRef).then(
-
-            notify()
-
-        )
-
-        setTimeout(() => {
-            navigate("/propietario/" + idprop)
-        }, 1500)
-
-    }
 
     return (
 
         <>
-            <ToastContainer />
-            <div onClick={() => alerta()} className="contenedor-boton-eliminar">
-                
+            {modalEliminar
+                ?
+                <ModalEliminar setModalEliminar={setModalEliminar} setEliminar={setEliminar} />
+                :
+                ""
+            }
+            <div onClick={() => setModalEliminar(true)} className="contenedor-boton-eliminar">
                 <PersonRemoveIcon sx={{ fontSize: 25 }} className="text-white"></PersonRemoveIcon>
             </div>
         </>

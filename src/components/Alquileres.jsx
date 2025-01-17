@@ -93,7 +93,7 @@ const Alquileres = () => {
                     :
                     ""
             }
-            <AutorenewOutlinedIcon sx={{ fontSize: 40 }} className="my-3 boton-reiniciar " onClick={() => setModalEliminar(true)} />
+            <AutorenewOutlinedIcon sx={{ fontSize: 40 }}  className="my-3 boton-reiniciar " onClick={() => setModalEliminar(true)} />
             <div className="container my-5">
                 {cargando ? <Cargando /> :
                     <div className="row">

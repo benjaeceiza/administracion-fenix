@@ -63,7 +63,9 @@ const inquilinos = (id) => {
             {inquilino.map(e => (
               <div className="img-nombre opacidad" key={e.id} >
                 <Link to={"/inquilino/" + e.id}><img height={80} src={e.imagen} alt="" /></Link>
-                <p>{e.apellido}</p>
+                <div className="contenedor-nombre-inqui-detail">
+                  <p>{e.apellido}</p>
+                </div>
               </div>
             ))}
 

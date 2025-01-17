@@ -74,13 +74,12 @@ const PropietariosDetail = () => {
         <>
             {cargador ? <Cargando /> :
                 <div className=" contenedor-propietario-detail">
-                        
                     <CambiarAvatar tipo={"propietarios"} cambiarAvatar={cambiarAvatar} setCambiarAvatar={setCambiarAvatar} propietario={propietario} setReload={setReload}/>
-                    <BotonEliminar propietario={id} inquilinos={inquilinosAgrupado} />
+                    <BotonEliminar propietario={id} inquilinos={inquilinosAgrupado}  />
                     <div className="contenedor-datos-fotonombre">
                         <div className="col my-5">
                             <div className="contenedor-boton-avatar">
-                                <ModeEditOutlineIcon className="cambiar-avatar my-3" onClick={() => setCambiarAvatar(true)}></ModeEditOutlineIcon>
+                                <ModeEditOutlineIcon className="cambiar-avatar my-3 mouse" onClick={() => setCambiarAvatar(true)}></ModeEditOutlineIcon>
                             </div>
                             <FotoNombreProp propietario={propietario}/>
                         </div>

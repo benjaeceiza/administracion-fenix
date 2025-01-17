@@ -33,13 +33,14 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
     }, [eliminar])
 
 
-    const dataPdf = (nombre, concepto, impuestos, expensas, monto, fecha, numero) => {
+    const dataPdf = (nombre, concepto, impuestos, expensas,municipalidad, monto, fecha, numero) => {
  
         const dataPrev = {
             nombre: nombre,
             concepto: concepto,
             impuestos: impuestos,
             expensas: expensas,
+            municipalidad:municipalidad,
             monto: monto,
             fecha: fecha
         }
@@ -61,9 +62,9 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
         let data2;
 
         if (concepto == "Alquiler") {
-             columns2 = ['Incluye impuestos', 'Incluye Expensas']
+             columns2 = ['Incluye impuestos', 'Incluye Expensas','Incluye Municipalidad']
              data2 = [
-                [dataPrev.impuestos ? "SI" : "NO",dataPrev.expensas ? "SI" : "NO" ]
+                [dataPrev.impuestos ? "SI" : "NO",dataPrev.expensas ? "SI" : "NO",dataPrev.municipalidad ? "SI" : "NO" ]
             ]
         }
 
@@ -143,12 +144,25 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                                         :
                                         ""
                                 }
+                                {
+                                    e.concepto == "Alquiler"
+                                        ?
+                                        (
+                                            e.municipalidad
+                                                ?
+                                                <p className="my-0">Incluye Municipalidad: <b>Si</b></p>
+                                                :
+                                                <p className="my-0">Incluye Municipalidad: <b>No</b></p>
+                                        )
+                                        :
+                                        ""
+                                }
                                 <p>Monto: <b>${e.monto}</b> </p>
                             </div>
                             <div className="contenedor-fecha-eliminar">
                                 <p> {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
                                 <div>
-                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto, e.impuestos, e.expensas, e.monto, e.fecha, e.reciboNumero)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
+                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto, e.impuestos, e.expensas,e.municipalidad, e.monto, e.fecha, e.reciboNumero)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
                                     <DeleteIcon className="icono-recibo" cursor={"pointer"} onClick={() => controlEliminarRecibo(e.id)}></DeleteIcon>
                                 </div>
                             </div>
