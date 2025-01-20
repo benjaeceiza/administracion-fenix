@@ -33,11 +33,12 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
     }, [eliminar])
 
 
-    const dataPdf = (nombre, concepto, impuestos, expensas,municipalidad, monto, fecha, numero) => {
+    const dataPdf = (nombre, concepto,descripcion, impuestos, expensas,municipalidad, monto, fecha, numero) => {
  
         const dataPrev = {
             nombre: nombre,
             concepto: concepto,
+            descripcion:descripcion,
             impuestos: impuestos,
             expensas: expensas,
             municipalidad:municipalidad,
@@ -55,7 +56,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
       
         const columns = ['Nombre', 'Localidad', 'Concepto', 'Monto', 'Fecha']
         const data = [
-            [`${dataPrev.nombre}`, `Villa Mercedes`, `${dataPrev.concepto}`, `$${dataPrev.monto}`, new Intl.DateTimeFormat('es-ES',).format(dataPrev.fecha.fecha.seconds * 1000)]
+            [`${dataPrev.nombre}`, `Villa Mercedes`, dataPrev.descripcion ? dataPrev.descripcion : dataPrev.concepto, `$${dataPrev.monto}`, new Intl.DateTimeFormat('es-ES',).format(dataPrev.fecha.fecha.seconds * 1000)]
         ]
 
         let columns2;
@@ -116,7 +117,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                             <div className="contenido-recibo ">
                                 <label className="label-datos">En concepto de:</label>
                                 <div className="div-concepto input-nombre-nota">
-                                    <p>{e.concepto}</p>
+                                    {e.descripcion ? <p>{e.descripcion}</p> : <p>{e.concepto}</p>}
                                 </div>
                                 {
                                     e.concepto == "Alquiler"
@@ -162,7 +163,7 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                             <div className="contenedor-fecha-eliminar">
                                 <p> {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
                                 <div>
-                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto, e.impuestos, e.expensas,e.municipalidad, e.monto, e.fecha, e.reciboNumero)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
+                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto,e.descripcion, e.impuestos, e.expensas,e.municipalidad, e.monto, e.fecha, e.reciboNumero)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
                                     <DeleteIcon className="icono-recibo" cursor={"pointer"} onClick={() => controlEliminarRecibo(e.id)}></DeleteIcon>
                                 </div>
                             </div>

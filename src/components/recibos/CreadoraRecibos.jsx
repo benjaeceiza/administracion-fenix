@@ -25,7 +25,7 @@ const Recibos = () => {
     const [expensas, setExpensas] = useState(false)
     const [municipalidad, setMunicipalidad] = useState(false)
     const [tamañoRecibos, setTamañoRecibos] = useState("")
-
+    const [descripcion,setDescripcion] = useState("")
     const formulario = useRef()
 
     const notifySucces = () => toast.success("Recibo Enviado", {
@@ -42,7 +42,7 @@ const Recibos = () => {
 
     useEffect(() => {
         const db = getFirestore();
-        const docRef = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
+        const docRef = doc(db, "numeroRecibos", "AVEBwfSCF0yvfbmTliaI")
         getDoc(docRef).then(snapShot => {
             if (snapShot.exists()) {
 
@@ -69,7 +69,7 @@ const Recibos = () => {
                 if (Snapshot.size > 0) {
                     const personasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
                     setPersonas([...personasPrev].sort((a, b) => (a.apellido > b.apellido ? 1 : a.apellido < b.apellido ? -1 : 0)))
-  
+
                 } else {
                     console.error("error")
                 }
@@ -163,14 +163,15 @@ const Recibos = () => {
                 impuestos: impuesto,
                 expensas: expensas,
                 municipalidad: municipalidad,
-                reciboNumero: tamañoRecibos+1
+                descripcion:descripcion,
+                reciboNumero: tamañoRecibos + 1
 
             }
 
             const db = getFirestore();
             const docRef = doc(db, tipo, idPersona)
             const docRef2 = collection(db, "recibos")
-            const docRef3 = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
+            const docRef3 = doc(db, "numeroRecibos", "AVEBwfSCF0yvfbmTliaI")
             updateDoc(docRef, { alquiler: true })
             addDoc(docRef2, reciboPersona).then(
                 notifySucces(),
@@ -178,7 +179,7 @@ const Recibos = () => {
 
             )
 
-            updateDoc(docRef3,{numeroRecibo:tamañoRecibos+1})
+            updateDoc(docRef3, { numeroRecibo: tamañoRecibos + 1 })
 
         } else {
 
@@ -189,19 +190,19 @@ const Recibos = () => {
                 monto: monto,
                 fecha: fechaRecibo,
                 idPersona: idPersona,
-                reciboNumero: tamañoRecibos+1
+                reciboNumero: tamañoRecibos + 1
 
             }
 
             const db = getFirestore();
             const docRef2 = collection(db, "recibos")
-            const docRef3 = doc(db, "numeroRecibos","AVEBwfSCF0yvfbmTliaI")
+            const docRef3 = doc(db, "numeroRecibos", "AVEBwfSCF0yvfbmTliaI")
             addDoc(docRef2, reciboPersona).then(
                 notifySucces(),
                 formulario.current.reset()
             )
 
-            updateDoc(docRef3,{numeroRecibo:tamañoRecibos+1})
+            updateDoc(docRef3, { numeroRecibo: tamañoRecibos + 1 })
         }
 
     }
@@ -227,6 +228,15 @@ const Recibos = () => {
                                 <option value={"propietarios"}>Propietario</option>
                             </select>
                             <div className="my-3">
+                                <label className="label-datos ">Nombre</label>
+                                <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioNombre}>
+                                    <option value="">Seleccione un nombre</option>
+                                    {personas.map(e => (
+                                        <option key={e.id} value={(e.apellido) + " " + (e.nombre)}>{e.apellido} {e.nombre}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="my-3">
                                 <label className="label-datos">En concepto de</label>
                                 <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioConcepto} >
                                     <option value={""}>Seleccione el concepto</option>
@@ -234,6 +244,7 @@ const Recibos = () => {
                                     <option value={"Otro"}>Otro</option>
                                 </select>
                             </div>
+
                             <div className="my-3">
                                 {inputConcepto
                                     ?
@@ -243,6 +254,10 @@ const Recibos = () => {
                                         concepto == "Alquiler"
                                             ?
                                             <div className="contenedor-checks">
+                                                <div className="my-3">
+                                                    <label className="label-datos">Descripción</label>
+                                                    <input placeholder="Descripción" className="form-control input-nombre-nota" type="text" onChange={e => setDescripcion(e.target.value)}/>
+                                                </div>
                                                 <div className="contenedor-check">
                                                     <label>Incluye Expensas</label>
                                                     <input type="checkbox" onChange={checkValue} />
@@ -259,15 +274,7 @@ const Recibos = () => {
                                             : "")
                                 }
                             </div>
-                            <div className="my-3">
-                                <label className="label-datos ">Nombre</label>
-                                <select className="form-select input-nombre-nota" aria-label="Default select example" onChange={cambioNombre}>
-                                    <option value="">Seleccione un nombre</option>
-                                    {personas.map(e => (
-                                        <option key={e.id} value={(e.apellido) + " " + (e.nombre)}>{e.apellido} {e.nombre}</option>
-                                    ))}
-                                </select>
-                            </div>
+
                             <div className="my-3">
                                 <div className="contenedor-fecha-label">
                                     <label className="label-datos">Fecha</label>

@@ -81,8 +81,8 @@ const AgregarNota = () => {
                 <div className="row my-5">
                     <div ref={formulario} className="formulario-nota my-5">
                         <div className="label-input">
-                            <label className="label-datos">Nombre</label>
-                            <input className="input-nombre-nota" type="text" placeholder="Nombre" onInput={(e) => { setNombre(e.target.value) }} />
+                            <label className="label-datos">Titulo</label>
+                            <input className="input-nombre-nota" type="text" placeholder="Titulo" onInput={(e) => { setNombre(e.target.value) }} />
                         </div>
                         <textarea className="campo-texto" name="text" id="" placeholder=" Cuerpo Nota" onInput={(e) => { setNota(e.target.value) }} />
                         <button className="boton-nota" onClick={control}>Agregar Nota</button>
