@@ -25,7 +25,8 @@ const Recibos = () => {
     const [expensas, setExpensas] = useState(false)
     const [municipalidad, setMunicipalidad] = useState(false)
     const [tamañoRecibos, setTamañoRecibos] = useState("")
-    const [descripcion,setDescripcion] = useState("")
+    const [descripcion, setDescripcion] = useState("")
+    const [idprop,setIdprop] = useState(0)
     const formulario = useRef()
 
     const notifySucces = () => toast.success("Recibo Enviado", {
@@ -113,10 +114,18 @@ const Recibos = () => {
         personas.map(persona => {
 
             if ((persona.apellido + " " + persona.nombre) == e.target.value) {
-
                 setIdPersona(persona.id)
+                if(tipo == "inquilinos"){
+                    setIdprop(persona.idprop)
+                }else{
+                    
+                }
             }
         })
+        
+   
+
+       
 
     }
     const checkValue = () => {
@@ -156,6 +165,7 @@ const Recibos = () => {
             const reciboPersona = {
                 nombre: nombrePersona,
                 tipo: tipo,
+                idprop: idprop,
                 concepto: concepto,
                 monto: monto,
                 fecha: fechaRecibo,
@@ -163,7 +173,7 @@ const Recibos = () => {
                 impuestos: impuesto,
                 expensas: expensas,
                 municipalidad: municipalidad,
-                descripcion:descripcion,
+                descripcion: descripcion,
                 reciboNumero: tamañoRecibos + 1
 
             }
@@ -186,6 +196,7 @@ const Recibos = () => {
             const reciboPersona = {
                 nombre: nombrePersona,
                 tipo: tipo,
+                idprop: idprop,
                 concepto: concepto,
                 monto: monto,
                 fecha: fechaRecibo,
@@ -256,7 +267,7 @@ const Recibos = () => {
                                             <div className="contenedor-checks">
                                                 <div className="my-3">
                                                     <label className="label-datos">Descripción</label>
-                                                    <input placeholder="Descripción" className="form-control input-nombre-nota" type="text" onChange={e => setDescripcion(e.target.value)}/>
+                                                    <input placeholder="Descripción" className="form-control input-nombre-nota" type="text" onChange={e => setDescripcion(e.target.value)} />
                                                 </div>
                                                 <div className="contenedor-check">
                                                     <label>Incluye Expensas</label>

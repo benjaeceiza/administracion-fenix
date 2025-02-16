@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteDoc, doc, getFirestore } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 import ModalEliminar from "../modal/ModalEliminar";
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { jsPDF } from "jspdf"
@@ -12,12 +12,18 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
     const [modalEliminar, setModalEliminar] = useState(false)
     const [reciboSeleccionado, setReciboSeleccionado] = useState("")
     const [eliminar, setEliminar] = useState(false)
+    const [locatario, setLocatario] = useState("")
+    let propietarios = [];
+    let locador = "";
+
+
 
 
     useEffect(() => {
         let sortedList = [...recibos].sort((a, b) => (a.fecha.fecha.seconds < b.fecha.fecha.seconds ? 1 : a.fecha.fecha.seconds > b.fecha.fecha.seconds ? -1 : 0))
         setRecibosOrdenados(sortedList);
     }, [recibos])
+    
 
 
     useEffect(() => {
@@ -33,58 +39,74 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
     }, [eliminar])
 
 
-    const dataPdf = (nombre, concepto,descripcion, impuestos, expensas,municipalidad, monto, fecha, numero) => {
- 
+    const dataPdf = (nombre, concepto, descripcion, monto, fecha, numero, tipo, idprop) => {
+
         const dataPrev = {
             nombre: nombre,
             concepto: concepto,
-            descripcion:descripcion,
-            impuestos: impuestos,
-            expensas: expensas,
-            municipalidad:municipalidad,
+            descripcion: descripcion,
             monto: monto,
-            fecha: fecha
+            fecha: fecha,
+            tipo: tipo,
+            idprop: idprop
         }
 
-        const doc = new jsPDF();
+        const docc = new jsPDF();
 
-        doc.addImage("https://i.postimg.cc/vZsjPByL/fenix-logo.jpg", "JPG", 10, 10, 60, 20);
-        doc.setFontSize(20)
-        doc.setFont("italic")
-        doc.text('COMPROBANTE', 140, 21)
-        doc.text('N°' + numero, 180, 30)
-      
+        docc.addImage("https://i.postimg.cc/vZsjPByL/fenix-logo.jpg", "JPG", 10, 10, 60, 20);
+        docc.setFontSize(20)
+        docc.setFont("italic")
+        docc.text('COMPROBANTE', 140, 21)
+        docc.text('N°' + numero, 180, 30)
+
         const columns = ['Nombre', 'Localidad', 'Concepto', 'Monto', 'Fecha']
+        const columns2 = ['Locador']
         const data = [
             [`${dataPrev.nombre}`, `Villa Mercedes`, dataPrev.descripcion ? dataPrev.descripcion : dataPrev.concepto, `$${dataPrev.monto}`, new Intl.DateTimeFormat('es-ES',).format(dataPrev.fecha.fecha.seconds * 1000)]
         ]
-
-        let columns2;
-        let data2;
-
-        if (concepto == "Alquiler") {
-             columns2 = ['Incluye impuestos', 'Incluye Expensas','Incluye Municipalidad']
-             data2 = [
-                [dataPrev.impuestos ? "SI" : "NO",dataPrev.expensas ? "SI" : "NO",dataPrev.municipalidad ? "SI" : "NO" ]
-            ]
-        }
+        const data2 = [
+            [`${idprop}`]
+        ]
 
 
-        doc.autoTable({
+
+
+        docc.autoTable({
             startY: 60,
             head: [columns],
             body: data
         })
-        doc.autoTable({
-            startY: 80,
-            head: [columns2],
-            body: data2
-        })
 
-        doc.addImage("https://i.postimg.cc/KjjyjgFT/E-COMERCE-1.jpg", "JPG", 15, 100, 180, 140);
+        if (dataPrev.tipo == "inquilinos") {
 
-        doc.save(`factura_${dataPrev.nombre}.pdf`);
+                    propietarios.map( e => {
+                        if (e.id == dataPrev.idprop) {
 
+                            locador = (e.nombre + " " + e.apellido)
+                           
+                        } 
+                    })
+
+                } else {
+                    console.error("error")
+                }
+
+        
+
+
+            // docc.autoTable({
+            //     startY: 95,
+            //     head: [columns2],
+            //     body: data2
+            // })
+        
+
+
+        docc.addImage("https://i.postimg.cc/bvMMFcp4/E-COMERCE-1.jpg", "JPG", 10, 230, 180, 100);
+        docc.setFontSize(15)
+        docc.setFont("italic")
+        docc.text('Fenix Propiedades SRL actúa a cuenta y orden de terceros', 40, 250)
+        docc.save(`factura_${dataPrev.nombre}.pdf`);
 
 
     }
@@ -119,51 +141,12 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                                 <div className="div-concepto input-nombre-nota">
                                     {e.descripcion ? <p>{e.descripcion}</p> : <p>{e.concepto}</p>}
                                 </div>
-                                {
-                                    e.concepto == "Alquiler"
-                                        ?
-                                        (
-                                            e.impuestos
-                                                ?
-                                                <p className="my-0">Incluye Impuestos: <b>Si</b></p>
-                                                :
-                                                <p className="my-0">Incluye Impuestos: <b>No</b></p>
-                                        )
-                                        :
-                                        ""
-                                }
-                                {
-                                    e.concepto == "Alquiler"
-                                        ?
-                                        (
-                                            e.expensas
-                                                ?
-                                                <p className="my-0">Incluye Expensas: <b>Si</b></p>
-                                                :
-                                                <p className="my-0">Incluye Expensas: <b>No</b></p>
-                                        )
-                                        :
-                                        ""
-                                }
-                                {
-                                    e.concepto == "Alquiler"
-                                        ?
-                                        (
-                                            e.municipalidad
-                                                ?
-                                                <p className="my-0">Incluye Municipalidad: <b>Si</b></p>
-                                                :
-                                                <p className="my-0">Incluye Municipalidad: <b>No</b></p>
-                                        )
-                                        :
-                                        ""
-                                }
                                 <p>Monto: <b>${e.monto}</b> </p>
                             </div>
                             <div className="contenedor-fecha-eliminar">
                                 <p> {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
                                 <div>
-                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto,e.descripcion, e.impuestos, e.expensas,e.municipalidad, e.monto, e.fecha, e.reciboNumero)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
+                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto, e.descripcion, e.monto, e.fecha, e.reciboNumero, e.tipo, e.idprop)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
                                     <DeleteIcon className="icono-recibo" cursor={"pointer"} onClick={() => controlEliminarRecibo(e.id)}></DeleteIcon>
                                 </div>
                             </div>
