@@ -12,6 +12,7 @@ const FormularioCasa = () => {
     const [finca, setFinca] = useState(0);
     const [niz, setNiz] = useState(0);
     const [gas, setGas] = useState(0);
+    const [os, setOs] = useState(0);
 
     const navigate = useNavigate();
 
@@ -43,6 +44,7 @@ const FormularioCasa = () => {
             finca: `${finca == 0 ? "-" : finca}`,
             nix: `${niz == 0 ? "-" : niz}`,
             gas: `${gas == 0 ? "-" : gas}`,
+            os: `${os == 0 ? "-" : os}`,
             idprop: idPropietario
         }
 
@@ -75,6 +77,9 @@ const FormularioCasa = () => {
                     </div>
                     <div className="input-group mb-3">
                         <input type="number" className={"form-control input-nombre-nota"} placeholder="Número Cuenta Gas" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setGas(e.target.value) }} />
+                    </div>
+                    <div className="input-group mb-3">
+                        <input type="number" className={"form-control input-nombre-nota"} placeholder="Número Obras Sanitarias" aria-label="Username" aria-describedby="basic-addon1" onInput={(e) => { setOs(e.target.value) }} />
                     </div>
                 </form>
                 <div className="text-center">

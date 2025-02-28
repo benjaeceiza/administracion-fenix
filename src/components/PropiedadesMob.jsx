@@ -1,4 +1,4 @@
-import { collection, deleteDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import tacho from "../assets/eliminar.png"
@@ -39,10 +39,12 @@ const PropiedadesMob = ({idPropietario}) => {
 
 
     const eliminarPropiedad = (idPropiedad) => {
+        
         const db = getFirestore();
         const docRef = doc(db,"propiedades", idPropiedad);
 
         deleteDoc(docRef)
+     
 
         const itemCollection = collection(db, "propiedades");
         getDocs(itemCollection).then(Snapshot => {
@@ -85,6 +87,7 @@ const PropiedadesMob = ({idPropietario}) => {
                                         <th scope="col">N° Finca</th>
                                         <th scope="col">N° Nis</th>
                                         <th scope="col">N° Cta Gas</th>
+                                        <th scope="col">N° O.S</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,6 +98,7 @@ const PropiedadesMob = ({idPropietario}) => {
                                             <td>{e.finca}</td>
                                             <td>{e.nix}</td>
                                             <td>{e.gas}</td>
+                                            <td>{e.os}</td>
                                             <td onClick={() => eliminarPropiedad(e.id)}><img height={20} src={tacho} alt="Eliminar" className="mouse" /></td>
                                         </tr>
                                     ))}

@@ -149,6 +149,7 @@ const Propiedades = ({ idPropietario }) => {
                                     <th scope="col">N° Finca</th>
                                     <th scope="col">N° Nis</th>
                                     <th scope="col">N° Cta Gas</th>
+                                    <th scope="col">N° O.S</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -159,6 +160,7 @@ const Propiedades = ({ idPropietario }) => {
                                         <td>{e.finca}</td>
                                         <td>{e.nix}</td>
                                         <td>{e.gas}</td>
+                                        <td>{e.os}</td>
                                         <td onClick={() => controlEliminarPropiedad(e.id)}><img height={20} src={tacho} alt="Eliminar" className="mouse" /></td>
                                     </tr>
                                 ))}
