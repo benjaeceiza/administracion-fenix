@@ -338,6 +338,7 @@ body {
 
 .mouse {
   color: black;
+  cursor: pointer;
 }
 
 .mouse:hover {
