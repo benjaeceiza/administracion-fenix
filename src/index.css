@@ -237,8 +237,10 @@ body {
 /* LISTADO DE PROPIETARIOS */
 
 .contenedor-icono-listado{
-  text-align: end;
-  padding: 10px 20px 0px 0px;
+  padding: 10px 0px 0px 10px;
+
+  position: absolute;
+
 }
 
 .titulo-boton {
