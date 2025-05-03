@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cargando from "./load/Cargando"
 import AvisoVencimiento from "./vencimiento/AvisoVencimiento";
-import BotonAgregar from "./botones/BotonAgregar";
 import BotonAgregarInqulino from "./botones/BotonAgregarInquilino";
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 
 
@@ -13,7 +13,7 @@ const ListadoIquilinos = () => {
   let inquilinos;
   const [inquilinosOrdenados, setInquilinosOrdenados] = useState([]);
   const [cargando, setCargando] = useState(true);
- 
+
   useEffect(() => {
 
     const db = getFirestore();
@@ -42,18 +42,22 @@ const ListadoIquilinos = () => {
   return (
     <>
 
-      <AvisoVencimiento  inquilinos={inquilinosOrdenados}/>
-  
+      <AvisoVencimiento inquilinos={inquilinosOrdenados} />
+
       {cargando ? <Cargando /> : <div className="container">
         <BotonAgregarInqulino />
         <div className="contenedor-propietarios text-center ">
           {inquilinosOrdenados.map(e => (
-            <Link key={e.id} to={"/inquilino/" + e.id} style={{ textDecoration: "none" }}> <div className="col-3 my-5 ancho opacidad">
-              <img src={e.imagen} alt={e.nombre} />
-              <div className="fondo-nombre-inqui">
-                <p className="my-3 nombre">{e.apellido} {e.nombre}</p>
+            <div key={e.id} className="col-3 my-5 ancho opacidad">
+              <div className="contenedor-icono-listado">
+                <Link to={"/recibos/inquilino/" + e.id}><ReceiptLongIcon className="mouse"></ReceiptLongIcon></Link>
               </div>
-            </div></Link>
+              <Link to={"/inquilino/" + e.id} style={{ textDecoration: "none" }}>
+                <img src={e.imagen} alt={e.nombre} />
+                <div className="fondo-nombre-inqui">
+                  <p className="my-3 nombre">{e.apellido} {e.nombre}</p>
+                </div></Link>
+            </div>
           ))}
 
         </div>

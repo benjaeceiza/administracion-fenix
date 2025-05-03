@@ -20,6 +20,8 @@ import Notas from "./components/notas/Notas"
 import AgregarNota from "./components/notas/AgregarNota"
 import Alquileres from "./components/Alquileres"
 import TabNavegador from "./components/TabNavegador"
+import CreadoraRecibosInquilino from "./components/recibos/CradorRecibosInquilino"
+import CreadoraRecibosProp from "./components/recibos/CreadoraRecibosProp"
 
 
 
@@ -48,6 +50,8 @@ function App() {
             <Route path="/editar/inquilino/:idInquilino" element={<EditarInquilino />} />
             <Route path="/alquileres" element={<Alquileres/>} />
             <Route path="/recibos" element={<CreadoraRecibos/>} />
+            <Route path="/recibos/propietario/:id" element={<CreadoraRecibosProp/>} />
+            <Route path="/recibos/inquilino/:id" element={<CreadoraRecibosInquilino/>} />
             <Route path="/recibos/verrecibos" element={<VerRecibos/>} />
             <Route path="/notas" element={<Notas/>} />
             <Route path="/notas/agregarNota" element={<AgregarNota/>} />

@@ -7,7 +7,6 @@ import Cargando from "./load/Cargando";
 
 
 
-
 const ListadoPropietarios = () => {
 
   let propietarios;

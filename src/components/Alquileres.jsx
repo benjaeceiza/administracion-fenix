@@ -59,8 +59,9 @@ const Alquileres = () => {
 
 
     useEffect(() => {
-
         if (reiniciarAlquiler) {
+            
+    
             notifySucces();
             const db = getFirestore();
             filtrosAlDia.map(inquilinos => {

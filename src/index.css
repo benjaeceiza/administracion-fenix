@@ -236,6 +236,11 @@ body {
 
 /* LISTADO DE PROPIETARIOS */
 
+.contenedor-icono-listado{
+  text-align: end;
+  padding: 10px 20px 0px 0px;
+}
+
 .titulo-boton {
   display: flex;
   flex-direction: row;
