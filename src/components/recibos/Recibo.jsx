@@ -1,142 +1,162 @@
 import { useEffect, useState } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { deleteDoc, doc, getDoc, getFirestore } from "firebase/firestore";
 import ModalEliminar from "../modal/ModalEliminar";
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
-import { jsPDF } from "jspdf"
-import "jspdf-autotable"
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable"; 
 
 const Recibo = ({ recibos, setRecargar, limite }) => {
 
     const [recibosOrdenados, setRecibosOrdenados] = useState([])
     const [modalEliminar, setModalEliminar] = useState(false)
-    const [reciboSeleccionado, setReciboSeleccionado] = useState("")
-    const [eliminar, setEliminar] = useState(false)
-    const [locatario, setLocatario] = useState("")
-    let propietarios = [];
-    let locador = "";
-
-
-
+    const [idParaEliminar, setIdParaEliminar] = useState(null)
 
     useEffect(() => {
-        let sortedList = [...recibos].sort((a, b) => (a.fecha.fecha.seconds < b.fecha.fecha.seconds ? 1 : a.fecha.fecha.seconds > b.fecha.fecha.seconds ? -1 : 0))
-        setRecibosOrdenados(sortedList);
+        if (recibos) {
+            let sortedList = [...recibos].sort((a, b) => (a.fecha?.fecha?.seconds < b.fecha?.fecha?.seconds ? 1 : a.fecha?.fecha?.seconds > b.fecha?.fecha?.seconds ? -1 : 0))
+            setRecibosOrdenados(sortedList);
+        }
     }, [recibos])
-    
 
-
-    useEffect(() => {
-
-        if (eliminar) {
-            const db = getFirestore();
-            const docRef = doc(db, "recibos", reciboSeleccionado);
-            deleteDoc(docRef).then(
-                setEliminar(false),
-                setRecargar(true)
-            )
+    const confirmarEliminacion = async () => {
+        if (!idParaEliminar) return;
+        const db = getFirestore();
+        try {
+            await deleteDoc(doc(db, "recibos", idParaEliminar));
+            setRecargar(true);
+            setModalEliminar(false);
+            setIdParaEliminar(null);
+        } catch (error) {
+            console.error("Error al eliminar recibo:", error);
         }
-    }, [eliminar])
+    }
 
+    const abrirModalEliminar = (id) => {
+        setIdParaEliminar(id);
+        setModalEliminar(true);
+    }
 
-    const dataPdf = (nombre, concepto, descripcion, monto, fecha, numero, tipo, idprop) => {
+    // --- FUNCIÓN PDF CON LÓGICA DE ENTREGA VS RECIBO ---
+    const dataPdf = async (recibo) => {
+        const { nombre, concepto, descripcion, monto, fecha, reciboNumero, tipo, idprop } = recibo;
+        let nombreLocador = "";
+        
+        // Determinar si es un cobro (inquilino) o un pago (propietario)
+        const esInquilino = tipo === "inquilinos";
 
-        const dataPrev = {
-            nombre: nombre,
-            concepto: concepto,
-            descripcion: descripcion,
-            monto: monto,
-            fecha: fecha,
-            tipo: tipo,
-            idprop: idprop
-        }
+        // Títulos dinámicos según el tipo de persona
+        const tituloDoc = esInquilino ? "RECIBO DE COBRO" : "COMPROBANTE DE ENTREGA";
+        const textoAccion = esInquilino ? "Recibimos de:" : "Entregamos a:";
+        const etiquetaTotal = esInquilino ? "TOTAL PAGADO:" : "TOTAL ENTREGADO:";
 
-        const docc = new jsPDF();
-
-        docc.addImage("https://i.postimg.cc/vZsjPByL/fenix-logo.jpg", "JPG", 10, 10, 60, 20);
-        docc.setFontSize(20)
-        docc.setFont("italic")
-        docc.text('COMPROBANTE', 140, 21)
-        docc.text('N°' + numero, 180, 30)
-
-        const columns = ['Nombre', 'Localidad', 'Concepto', 'Monto', 'Fecha']
-        const columns2 = ['Locador']
-        const data = [
-            [`${dataPrev.nombre}`, `Villa Mercedes`, dataPrev.descripcion ? dataPrev.descripcion : dataPrev.concepto, `$${dataPrev.monto}`, new Intl.DateTimeFormat('es-ES',).format(dataPrev.fecha.fecha.seconds * 1000)]
-        ]
-        const data2 = [
-            [`${idprop}`]
-        ]
-
-
-
-
-        docc.autoTable({
-            startY: 60,
-            head: [columns],
-            body: data
-        })
-
-        if (dataPrev.tipo == "inquilinos") {
-
-                    propietarios.map( e => {
-                        if (e.id == dataPrev.idprop) {
-
-                            locador = (e.nombre + " " + e.apellido)
-                           
-                        } 
-                    })
-
-                } else {
-                    console.error("error")
+        // Buscar datos del propietario SOLO si es inquilino (para poner "por cuenta y orden de")
+        if (esInquilino && idprop) {
+            try {
+                const db = getFirestore();
+                const propSnap = await getDoc(doc(db, "propietarios", idprop));
+                if (propSnap.exists()) {
+                    const d = propSnap.data();
+                    nombreLocador = `${d.nombre} ${d.apellido}`;
                 }
+            } catch (error) { console.error(error); }
+        }
 
+        // --- INICIO PDF ---
+        const docc = new jsPDF();
+        const pageWidth = docc.internal.pageSize.width;
+        const pageHeight = docc.internal.pageSize.height;
+
+        // 1. HEADER
+        try {
+            docc.addImage("https://i.postimg.cc/tTmRfD5f/logo_2.png", "JPG", 10, 10, 40, 0); 
+        } catch (e) { }
+
+        // Título dinámico a la derecha
+        docc.setFont("helvetica", "bold");
+        docc.setFontSize(16);
+        docc.text(tituloDoc, pageWidth - 15, 20, { align: 'right' });
         
-
-
-            // docc.autoTable({
-            //     startY: 95,
-            //     head: [columns2],
-            //     body: data2
-            // })
+        docc.setFontSize(10);
+        docc.setFont("helvetica", "normal");
+        docc.text(`N° Comprobante: ${reciboNumero || "-"}`, pageWidth - 15, 28, { align: 'right' });
         
+        const fechaTxt = fecha?.fecha?.seconds 
+            ? new Intl.DateTimeFormat('es-AR').format(fecha.fecha.seconds * 1000) 
+            : "-";
+        docc.text(`Fecha: ${fechaTxt}`, pageWidth - 15, 34, { align: 'right' });
 
+        docc.setDrawColor(200, 200, 200);
+        docc.line(15, 40, pageWidth - 15, 40);
 
-        docc.addImage("https://i.postimg.cc/bvMMFcp4/E-COMERCE-1.jpg", "JPG", 10, 230, 180, 100);
-        docc.setFontSize(15)
-        docc.setFont("italic")
-        docc.text('Fenix Propiedades SRL actúa a cuenta y orden de terceros', 40, 250)
-        docc.save(`factura_${dataPrev.nombre}.pdf`);
+        // 2. DATOS DE LA PERSONA (Dinámicos)
+        docc.setFontSize(11);
+        
+        // Aquí cambia: "Recibimos de" vs "Entregamos a"
+        docc.text(`${textoAccion} ${nombre}`, 15, 50);
+        docc.text(`Localidad: Villa Mercedes (San Luis)`, 15, 56);
+        
+       
 
+        // 3. TABLA
+        const conceptoFinal = descripcion ? descripcion : concepto;
+        
+        autoTable(docc, {
+            startY: 70,
+            head: [['Concepto / Descripción', 'Importe']],
+            body: [
+                [conceptoFinal, `$ ${monto}`]
+            ],
+            theme: 'grid', 
+            headStyles: { 
+                fillColor: esInquilino ? [41, 128, 185] : [39, 174, 96], // Azul para cobros, Verde para pagos (opcional)
+                textColor: 255,
+                halign: 'center'
+            },
+            columnStyles: {
+                0: { halign: 'left' }, 
+                1: { halign: 'right', fontStyle: 'bold' } 
+            },
+            styles: { fontSize: 12, cellPadding: 4 }
+        });
 
+        // 4. TOTAL
+        const finalY = docc.lastAutoTable.finalY + 10;
+        docc.setFont("helvetica", "bold");
+        docc.setFontSize(12);
+        docc.text(`${etiquetaTotal} $ ${monto}`, pageWidth - 15, finalY, { align: 'right' });
+
+        // 5. FOOTER
+        const footerY = pageHeight - 50; 
+        try {
+            docc.addImage("https://i.postimg.cc/tTmRfD5f/logo_2.png", "JPG", 15, footerY, pageWidth - 30, 30);
+        } catch (e) { }
+        
+        docc.setFontSize(8);
+        docc.setFont("helvetica", "italic");
+        docc.setTextColor(100);
+        docc.text('Fenix Propiedades SRL actúa a cuenta y orden de terceros.', pageWidth / 2, pageHeight - 10, { align: 'center' });
+        
+        docc.save(`${esInquilino ? 'Recibo' : 'Entrega'}_${nombre}.pdf`);
     }
-
-    const controlEliminarRecibo = (id) => {
-        setModalEliminar(true)
-        setReciboSeleccionado(id)
-
-    }
-
-
-
 
     return (
         <>
+            {modalEliminar && (
+                <ModalEliminar 
+                    setModalEliminar={setModalEliminar} 
+                    accionConfirmar={confirmarEliminacion} 
+                />
+            )}
 
-            {modalEliminar
-                ?
-                <ModalEliminar setModalEliminar={setModalEliminar} setEliminar={setEliminar} />
-                :
-                ""
-            }
             <div key={Math.random()} className="contenedor-recibos">
                 {recibosOrdenados.slice(0, limite).map(e => (
                     <div key={e.id} className="contenedor-recibo">
                         <div className="mostrar-recibo">
-                            <div className={e.tipo == "inquilinos" ? "div-nombre" : "div-nombre-prop"}>
+                            <div className={e.tipo === "inquilinos" ? "div-nombre" : "div-nombre-prop"}>
                                 <p>{e.nombre} ({e.tipo})</p>
                             </div>
-                            <div className="contenido-recibo ">
+                            <div className="contenido-recibo">
                                 <label className="label-datos">En concepto de:</label>
                                 <div className="div-concepto input-nombre-nota">
                                     {e.descripcion ? <p>{e.descripcion}</p> : <p>{e.concepto}</p>}
@@ -144,10 +164,22 @@ const Recibo = ({ recibos, setRecargar, limite }) => {
                                 <p>Monto: <b>${e.monto}</b> </p>
                             </div>
                             <div className="contenedor-fecha-eliminar">
-                                <p> {new Intl.DateTimeFormat('es-ES',).format(e.fecha.fecha.seconds * 1000)}</p>
+                                <p> 
+                                    {e.fecha?.fecha?.seconds 
+                                        ? new Intl.DateTimeFormat('es-AR').format(e.fecha.fecha.seconds * 1000)
+                                        : "Sin fecha"}
+                                </p>
                                 <div>
-                                    <FileDownloadIcon onClick={() => dataPdf(e.nombre, e.concepto, e.descripcion, e.monto, e.fecha, e.reciboNumero, e.tipo, e.idprop)} cursor={"pointer"} className="icono-recibo"></FileDownloadIcon>
-                                    <DeleteIcon className="icono-recibo" cursor={"pointer"} onClick={() => controlEliminarRecibo(e.id)}></DeleteIcon>
+                                    <FileDownloadIcon 
+                                        onClick={() => dataPdf(e)} 
+                                        style={{ cursor: "pointer" }} 
+                                        className="icono-recibo" 
+                                    />
+                                    <DeleteIcon 
+                                        className="icono-recibo" 
+                                        style={{ cursor: "pointer" }}
+                                        onClick={() => abrirModalEliminar(e.id)} 
+                                    />
                                 </div>
                             </div>
                         </div>

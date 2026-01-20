@@ -19,11 +19,6 @@ const TabNavegador = () => {
             <p className='nombre-boton'>Propietarios</p>
             </li>
             </Link> 
-           <Link to={"/inquilinos"} className='ancho-icono'>
-           <li className="item-tab-navegador">
-            <Person4SharpIcon className='text-white' sx={{ fontSize: 40 }}></Person4SharpIcon>
-            <p className='nombre-boton'>Inquilinos</p>
-            </li></Link> 
            <Link to={"/alquileres"} className='ancho-icono'><li className="item-tab-navegador">
             <MonetizationOnSharpIcon className='text-white' sx={{ fontSize: 40 }}></MonetizationOnSharpIcon>
             <p className='nombre-boton'>Aquileres</p>

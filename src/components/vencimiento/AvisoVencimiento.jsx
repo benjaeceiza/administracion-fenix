@@ -1,5 +1,5 @@
-import { addDoc, collection, deleteDoc, deleteField, doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import {  doc, getFirestore } from "firebase/firestore";
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 
 const AvisoVencimiento = ({ inquilinos }) => {

@@ -1,23 +1,19 @@
-import { deleteDoc, doc, getFirestore } from 'firebase/firestore'
-import { useNavigate, useParams } from 'react-router-dom'
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-import { ToastContainer, toast } from 'react-toastify';
+import { deleteDoc, doc, getFirestore } from 'firebase/firestore';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import ModalEliminar from '../modal/ModalEliminar';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
 
 const BotonEliminarInquilino = ({ idprop }) => {
+    
     const navigate = useNavigate();
     const { idInquilino } = useParams();
-    const [modalEliminar, setModalEliminar] = useState(false)
-    const [eliminar, setEliminar] = useState(false)
+    const [modalEliminar, setModalEliminar] = useState(false);
 
-
-    const notify = () => toast.success("Inquilino Eliminado con exito!", {
+    // Configuración de la alerta
+    const notify = () => toast.success("Inquilino Eliminado con éxito!", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -26,47 +22,45 @@ const BotonEliminarInquilino = ({ idprop }) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-
     });
 
+    // Esta es la función que se ejecutará cuando des "Aceptar" en el modal
+    const confirmarBorrado = async () => {
+        const db = getFirestore();
+        const docRef = doc(db, "inquilinos", idInquilino);
 
-    useEffect(() => {
+        try {
+            await deleteDoc(docRef);
+            notify();
+            
+            // Cerramos el modal
+            setModalEliminar(false);
 
-        if (eliminar) {
-            const db = getFirestore();
-            const docRef = doc(db, "inquilinos", idInquilino)
-
-            deleteDoc(docRef).then(
-
-                notify()
-
-            )
-
+            // Redirigimos después de 1.5 seg
             setTimeout(() => {
-                navigate("/propietario/" + idprop)
-            }, 1500)
+                navigate("/propietario/" + idprop);
+            }, 1500);
 
-            setEliminar(false)
+        } catch (error) {
+            console.error("Error al eliminar:", error);
+            toast.error("Error al eliminar el inquilino");
         }
-
-    }, [eliminar])
-
-
+    };
 
     return (
-
         <>
-            {modalEliminar
-                ?
-                <ModalEliminar setModalEliminar={setModalEliminar} setEliminar={setEliminar} />
-                :
-                ""
-            }
-            <div onClick={() => setModalEliminar(true)} className="contenedor-boton-eliminar">
-                <PersonRemoveIcon sx={{ fontSize: 25 }} className="text-white"></PersonRemoveIcon>
+            {modalEliminar && (
+                <ModalEliminar 
+                    setModalEliminar={setModalEliminar} 
+                    accionConfirmar={confirmarBorrado} 
+                />
+            )}
+            
+            <div onClick={() => setModalEliminar(true)} className="contenedor-boton-eliminar mouse">
+                <PersonRemoveIcon sx={{ fontSize: 25 }} className="text-white" />
             </div>
         </>
-    )
+    );
 }
 
 export default BotonEliminarInquilino;

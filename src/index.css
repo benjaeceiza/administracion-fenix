@@ -84,7 +84,10 @@ body {
 
 
 .subtitulo-modal-eliminar {
-  font-size: 15px;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+
 }
 
 .contenedor-botones-modal-eliminar {
@@ -105,24 +108,6 @@ body {
   background-color: rgb(10, 167, 119);
 }
 
-/* INICIO */
-
-.contenedor-inicio {
-  margin-top: 200px;
-
-}
-
-.inicio {
-  text-align: center;
-  width: 50%;
-  min-width: 200px;
-  margin: auto;
-}
-
-.logo-inicio {
-  border-radius: 50%;
-
-}
 
 
 /* NAV BAR */
@@ -187,7 +172,7 @@ body {
 
 .logo {
   height: 60px;
-  border-radius: 50%;
+
 }
 
 /* TAB NAVEGADOR */
@@ -236,9 +221,8 @@ body {
 
 /* LISTADO DE PROPIETARIOS */
 
-.contenedor-icono-listado{
+.contenedor-icono-listado {
   padding: 10px 0px 0px 10px;
-
   position: absolute;
 
 }
@@ -254,6 +238,9 @@ body {
 .contenedor-boton-agregar {
   background-color: rgb(10, 167, 119);
   position: fixed;
+  top: 50;
+  right: 0;
+  margin-right: 100px;
   padding: 10px 10px;
   border-radius: 50%;
   text-align: center;
@@ -298,22 +285,44 @@ body {
 }
 
 
+.search-input {
+  border: 2px solid #ecb44a;
+
+}
+
+.search-input:focus {
+  border: 2px solid #ecb44a;
+  box-shadow: 0 0 10px #ecb44a;
+}
+
 
 .contenedor-propietarios {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+
 
 }
 
 .ancho {
-  width: 250px;
-  margin: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 10px 10px;
   overflow: hidden;
   background-color: rgb(248, 245, 245);
   border-radius: 20px;
   box-shadow: 0 0 5px 1px rgb(105, 105, 105);
+  padding: 20px 10px;
+  background-color: rgb(236, 180, 74);
+  cursor: pointer;
+}
 
+.icon-propietario {
+  width: 80px;
+  height: 80px;
 }
 
 .ancho-detail {
@@ -325,9 +334,7 @@ body {
   box-shadow: 0 0 5px 1px rgb(105, 105, 105);
 }
 
-.ancho img {
-  padding: 75px 0;
-}
+
 
 .tamano img {
   padding: 75px 0px;
@@ -364,9 +371,11 @@ body {
 
 
 .nombre {
-  color: white;
   text-decoration-line: none;
   font-weight: bold;
+  margin: 0;
+  color: white;
+
 }
 
 .opacidad:hover {
@@ -374,6 +383,26 @@ body {
   background-color: rgb(211, 210, 210);
   transition: all .5s;
 }
+
+.cardIConList {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  list-style: none;
+}
+
+.iconItem {
+  color: white;
+  margin-left: 10px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgb(255, 115, 0);
+}
+
+
 
 
 /* PROPIETARIO DETAIL */
@@ -470,10 +499,10 @@ body {
   box-shadow: 0 0 5px 1px rgb(105, 105, 105);
   border-radius: 10px;
   padding-top: 10px;
-  
+
 }
 
-.contenedor-nombre-inqui-detail{
+.contenedor-nombre-inqui-detail {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -650,7 +679,7 @@ body {
   text-align: center;
 }
 
-.titulo-lista-vencimiento{
+.titulo-lista-vencimiento {
   font-weight: bold;
 }
 
@@ -687,6 +716,121 @@ body {
 
 
 }
+
+/* Avatar redondo y pequeño */
+.avatar-chico {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  /* Lo hace redondo */
+  object-fit: cover;
+  /* Evita que la foto se deforme */
+  border: 1px solid #ddd;
+}
+
+/* Ajustes para la tabla */
+.table-responsive {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Sombrita elegante */
+  background-color: white;
+  overflow-x: auto;
+  /* Scroll lateral si no entra */
+}
+
+.text-nowrap {
+  white-space: nowrap;
+  /* Evita que las fechas se partan en dos renglones */
+}
+
+/* Hover suave en las filas */
+.tabla-inquilinos tbody tr:hover {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s;
+}
+
+
+/* TABBLA RESPOSIVE */
+
+/* --- ESTILOS PARA TABLAS RESPONSIVE (MODO TARJETA) --- */
+
+@media (max-width: 768px) {
+    /* Forzamos a la tabla a no comportarse como tabla */
+    .tabla-responsive-mobile, 
+    .tabla-responsive-mobile thead, 
+    .tabla-responsive-mobile tbody, 
+    .tabla-responsive-mobile th, 
+    .tabla-responsive-mobile td, 
+    .tabla-responsive-mobile tr { 
+        display: block; 
+    }
+
+    /* Ocultamos los encabezados de la tabla (no sirven en modo tarjeta) */
+    .tabla-responsive-mobile thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* Estilo de "Tarjeta" para cada fila */
+    .tabla-responsive-mobile tr { 
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    /* Estilo para cada celda (ahora renglón) */
+    .tabla-responsive-mobile td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50% !important; /* Espacio para el título */
+        text-align: right; /* Datos a la derecha */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tabla-responsive-mobile td:last-child {
+        border-bottom: 0;
+        justify-content: center; /* Centrar acciones */
+        padding-left: 0 !important;
+        margin-top: 10px;
+      
+      
+    }
+
+    /* TRUCO: Usamos el atributo data-label para poner el título a la izquierda */
+    .tabla-responsive-mobile td::before { 
+        content: attr(data-label); /* Lee el atributo data-label del HTML */
+        position: absolute;
+        left: 10px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Ajuste especial para el Avatar en móvil */
+    .tabla-responsive-mobile td img.avatar-chico {
+        width: 50px;
+        height: 50px;
+    }
+
+    .contenedor-boton-agregar{
+
+      z-index: 10;
+      top: 0;
+      margin-right: 10px;
+    }
+}
+
+
 
 
 
@@ -881,12 +1025,12 @@ body {
   border: solid 1px white;
   box-shadow: 0px 0px 5px 4px rgb(109, 109, 109);
   color: white;
- 
+
 
 }
 
-.boton-reiniciar:hover{
-transform: scale(1.1);
+.boton-reiniciar:hover {
+  transform: scale(1.1);
 }
 
 .fondo-pagos {
@@ -1066,7 +1210,7 @@ transform: scale(1.1);
   width: 25%;
   min-width: 300px;
   margin: 10px;
- 
+
 }
 
 
@@ -1099,11 +1243,11 @@ transform: scale(1.1);
 }
 
 .icono-recibo {
- margin: 0px 5px;
+  margin: 0px 5px;
 
 }
 
-.icono-recibo:hover{
+.icono-recibo:hover {
   background-color: rgb(196, 196, 196);
   border-radius: 5px;
 }
@@ -1261,7 +1405,7 @@ transform: scale(1.1);
   justify-content: space-between;
   padding: 0px 10px 10px;
 
-   
+
 }
 
 .contenedor-fecha-eliminar p {
@@ -1314,16 +1458,6 @@ transform: scale(1.1);
 }
 
 @media(max-width:770px) {
-
-  .ancho {
-    width: 150px;
-    height: 350px;
-
-  }
-
-  .ancho img {
-    padding: 70px 0px;
-  }
 
 
   .fondo-nombre-inqui {
@@ -1439,17 +1573,6 @@ transform: scale(1.1);
 
 }
 
-@media(max-width:540px) {
-  .ancho {
-    width: 150px;
-    height: 250px;
-
-  }
-
-  .ancho img {
-    padding: 20px 0px;
-  }
-}
 
 @media(max-width:446px) {
   .nombre-boton {

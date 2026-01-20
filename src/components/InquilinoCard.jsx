@@ -2,11 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdModeEditOutline, MdDelete } from "react-icons/md";
 import { IoReceiptOutline } from "react-icons/io5";
 import { useState } from "react";
-import { getFirestore, doc, deleteDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, doc, deleteDoc } from "firebase/firestore";
 import ModalEliminar from "./modal/ModalEliminar";
 
-const Propietarios = ({ propietarios }) => {
-
+const InquilinoCard = ({ inquilinosOrdenados }) => {
+    
     const navigate = useNavigate();
     const [idEliminar, setIdEliminar] = useState(null);
     const [modalEliminar, setModalEliminar] = useState(false);
@@ -15,11 +15,7 @@ const Propietarios = ({ propietarios }) => {
         if (!idEliminar) return;
         const db = getFirestore();
         try {
-            const q = query(collection(db, "inquilinos"), where("idprop", "==", idEliminar));
-            const inquilinosSnapshot = await getDocs(q);
-            const promesas = inquilinosSnapshot.docs.map(d => deleteDoc(doc(db, "inquilinos", d.id)));
-            promesas.push(deleteDoc(doc(db, "propietarios", idEliminar)));
-            await Promise.all(promesas);
+            await deleteDoc(doc(db, "inquilinos", idEliminar));
         } catch (error) { console.error(error); } 
         finally { setModalEliminar(false); setIdEliminar(null); }
     };
@@ -29,41 +25,49 @@ const Propietarios = ({ propietarios }) => {
         setIdEliminar(id); setModalEliminar(true);
     };
 
+    const formatearFecha = (timestamp) => timestamp?.toDate ? timestamp.toDate().toLocaleDateString("es-AR") : "-";
+    const formatearDinero = (monto) => monto ? `$ ${monto.toLocaleString('es-AR')}` : "-";
+
     return (
         <>
             {modalEliminar && <ModalEliminar setModalEliminar={setModalEliminar} accionConfirmar={confirmarEliminacion} />}
 
             {/* Agregamos la clase 'tabla-responsive-mobile' */}
-            <table className="table table-hover align-middle tabla-propietarios tabla-responsive-mobile">
+            <table className="table table-hover align-middle tabla-responsive-mobile">
                 <thead className="table-light">
                     <tr>
                         <th scope="col">Avatar</th>
-                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Vigencia</th>
+                        <th scope="col">Vencimiento</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Aumento</th>
                         <th scope="col" className="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {propietarios.map(p => (
-                        <tr key={p.id} onClick={() => navigate("/propietario/" + p.id)} style={{ cursor: "pointer" }}>
+                    {inquilinosOrdenados.map(i => (
+                        <tr key={i.id} onClick={() => navigate("/inquilino/" + i.id)} style={{ cursor: "pointer" }}>
                             
-                            {/* Atributos data-label agregados */}
+                            {/* IMPORTANTE: data-label DEBE coincidir con el título de la columna */}
                             <td data-label="Avatar">
-                                <img src={p.imagen || "https://via.placeholder.com/40"} alt={p.nombre} className="avatar-chico" />
+                                <img src={i.imagen || "https://via.placeholder.com/40"} alt="avatar" className="avatar-chico"/>
                             </td>
+                            <td data-label="Nombre" className="fw-bold">{i.apellido} {i.nombre}</td>
+                            <td data-label="Vigencia">{formatearFecha(i.vigencia.fecha)}</td>
+                            <td data-label="Vencimiento">{formatearFecha(i.vencimiento.fecha)}</td>
+                            <td data-label="Monto" className="text-success fw-bold">{formatearDinero(i.monto)}</td>
+                            <td data-label="Aumento">{i.aumento ? `${i.aumento}%` : "-"}</td>
                             
-                            <td data-label="Nombre" className="text-start fw-bold">
-                                {p.apellido} {p.nombre}
-                            </td>
-
                             <td data-label="Acciones">
-                                <div className="d-flex justify-content-center gap-3">
-                                    <Link to={`/editar/${p.id}`} onClick={(e) => e.stopPropagation()}>
+                                <div className="d-flex justify-content-center">
+                                    <Link to={`/editar-inquilino/${i.id}`} onClick={(e) => e.stopPropagation()}>
                                         <MdModeEditOutline className="text-primary mouse" size={24} />
                                     </Link>
-                                    <div onClick={(e) => handleClickEliminar(e, p.id)}>
+                                    <div onClick={(e) => handleClickEliminar(e, i.id)}>
                                         <MdDelete className="text-danger mouse" size={24} />
                                     </div>
-                                    <Link to={`/recibos/propietario/${p.id}`} onClick={(e) => e.stopPropagation()}>
+                                    <Link to={`/recibos/inquilino/${i.id}`} onClick={(e) => e.stopPropagation()}>
                                         <IoReceiptOutline className="text-dark mouse" size={24} />
                                     </Link>
                                 </div>
@@ -74,6 +78,6 @@ const Propietarios = ({ propietarios }) => {
             </table>
         </>
     );
-}
+};
 
-export default Propietarios;
+export default InquilinoCard;

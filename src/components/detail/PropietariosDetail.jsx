@@ -7,7 +7,6 @@ import BotonEliminar from "../botones/BotonEliminar";
 import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
 import Cargando from "../load/Cargando"
 import Propiedades from "../Propiedades";
-import BotonAgregarInqui from "../botones/BotonAgregarInqui";
 import CambiarAvatar from "../CambiarAvatar";
 import DatosMob from "../datos/DatosMob";
 import PropiedadesMob from "../PropiedadesMob";
