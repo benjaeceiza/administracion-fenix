@@ -1,63 +1,53 @@
-import { collection, getDocs, getFirestore } from "firebase/firestore"
+import { FiSearch, FiX, FiCalendar } from "react-icons/fi";
+import { MESES } from "../../utils/formatters";
 
+const FiltroNotas = ({
+  mesFiltro,
+  setMesFiltro,
+  busqueda,
+  setBusqueda,
+}) => {
+  return (
+    <div className="toolbar-card toolbar-split mb-4">
+      <div className="search-wrapper">
+        <FiSearch className="search-icon" size={18} />
+        <input
+          type="text"
+          className="search-input-modern"
+          placeholder="Buscar por título o contenido de la nota..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+        {busqueda && (
+          <button
+            type="button"
+            className="search-clear-btn"
+            onClick={() => setBusqueda("")}
+            aria-label="Limpiar búsqueda"
+          >
+            <FiX size={16} />
+          </button>
+        )}
+      </div>
 
-const FiltroNotas = ({ notas, setNotas, setCargando, setLimite }) => {
-
-    const filtrarNotas = (e) => {
-
-        setCargando(true)
-        setLimite(8)
-        const db = getFirestore()
-        const itemCollection = collection(db, "notas")
-        getDocs(itemCollection).then(Snapshot => {
-
-            if (Snapshot.size > 0) {
-
-                let notasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
-                notasPrev = [...notasPrev].sort((a, b) => (a.fecha.seconds < b.fecha.seconds ? 1 : a.fecha.seconds > b.fecha.seconds ? -1 : 0))
-
-                if (e.target.value == "all") {
-                    setNotas(notasPrev)
-                    setCargando(false)
-                } else {
-
-                    setNotas(notasPrev.filter(notas => new Date(notas.fecha.seconds * 1000).getMonth() === parseInt(e.target.value)))
-                    
-                    setCargando(false)
-                }
-
-            } else {
-                console.error("error")
-            }
-        })
-
-
-    }
-
-    
-
-    return (
-        <>
-
-            <div className="filtro-notas">
-                <select className="form-select" aria-label="Default select example" onChange={filtrarNotas}>
-                    <option value={"all"}>Seleccione Mes</option>
-                    <option value={0}>Enero</option>
-                    <option value={1}>Febrero</option>
-                    <option value={2}>Marzo</option>
-                    <option value={3}>Abril</option>
-                    <option value={4}>Mayo</option>
-                    <option value={5}>Junio</option>
-                    <option value={6}>Julio</option>
-                    <option value={8}>Agosto</option>
-                    <option value={7}>Septiembre</option>
-                    <option value={9}>Octubre</option>
-                    <option value={10}>Noviembre</option>
-                    <option value={11}>Diciembre</option>
-                </select>
-            </div>
-        </>
-    )
-}
+      <div className="d-flex align-items-center gap-2 filtro-mes-wrapper">
+        <FiCalendar size={18} className="text-muted flex-shrink-0" />
+        <select
+          className="form-select-fenix"
+          aria-label="Filtrar notas por mes"
+          value={mesFiltro}
+          onChange={(e) => setMesFiltro(e.target.value)}
+        >
+          <option value="all">Todos los meses</option>
+          {MESES.map((m) => (
+            <option key={m.valor} value={String(m.valor)}>
+              {m.nombre}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+};
 
 export default FiltroNotas;

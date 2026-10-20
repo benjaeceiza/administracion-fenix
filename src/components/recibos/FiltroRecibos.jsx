@@ -1,145 +1,87 @@
+import { FiRefreshCw } from "react-icons/fi";
+import { MESES } from "../../utils/formatters";
 
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import { Link } from "react-router-dom"
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
-import { useState } from 'react';
+const FiltroRecibos = ({
+  filtros,
+  onChangeFiltro,
+  onLimpiarFiltros,
+  nombresDisponibles = [],
+}) => {
+  const hayFiltrosActivos =
+    filtros.tipo !== "" || filtros.nombre !== "" || filtros.mes !== "";
 
-const FiltroRecibos = ({ filtroRecibos, setFiltroRecibos,setLimite }) => {
-    const [personas, setPersonas] = useState([]);
-    const [nombre, setNombre] = useState("")
+  return (
+    <div className="toolbar-card mb-4">
+      <div className="row g-3 align-items-end">
+        <div className="col-sm-6 col-md-4">
+          <label className="form-label-fenix" htmlFor="filtro-recibo-tipo">
+            Filtrar por Tipo
+          </label>
+          <select
+            id="filtro-recibo-tipo"
+            className="form-select-fenix"
+            value={filtros.tipo}
+            onChange={(e) => onChangeFiltro("tipo", e.target.value)}
+          >
+            <option value="">Todos los tipos</option>
+            <option value="inquilinos">Inquilinos (Cobros)</option>
+            <option value="propietarios">Propietarios (Entregas)</option>
+          </select>
+        </div>
 
-    const cambioTipo = (e) => {
-        setLimite(6)
-        const db = getFirestore();
-        const itemCollection = collection(db, "recibos")
+        <div className="col-sm-6 col-md-4">
+          <label className="form-label-fenix" htmlFor="filtro-recibo-nombre">
+            Filtrar por Persona
+          </label>
+          <select
+            id="filtro-recibo-nombre"
+            className="form-select-fenix"
+            value={filtros.nombre}
+            onChange={(e) => onChangeFiltro("nombre", e.target.value)}
+          >
+            <option value="">Todas las personas</option>
+            {nombresDisponibles.map((nombre) => (
+              <option key={nombre} value={nombre}>
+                {nombre}
+              </option>
+            ))}
+          </select>
+        </div>
 
+        <div className="col-sm-6 col-md-3">
+          <label className="form-label-fenix" htmlFor="filtro-recibo-mes">
+            Filtrar por Mes
+          </label>
+          <select
+            id="filtro-recibo-mes"
+            className="form-select-fenix"
+            value={filtros.mes}
+            onChange={(e) => onChangeFiltro("mes", e.target.value)}
+          >
+            <option value="">Todos los meses</option>
+            {MESES.map((m) => (
+              <option key={m.valor} value={String(m.valor)}>
+                {m.nombre}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        getDocs(itemCollection).then(Snapshot => {
-            let recibos = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
+        <div className="col-sm-6 col-md-1 d-flex justify-content-end">
+          {hayFiltrosActivos && (
+            <button
+              type="button"
+              onClick={onLimpiarFiltros}
+              className="btn-fenix btn-fenix-outline w-100 justify-content-center"
+              title="Restablecer filtros"
+            >
+              <FiRefreshCw size={16} />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
-            if (Snapshot.size > 0) {
-                if (e.target.value == "") {
-                    setFiltroRecibos(recibos)
-                 
-
-                } else {
-
-                    setFiltroRecibos(recibos.filter(recibo => recibo.tipo == e.target.value))
-                 
-                }
-            } else {
-                console.error("error")
-            }
-        })
-
-        if (e.target.value == "") {
-            setPersonas([])
-        } else {
-            const itemCollection2 = collection(db, e.target.value)
-            getDocs(itemCollection2).then(Snapshot => {
-                const personasPrev = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
-                
-
-                if (Snapshot.size > 0) {
-                    setPersonas([...personasPrev].sort((a, b) => (a.apellido > b.apellido ? 1 : a.apellido < b.apellido ? -1 : 0)))
-                } else {
-                    console.error("error")
-                }
-            })
-        }
-
-
-    }
-
-    const cambioNombre = (e) => {
-        setLimite(6)
-        setNombre(e.target.value)
-        const db = getFirestore();
-        const itemCollection = collection(db, "recibos")
-
-        getDocs(itemCollection).then(Snapshot => {
-            let recibos = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
-
-            if (Snapshot.size > 0) {
-                if (e.target.value == "") {
-                    // setFiltroRecibos(recibos)
-                } else {
-
-                    setFiltroRecibos(recibos.filter(recibo => recibo.nombre == e.target.value))
-                }
-            } else {
-                console.error("error")
-            }
-        })
-    }
-
-    const cambioMes = (e) => {
-        setLimite(6)
-        const db = getFirestore();
-        const itemCollection = collection(db, "recibos")
-
-
-        getDocs(itemCollection).then(Snapshot => {
-
-            if (Snapshot.size > 0) {
-                let recibos = Snapshot.docs.map(documento => ({ id: documento.id, ...documento.data() }));
-                setFiltroRecibos(recibos.filter(recibo => new Date(recibo.fecha.fecha.seconds * 1000).getMonth() == e.target.value))
-            } else {
-                console.error("error")
-            }
-        })
-
-
-
-    }
-
-    return (
-        <>
-            <div className="contenedor-filtro-botones-recibos">
-                <div className="contenedor-filtro my-3">
-                    <div className="mb-3">
-                        <select className="form-select" aria-label="Default select example" onChange={cambioTipo}>
-                            <option value="">Seleccione Tipo</option>
-                            <option value="inquilinos">Inquilino</option>
-                            <option value="propietarios">Propietario</option>
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <select className="form-select" aria-label="Default select example" onChange={cambioNombre} >
-                            <option value="">Seleccione Nombre</option>
-                            {personas.map(persona => (
-                                <option key={persona.id} value={persona.apellido + " " + persona.nombre}>{persona.apellido} {persona.nombre}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="mb-3">
-                        <select className="form-select" aria-label="Default select example" onChange={cambioMes}>
-                            <option value="">Seleccione Mes</option>
-                            <option value={0}>Enero</option>
-                            <option value={1}>Febrero</option>
-                            <option value={2}>Marzo</option>
-                            <option value={3}>Abril</option>
-                            <option value={4}>Mayo</option>
-                            <option value={5}>Junio</option>
-                            <option value={6}>Julio</option>
-                            <option value={7}>Agosto</option>
-                            <option value={8}>Septiembre</option>
-                            <option value={9}>Octubre</option>
-                            <option value={10}>Noviembre</option>
-                            <option value={11}>Diciembre</option>
-                        </select>
-                    </div>
-
-                    <div className="contenedor-buscar-agregar-recibo">
-                        <div className="contenedor-boton-agregar-recibo">
-                            <Link to={"/recibos"}><AddRoundedIcon className="text-white" ></AddRoundedIcon></Link>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </>
-    )
-}
-
-export default FiltroRecibos
+export default FiltroRecibos;
